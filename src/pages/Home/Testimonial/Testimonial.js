@@ -40,7 +40,7 @@ const Testimonial = () => {
     ],
   };
   return (
-    <>
+    <div className="container mx-auto">
       <div className="px-4 lg:px-20 py-20 relative">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold">WHAT CUSTOMER SAY</h1>
@@ -186,7 +186,7 @@ const Testimonial = () => {
           <img src={circle3} alt="circle" />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
