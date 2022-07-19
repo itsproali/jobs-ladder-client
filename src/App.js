@@ -1,13 +1,10 @@
 import './App.css';
-import Router from './components/routes/Router';
+import RoutesIndex from './components/Routes-Setup/Router';
 
 function App() {
   return (
     <div className="App">
-      <Router></Router>
-      <div>
-        shakil
-      </div>
+      <RoutesIndex></RoutesIndex>
     </div>
   );
 }
