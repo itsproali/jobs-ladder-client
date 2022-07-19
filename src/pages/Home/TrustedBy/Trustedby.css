@@ -1,0 +1,14 @@
+.companys-logo{
+  background: transparent;
+/* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); */
+backdrop-filter: blur(3px);
+}
+.magic-ball{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0 ;
+  left: 0;
+  background-color: red;
+}
