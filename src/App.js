@@ -1,9 +1,9 @@
-import './App.css';
-import RoutesIndex from './components/Routes-Setup/Router';
+import "./App.css";
+import RoutesIndex from "./components/Routes-Setup/Router";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <RoutesIndex></RoutesIndex>
     </div>
   );
