@@ -42,13 +42,14 @@ const Testimonial = () => {
   return (
     <>
       <div className="px-4 lg:px-20 py-20 relative">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold">WHAT CUSTOMER SAY</h1>
-          <p className="mx-auto mt-6 max-w-md">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
-            nostrum earum
-          </p>
+      <div className='flex flex-col sm:gap-3 gap-1 justify-center items-center sm:mb-10 mb-5'>
+        <h5 className='font-bold uppercase text-primary sm:text-lg text-sm'>Testimonial</h5>
+        <h1 className=' md:text-3xl sm:text-2xl text-lg font-bold uppercase flex items-center gap-[2px]'>What Customer Say</h1>
+        <div className='flex sm:gap-2 gap-1 mt-1'>
+          <div className='sm:h-1 h-[2px] sm:w-12 w-8 bg-secondary rounded-lg'></div>
+          <div className='sm:h-1 h-[2px]  sm:w-7 w-4 bg-primary rounded-lg'></div>
         </div>
+      </div>
         <Slider {...settings}>
           {/* Person 1 */}
           <div className="my-10">
@@ -179,10 +180,10 @@ const Testimonial = () => {
             </div>
           </div>
         </Slider>
-        <div className="absolute left-8 bottom-8 -z-10">
+        <div className="hidden md:block absolute left-8 bottom-8 -z-10">
           <img src={circle1} alt="circle" />
         </div>
-        <div className="absolute right-8 top-20 -z-10 w-24 h-24">
+        <div className="hidden md:block absolute right-8 top-20 -z-10 w-24 h-24">
           <img src={circle3} alt="circle" />
         </div>
       </div>
