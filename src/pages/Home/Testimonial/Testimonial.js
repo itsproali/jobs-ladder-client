@@ -40,7 +40,7 @@ const Testimonial = () => {
     ],
   };
   return (
-    <>
+    <div className="container mx-auto">
       <div className="px-4 lg:px-20 py-20 relative">
       <div className='flex flex-col sm:gap-3 gap-1 justify-center items-center sm:mb-10 mb-5'>
         <h5 className='font-bold uppercase text-primary sm:text-lg text-sm'>Testimonial</h5>
@@ -187,7 +187,7 @@ const Testimonial = () => {
           <img src={circle3} alt="circle" />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
