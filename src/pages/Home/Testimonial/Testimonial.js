@@ -3,13 +3,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaQuoteLeft } from "react-icons/fa";
-import filledStar from "../../../img/filled-star.png";
-import unFilledStar from "../../../img/unfilled-star.png";
-import circle1 from "../../../img/circle-1.png";
-import circle3 from "../../../img/circle-3.png";
-import client from "../../../img/client.png";
-import client2 from "../../../img/client-2.png";
-import client3 from "../../../img/client-3.png";
+import filledStar from "../../../asset/testimonial/filled-star.png";
+import unFilledStar from "../../../asset/testimonial/unfilled-star.png";
+import circle1 from "../../../asset/testimonial/circle-1.png";
+import circle3 from "../../../asset/testimonial/circle-3.png";
+import client from "../../../asset/testimonial/client.png";
+import client2 from "../../../asset/testimonial/client-2.png";
+import client3 from "../../../asset/testimonial/client-3.png";
 import "./Testimonial.css";
 
 const Testimonial = () => {
