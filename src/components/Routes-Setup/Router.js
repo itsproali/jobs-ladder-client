@@ -3,7 +3,7 @@ import {Route, Routes } from "react-router-dom";
 import Home from '../../pages/Home/Home';
 
 
-const Router = () => {
+const RoutesIndex = () => {
     return (
         <Routes>
             <Route path='/' element={<Home />}></Route>
@@ -11,4 +11,4 @@ const Router = () => {
     );
 };
 
-export default Router;
+export default RoutesIndex;

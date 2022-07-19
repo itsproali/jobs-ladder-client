@@ -1,10 +1,12 @@
 import React from 'react';
+import MakehrImpactfull from './MakeHrImpactfull/MakehrImpactfull';
+import TrustedBy from './TrustedBy/TrustedBy';
 
 const Home = () => {
     return (
         <div>
-            <h1>hello world</h1>
-            <h1>hello siam</h1>
+           <TrustedBy/>
+           <MakehrImpactfull/>
         </div>
     );
 };
