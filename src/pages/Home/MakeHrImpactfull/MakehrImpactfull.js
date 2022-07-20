@@ -10,7 +10,7 @@ import './makeHrImapactfull.css'
 
 const MakehrImpactfull = () => {
   return (
-    <div className='container mx-auto mt-10 relative px-5'>
+    <div className='container mx-auto my-14 relative px-5'>
       <div className='flex flex-col sm:gap-3 gap-1 justify-center items-center mb-5 pb-5'>
         <h5 className='font-bold uppercase text-primary sm:text-lg text-sm'>It's Impactful</h5>
         <h1 className=' md:text-3xl sm:text-2xl text-lg font-bold uppercase'>Smart Solution and affordable</h1>

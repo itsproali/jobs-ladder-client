@@ -42,18 +42,22 @@ const Testimonial = () => {
   return (
     <div className="container mx-auto">
       <div className="px-4 lg:px-20 py-20 relative">
-      <div className='flex flex-col sm:gap-3 gap-1 justify-center items-center sm:mb-10 mb-5'>
-        <h5 className='font-bold uppercase text-primary sm:text-lg text-sm'>Testimonial</h5>
-        <h1 className=' md:text-3xl sm:text-2xl text-lg font-bold uppercase flex items-center gap-[2px]'>What Customer Say</h1>
-        <div className='flex sm:gap-2 gap-1 mt-1'>
-          <div className='sm:h-1 h-[2px] sm:w-12 w-8 bg-secondary rounded-lg'></div>
-          <div className='sm:h-1 h-[2px]  sm:w-7 w-4 bg-primary rounded-lg'></div>
+        <div className="flex flex-col sm:gap-3 gap-1 justify-center items-center sm:mb-10 mb-5">
+          <h5 className="font-bold uppercase text-primary sm:text-lg text-sm">
+            Testimonial
+          </h5>
+          <h1 className=" md:text-3xl sm:text-2xl text-lg font-bold uppercase flex items-center gap-[2px]">
+            What Customer Say
+          </h1>
+          <div className="flex sm:gap-2 gap-1 mt-1">
+            <div className="sm:h-1 h-[2px] sm:w-12 w-8 bg-secondary rounded-lg"></div>
+            <div className="sm:h-1 h-[2px]  sm:w-7 w-4 bg-primary rounded-lg"></div>
+          </div>
         </div>
-      </div>
         <Slider {...settings}>
           {/* Person 1 */}
           <div className="my-10">
-            <div className="mx-4 rounded-lg shadow-xl border cursor-pointer pt-8 px-6 flex flex-col justify-between h-[300px] bg-white">
+            <div className="mx-4 rounded-lg shadow-xl border cursor-pointer pt-8 px-6 flex flex-col justify-between h-[300px] bg-transparent backdrop-blur-md">
               <div className="">
                 <FaQuoteLeft className="text-6xl text-primary -mt-16"></FaQuoteLeft>
                 <div className="flex items-center my-6">
@@ -64,14 +68,14 @@ const Testimonial = () => {
                   <img src={unFilledStar} alt="Star" />
                 </div>
                 <h2 className="text-center">
-                  Lorem Ipsum doller in dhddf dfsdf sdflkldi werpahf wohjfndf
-                  sofdsf n llsdfi a;cvnie sdofjl woadf sapsdfhd
+                  I have been using Job's Ladder from the beginning and have
+                  saved my ton of money and time.
                 </h2>
               </div>
               <div className="">
                 <div className="-mb-4">
                   <h2 className="font-medium text-secondary">Malino Alex</h2>
-                  <p className="text-xs">Dhaka, Bangladesh</p>
+                  <p className="text-xs">New York, USA</p>
                 </div>
                 <div className="flex justify-end">
                   <img
@@ -85,7 +89,7 @@ const Testimonial = () => {
           </div>
           {/* Person 2 */}
           <div className="my-10">
-            <div className="mx-4 rounded-lg shadow-xl border cursor-pointer pt-8 px-6 flex flex-col justify-between h-[300px] bg-white">
+            <div className="mx-4 rounded-lg shadow-xl border cursor-pointer pt-8 px-6 flex flex-col justify-between h-[300px] bg-transparent backdrop-blur-md">
               <div className="">
                 <FaQuoteLeft className="text-6xl text-primary -mt-16"></FaQuoteLeft>
                 <div className="flex items-center my-6">
@@ -96,14 +100,14 @@ const Testimonial = () => {
                   <img src={unFilledStar} alt="Star" />
                 </div>
                 <h2 className="text-center">
-                  Lorem Ipsum doller in dhddf dfsdf sdflkldi werpahf wohjfndf
-                  sofdsf n llsdfi a;cvnie sdofjl woadf sapsdfhd
+                  Very useful to find candidates which we actually wants. It is
+                  such a great platform!. Loved it.
                 </h2>
               </div>
               <div className="">
                 <div className="-mb-4">
                   <h2 className="font-medium text-secondary">Olivia</h2>
-                  <p className="text-xs">Dhaka, Bangladesh</p>
+                  <p className="text-xs">Chicago, USA</p>
                 </div>
                 <div className="flex justify-end">
                   <img
@@ -117,7 +121,7 @@ const Testimonial = () => {
           </div>
           {/* Person 3 */}
           <div className="my-10">
-            <div className="mx-4 rounded-lg shadow-xl border cursor-pointer pt-8 px-6 flex flex-col justify-between h-[300px] bg-white">
+            <div className="mx-4 rounded-lg shadow-xl border cursor-pointer pt-8 px-6 flex flex-col justify-between h-[300px] bg-transparent backdrop-blur-md">
               <div className="">
                 <FaQuoteLeft className="text-6xl text-primary -mt-16"></FaQuoteLeft>
                 <div className="flex items-center my-6">
@@ -128,14 +132,14 @@ const Testimonial = () => {
                   <img src={unFilledStar} alt="Star" />
                 </div>
                 <h2 className="text-center">
-                  Lorem Ipsum doller in dhddf dfsdf sdflkldi werpahf wohjfndf
-                  sofdsf n llsdfi a;cvnie sdofjl woadf sapsdfhd
+                  It is Very easy to manage whole people'se of the company. I
+                  appreciate & recommend it.
                 </h2>
               </div>
               <div className="">
                 <div className="-mb-4">
                   <h2 className="font-medium text-secondary">Eva Rose</h2>
-                  <p className="text-xs">Dhaka, Bangladesh</p>
+                  <p className="text-xs">Paris, France</p>
                 </div>
                 <div className="flex justify-end">
                   <img
@@ -149,7 +153,7 @@ const Testimonial = () => {
           </div>
           {/* Person 4 */}
           <div className="my-10">
-            <div className="mx-4 rounded-lg shadow-xl border cursor-pointer pt-8 px-6 flex flex-col justify-between h-[300px] bg-white">
+            <div className="mx-4 rounded-lg shadow-xl border cursor-pointer pt-8 px-6 flex flex-col justify-between h-[300px] bg-transparent backdrop-blur-md">
               <div className="">
                 <FaQuoteLeft className="text-6xl text-primary -mt-16"></FaQuoteLeft>
                 <div className="flex items-center my-6">
@@ -160,8 +164,8 @@ const Testimonial = () => {
                   <img src={unFilledStar} alt="Star" />
                 </div>
                 <h2 className="text-center">
-                  Lorem Ipsum doller in dhddf dfsdf sdflkldi werpahf wohjfndf
-                  sofdsf n llsdfi a;cvnie sdofjl woadf sapsdfhd
+                  I can't believe this how easy to manage employees online using
+                  this website. It saved my valuable time.
                 </h2>
               </div>
               <div className="">
