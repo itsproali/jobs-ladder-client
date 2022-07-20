@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../asset/Jobs-ladder-logo.png";
+import { Spin as Hamburger } from 'hamburger-react'
+import 'react-modern-drawer/dist/index.css'
+import HeaderDrawer from "./HeaderDrawer";
 
 const Header2 = () => {
+  const [isOpenDrawer, setIsOpenDrawer] = useState(false)
   const activeLink = ({ isActive }) => {
     return {
       fontWeight: 500,
       color: isActive && "#ED3AB2",
     };
   };
+  const toggleDrawer = () => {
+    setIsOpenDrawer((prevState) => !prevState)
+  }
   return (
     <>
       <div className="container mx-auto">
@@ -62,56 +69,16 @@ const Header2 = () => {
           </div>
           <div className="navbar-end">
             <Link
-              className="hidden md:flex border-2 border-primary text-primary rounded-md py-2 px-12 hover:bg-primary hover:border-primary hover:text-white duration-300"
+              className="hidden  md:flex border-2 border-primary text-primary rounded-md py-2 px-12 hover:bg-primary hover:border-primary hover:text-white duration-300"
               to="/login"
             >
               Login
             </Link>
-
-            <div className="dropdown dropdown-left lg:hidden">
-              <label tabIndex="0" className="btn btn-ghost lg:hidden">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </label>
-              <ul
-                tabIndex="0"
-                className="menu menu-compact dropdown-content mt-6 p-2 shadow-xl bg-base-100 rounded-box w-52 border"
-              >
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-                <li>
-                  <Link to="/blog">Blog</Link>
-                </li>
-                <li>
-                  <Link to="/contact">Contact</Link>
-                </li>
-                <li>
-                  <Link
-                    className="border-2 border-primary inline-block text-center text-primary rounded py-2 hover:bg-primary hover:border-primary hover:text-white duration-300"
-                    to="/login"
-                  >
-                    Login
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            <button onClick={toggleDrawer} className='ml-2 lg:hidden'>
+              <Hamburger toggled={isOpenDrawer} />
+            </button>
           </div>
+          <HeaderDrawer isOpen={isOpenDrawer} toggleDrawer={toggleDrawer} />
         </div>
       </div>
     </>
