@@ -15,7 +15,7 @@ module.exports = {
         
 "text-main-color": "#333333",
         
-"text-secendory-color": "#555555",
+"text-secondary-color": "#555555",
         
 "base-100": "#FFFFFF",
         
