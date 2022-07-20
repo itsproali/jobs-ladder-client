@@ -17,7 +17,7 @@ const TrustedBy = () => {
   const companysLogo = [jdc, tesla, meta, findelity, monster, nueco, ocado, penstate, sap, converse, microsoft, google]
 
   return (
-    <div className='container mx-auto px-5'>
+    <div className='container mx-auto px-5 md:py-20 py-5'>
       <div className='flex flex-col sm:gap-3 gap-1 justify-center items-center sm:mb-10 mb-5'>
         <h5 className='font-bold uppercase text-primary sm:text-lg text-sm'>we are trusted</h5>
         <h1 className=' md:text-3xl sm:text-2xl text-lg font-bold uppercase flex items-center gap-[2px]'>Trusted By hundred<span className='font-extrabold'>+</span> <span className='sm:block hidden'> companies</span></h1>
