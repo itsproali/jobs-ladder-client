@@ -43,12 +43,12 @@ const Header = () => {
     <>
       <div
         className={`visible ${show && "nav-hidden"} ${
-          window.scrollY > 200 && "bg-white  shadow-lg"
+          window.scrollY > 80 && "bg-white  shadow-lg"
         } px-2 md:px-10 z-50`}
       >
         <div
           className={`navbar w-full ${
-            window.scrollY < 200 && "border-b border-gray-300"
+            window.scrollY < 80 && "border-b border-gray-300"
           }`}
         >
           <div className="navbar-start">
