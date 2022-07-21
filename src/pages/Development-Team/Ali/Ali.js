@@ -4,7 +4,7 @@ import { BsLinkedin } from 'react-icons/bs';
 const Ali = () => {
   return (
     <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
-      <a href="https://itsproali.netlify.app/" className='w-64'>
+      <a href="https://itsproali.netlify.app/"  target='_blank'  className='w-64'>
         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://i.ibb.co/BshM3cc/Mohammad-Ali-Profile-Square.png" alt="Bonnie Avatar" />
       </a>
       <div class="p-5 sm:w-3/4 ">

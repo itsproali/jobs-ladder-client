@@ -4,7 +4,7 @@ import { BsLinkedin } from 'react-icons/bs';
 const Shakil = () => {
   return (
     <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
-      <a href="https://md-shakil-hossain-18046.netlify.app/" className='w-64'>
+      <a href="https://md-shakil-hossain-18046.netlify.app/"  target='_blank'  className='w-64'>
         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://i.ibb.co/KV54DKP/271125364-609132453478102-7661597180104962263-n-2.jpg" alt="Bonnie Avatar" />
       </a>
       <div class="p-5 sm:w-3/4 ">
