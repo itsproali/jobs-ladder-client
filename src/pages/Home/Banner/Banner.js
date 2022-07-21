@@ -2,7 +2,7 @@ import React from 'react';
 import heroimg from "../../../asset/illustrations1 2.png";
 const Banner = () => {
     return (
-        <section className='banner py-16'>
+        <section className='banner mt-16 py-16'>
             <div className='container mx-auto '>
                 <div className='grid lg:grid-cols-2 px-5 gap-4 lg:text-left md:text-left sm:text-left text-center'>
                     <div className='banner-content content-center grid order-2 lg:-order-1'>

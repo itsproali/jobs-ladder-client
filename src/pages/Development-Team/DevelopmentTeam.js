@@ -8,7 +8,7 @@ import Siam from './Siam/Siam';
 
 const DevelopmentTeam = () => {
   return (
-    <div className='container mx-auto px-5'>
+    <div className='container mx-auto px-5 mt-20'>
       <div className='mt-10'>
         <h6 className='text-center text-bold text-primary sm:text-2xl text-xl uppercase font-semibold'>Meet our</h6>
         <h1 className='text-center lg:text-5xl md:text-4xl text-2xl text-primary font-bold uppercase '>Development Team</h1>
