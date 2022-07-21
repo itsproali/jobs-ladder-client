@@ -19,7 +19,7 @@ const HeaderDrawer = ({ isOpen, toggleDrawer }) => {
             <li className={'transition duration-200  hover:text-primary text-xl'}><NavLink to='/'>home</NavLink></li>
             <li className={'transition duration-200  hover:text-primary text-xl'}><NavLink to='/about'>about us</NavLink></li>
             <li className={'transition duration-200  hover:text-primary text-xl'}><NavLink to='/blog'>blogs</NavLink></li>
-            <li className={'transition duration-200  hover:text-primary text-xl'}><NavLink to='/contact'> contacts</NavLink></li>
+            <li className={'transition duration-200  hover:text-primary text-xl'}><NavLink to='/contact'> contact</NavLink></li>
           </ul>
         </div>
         <div className='px-5'>
