@@ -3,11 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../../pages/Home/Home";
 import About from "../../pages/About/About";
 import Blog from "../../pages/Blog/Blog";
-
 import Login from "../../pages/Login/Login";
 import Header from "../Shared/Header/Header";
 import Footer from "../Shared/Footer/Footer";
 import Contact from "../../pages/Home/Contact/Contact";
+import DevelopmentTeam from "../../pages/Development-Team/DevelopmentTeam";
 
 const RoutesIndex = () => {
   return (
@@ -18,6 +18,7 @@ const RoutesIndex = () => {
         <Route path="/about" element={<About />}></Route>
         <Route path="/blog" element={<Blog />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/development-team" element={<DevelopmentTeam />}></Route>
         <Route path="/login" element={<Login />}></Route>
       </Routes>
       <Footer></Footer>
