@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../asset/Jobs-ladder-logo.png";
-import { Spin as Hamburger } from 'hamburger-react'
-import 'react-modern-drawer/dist/index.css'
+import { Spin as Hamburger } from "hamburger-react";
+import "react-modern-drawer/dist/index.css";
 import HeaderDrawer from "./HeaderDrawer";
+import "./Header.css";
 
 const Header = () => {
-  const [isOpenDrawer, setIsOpenDrawer] = useState(false)
+  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const activeLink = ({ isActive }) => {
     return {
       fontWeight: 500,
@@ -14,12 +15,42 @@ const Header = () => {
     };
   };
   const toggleDrawer = () => {
-    setIsOpenDrawer((prevState) => !prevState)
-  }
+    setIsOpenDrawer((prevState) => !prevState);
+  };
+
+  // Show Navbar on Scroll UP
+  const [show, setShow] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== "undefined") {
+        if (window.scrollY > lastScrollY) {
+          setShow(true);
+        } else {
+          setShow(false);
+        }
+        setLastScrollY(window.scrollY);
+      }
+    };
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlNavbar);
+      return () => {
+        window.removeEventListener("scroll", controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
   return (
     <>
-      <div className="container mx-auto">
-        <div className="navbar w-full border-b border-gray-300">
+      <div
+        className={`visible ${show && "nav-hidden"} ${
+          window.scrollY > 200 && "bg-white  shadow-lg"
+        } px-2 md:px-10 z-50`}
+      >
+        <div
+          className={`navbar w-full ${
+            window.scrollY < 200 && "border-b border-gray-300"
+          }`}
+        >
           <div className="navbar-start">
             <Link to="/">
               <img
@@ -28,7 +59,7 @@ const Header = () => {
                 alt="Job's Ladder Logo"
               />
             </Link>
-            <ul class="hidden lg:flex items-center ml-5">
+            <ul className="hidden lg:flex items-center ml-5">
               <li>
                 <NavLink
                   to="/"
@@ -74,7 +105,7 @@ const Header = () => {
             >
               Login
             </Link>
-            <button onClick={toggleDrawer} className='ml-2 lg:hidden'>
+            <button onClick={toggleDrawer} className="ml-2 lg:hidden">
               <Hamburger toggled={isOpenDrawer} />
             </button>
           </div>

@@ -1,0 +1,17 @@
+.visible {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 40;
+    height: 4rem;
+    transition: 0.3s linear;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    /* background-color: transparent; */
+    /* padding: 0 7%; */
+}
+
+.nav-hidden {
+    top: -80px;
+}

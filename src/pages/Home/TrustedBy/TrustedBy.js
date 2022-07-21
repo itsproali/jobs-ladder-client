@@ -26,10 +26,10 @@ const TrustedBy = () => {
           <div className='sm:h-1 h-[2px]  sm:w-7 w-4 bg-primary rounded-lg'></div>
         </div>
       </div>
-      <div className='flex sm:gap-0 gap-5 flex-wrap justify-center items-center relative'>
+      <div className='flex sm:gap-0 gap-5 flex-wrap justify-center items-center'>
         {companysLogo.map((logo, index) =>
-          <div key={index} className='flex mb-3 overflow-hidden companys-logo mr-3 gap-3 justify-center items-center sm:p-5  sm:w-48 sm:h-24 w-20  rounded-lg transition duration-500 relative  z-50 '>
-            <img src={logo} alt="" className='w-full relative z-50' />
+          <div key={index} className='flex mb-3 overflow-hidden companys-logo mr-3 gap-3 justify-center items-center sm:p-5  sm:w-48 sm:h-24 w-20  rounded-lg transition duration-500 '>
+            <img src={logo} alt="" className='w-full cursor-pointer hover:scale-110 duration-300' />
           </div>
         )}
       </div>
