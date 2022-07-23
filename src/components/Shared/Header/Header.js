@@ -43,8 +43,8 @@ const Header = () => {
     <>
       <div
         className={`visible ${show && "nav-hidden"} ${
-          window.scrollY > 80 && "bg-white  shadow-lg"
-        } px-2 md:px-10 z-50`}
+          window.scrollY > 80 && "shadow-lg"
+        } bg-white px-2 md:px-10 z-50`}
       >
         <div
           className={`navbar w-full ${
