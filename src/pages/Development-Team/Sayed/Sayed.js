@@ -4,8 +4,8 @@ import { BsLinkedin } from 'react-icons/bs';
 const Sayed = () => {
   return (
     <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
-      <a href="https://itsproali.netlify.app/"  target='_blank'  className='w-64'>
-        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://i.ibb.co/BshM3cc/Mohammad-Ali-Profile-Square.png" alt="Bonnie Avatar" />
+      <a href="https://itsproali.netlify.app/"  target='_blank'  className='sm:w-64 sm:h-full'>
+        <img class="w-full sm:h-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://i.ibb.co/ZBznGmd/received-1293144527734728.jpg" alt="Bonnie Avatar" />
       </a>
       <div class="p-5 sm:w-3/4 ">
         <h3 class="text-2xl font-bold  tracking-tight text-gray-900 dark:text-white">
