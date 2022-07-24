@@ -5,6 +5,7 @@ const Home = lazy(() => import("../../pages/Home/Home"));
 const About = lazy(() => import("../../pages/About/About"));
 const Blog = lazy(() => import("../../pages/Blog/Blog"));
 const Login = lazy(() => import("../../pages/Login/Login"));
+const Register = lazy(() => import("../../pages/Login/Register"));
 const Header = lazy(() => import("../Shared/Header/Header"));
 const Footer = lazy(() => import("../Shared/Footer/Footer"));
 const Contact = lazy(() => import("../../pages/Home/Contact/Contact"));
@@ -24,6 +25,7 @@ const RoutesIndex = () => {
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/development-team" element={<DevelopmentTeam />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
           <Route path="/loading" element={<Loading />}></Route>
         </Routes>
       </Suspense>
