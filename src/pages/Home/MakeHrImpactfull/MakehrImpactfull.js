@@ -1,7 +1,7 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
-import circle1 from "../../../asset/testimonial/circle-1.png";
-import circle2 from "../../../asset/testimonial/circle-2.png";
+import circle1 from "../../../asset/circle-1.png";
+import circle2 from "../../../asset/circle-2.png";
 import search from "../../../asset/servicesForHr/search.png";
 import calander from "../../../asset/servicesForHr/calander-mark.png";
 import handshake from "../../../asset/servicesForHr/handshake.png";
