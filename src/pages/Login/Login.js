@@ -137,7 +137,7 @@ const Login = () => {
           </p>
 
           <div className="divider">OR</div>
-          {/* <SocialLogin /> */}
+          <SocialLogin />
         </div>
       </div>
 
