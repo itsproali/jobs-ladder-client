@@ -12,9 +12,8 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-  const [signInWithFacebook, fbUser, fbLoading, fbError] =
-    useSignInWithFacebook(auth);
+  const [signInWithGoogle, gUser, gError] = useSignInWithGoogle(auth);
+  const [signInWithFacebook, fbUser, fbError] = useSignInWithFacebook(auth);
 
   useEffect(() => {
     if (gUser || fbUser) {
@@ -22,14 +21,11 @@ const SocialLogin = () => {
     }
   }, [gUser, fbUser, from, navigate]);
 
-  if (gError || fbError) {
-    <p className="text-red-500">{gError?.message}</p>;
-  }
-
- 
-
   return (
     <>
+      {gError && <p className="text-red-500">{gError.message}</p>}
+      {fbError && <p className="text-red-500">{fbError.message}</p>}
+
       <div className="flex items-center justify-center">
         <button className="w-8 mx-2" onClick={() => signInWithGoogle()}>
           <img src={googleLogo} alt="Google" />

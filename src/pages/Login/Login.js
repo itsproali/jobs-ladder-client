@@ -12,6 +12,7 @@ import circle3 from "../../asset/circle-3.png";
 import { HiOutlineMail } from "react-icons/hi";
 import { BiLock } from "react-icons/bi";
 import SocialLogin from "./SocialLogin";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,7 +26,6 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm();
 
@@ -38,16 +38,24 @@ const Login = () => {
     signInWithEmailAndPassword(data.email, data.password);
   };
 
-  const handleResetPassword = () => {
-    const resetEmail = getValues("email");
-    if (resetEmail !== "" && !resetError) {
-      sendPasswordResetEmail(resetEmail);
-    } else {
-      window.alert("Something Went wrong");
+  const handleResetPassword = async () => {
+    const { value: email } = await Swal.fire({
+      title: "Input email address",
+      input: "email",
+      inputLabel: "Your email address",
+      inputPlaceholder: "Enter your email address",
+      confirmButtonText: "Reset Password",
+    });
+    if (sending) {
+      Swal.showLoading();
+    }
+    if (email) {
+      Swal.fire("A reset link has been sent!");
+      sendPasswordResetEmail(email);
     }
   };
 
-  if (loading || sending) {
+  if (loading) {
     return <Loading />;
   }
 
@@ -117,7 +125,6 @@ const Login = () => {
                 </span>
               </label>
             </div>
-
 
             {error && <p className="text-red-500">{error.message}</p>}
             {resetError && <p className="text-red-500">{resetError.message}</p>}
