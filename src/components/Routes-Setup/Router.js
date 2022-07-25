@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Circulars from "../../pages/Dashboard-pages/Circulars/Circulars";
 import Company from "../../pages/Dashboard-pages/Company/Company";
+import Employee from "../../pages/Dashboard-pages/Employee/Employee";
 import JobPost from "../../pages/Dashboard-pages/JobPost/JobPost";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import Loading from "../Shared/Loading/Loading";
@@ -35,6 +36,7 @@ const RoutesIndex = () => {
             <Route path="jobpost" element={<JobPost></JobPost>}></Route>
             <Route path="circular" element={<Circulars></Circulars>}></Route>
             <Route path="company" element={<Company></Company>}></Route>
+            <Route path="employee" element={<Employee></Employee>}></Route>
           </Route>
           
         </Routes>
