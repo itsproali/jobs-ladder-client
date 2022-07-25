@@ -5,7 +5,6 @@ import {
 } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase-init";
-import Loading from "../../components/Shared/Loading/Loading";
 import googleLogo from "../../asset/google-logo.png";
 import fbLogo from "../../asset/facebook-logo.png";
 
@@ -24,12 +23,10 @@ const SocialLogin = () => {
   }, [gUser, fbUser, from, navigate]);
 
   if (gError || fbError) {
-    <p className="text-red-500">{gError.message}</p>;
+    <p className="text-red-500">{gError?.message}</p>;
   }
 
-  if (gLoading || fbLoading) {
-    return <Loading></Loading>;
-  }
+ 
 
   return (
     <>
