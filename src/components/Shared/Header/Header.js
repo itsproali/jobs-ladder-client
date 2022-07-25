@@ -112,6 +112,15 @@ const Header = () => {
                   Contact
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="/dashboard"
+                  className="mx-4 hover:text-primary duration-200"
+                  style={activeLink}
+                >
+                  Dashboard
+                </NavLink>
+              </li>
             </ul>
           </div>
           <div className="navbar-end">
