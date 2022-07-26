@@ -35,6 +35,7 @@ const RoutesIndex = () => {
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="jobpost" element={<JobPost></JobPost>}></Route>
             <Route path="circular" element={<Circulars></Circulars>}></Route>
+            <Route index element={<Company></Company>}></Route>
             <Route path="company" element={<Company></Company>}></Route>
             <Route path="employee" element={<Employee></Employee>}></Route>
           </Route>
