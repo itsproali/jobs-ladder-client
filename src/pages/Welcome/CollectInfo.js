@@ -1,17 +1,23 @@
 import axios from "axios";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import welcome from "../../asset/welcome.png";
+import auth from "../../firebase-init";
 
 const CollectInfo = () => {
   const navigate = useNavigate();
+  const [user] = useAuthState(auth);
+  const userName = user?.displayName;
+  const userEmail = user?.email;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const role = e.target.role.value;
     const companyName = e.target.companyName.value;
-    const user = { role, companyName };
+    const user = { userName, userEmail, role, companyName };
     const { res } = axios.post("http://localhost:5000/crete-user", { user });
-    console.log(res);
+    console.log(user, res);
     navigate("/dashboard");
   };
   return (
@@ -23,13 +29,13 @@ const CollectInfo = () => {
         <p className="text-xl text-center text-white">
           A Few steps to Enter our website
         </p>
-        <div className="flex flex-col mt-16 md:flex-row items-center justify-evenly">
-          <div className="mx-auto w-full md:w-1/2">
+        <div className="flex flex-col mt-16 lg:flex-row items-center justify-evenly">
+          <div className="mx-auto w-full lg:w-1/2">
             <img src={welcome} alt="welcome" className="max-w-full" />
           </div>
           <form
             onSubmit={handleSubmit}
-            className="mx-auto w-full md:w-1/2 text-center"
+            className="mx-auto w-full lg:w-1/2 text-center"
           >
             <div className="text-2xl my-2">
               <label htmlFor="role">
