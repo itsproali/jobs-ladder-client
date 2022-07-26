@@ -13,6 +13,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { BiLock } from "react-icons/bi";
 import SocialLogin from "./SocialLogin";
 import Swal from "sweetalert2";
+import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,8 +30,10 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const [token , loadingToken] = useAddUserInfo(user)
+
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate(from, { replace: true });
     }
   }, [user, navigate, from]);
@@ -55,7 +58,7 @@ const Login = () => {
     }
   };
 
-  if (loading) {
+  if (loading || loadingToken) {
     return <Loading />;
   }
 

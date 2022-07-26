@@ -12,6 +12,7 @@ import circle3 from "../../asset/circle-3.png";
 import { HiOutlineMail } from "react-icons/hi";
 import { BiUser, BiLock } from "react-icons/bi";
 import SocialLogin from "./SocialLogin";
+import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,19 +28,21 @@ const Login = () => {
     reset,
   } = useForm();
 
+  const [token , loadingToken] = useAddUserInfo(user)
+
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, navigate, from]);
+  }, [user, navigate, from , token]);
 
-  if (loading || updating) {
+  if (loading || updating || loadingToken) {
     return <Loading />;
   }
 
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
-    await updateProfile({ displayName: data.name });
+    await updateProfile({ displayName: data?.name });
     reset();
   };
   return (
