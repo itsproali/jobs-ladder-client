@@ -15,8 +15,8 @@ const CollectInfo = () => {
     e.preventDefault();
     const role = e.target.role.value;
     const companyName = e.target.companyName.value;
-    const user = { userName, userEmail, role, companyName };
-    const { res } = axios.post("http://localhost:5000/crete-user", { user });
+    const userData = { userName, userEmail, role, companyName };
+    const { res } = axios.post("http://localhost:5000/crete-user", { userData });
     console.log(user, res);
     navigate("/dashboard");
   };

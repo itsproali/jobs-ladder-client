@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase-init";
 import googleLogo from "../../asset/google-logo.png";
 import fbLogo from "../../asset/facebook-logo.png";
+import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
@@ -15,12 +16,15 @@ const SocialLogin = () => {
   const [signInWithGoogle, gUser, gError] = useSignInWithGoogle(auth);
   const [signInWithFacebook, fbUser, fbError] = useSignInWithFacebook(auth);
 
+  const [token] = useAddUserInfo(gUser || fbUser)
+
   useEffect(() => {
-    if (gUser || fbUser) {
+    if (token) {
       navigate(from);
     }
-  }, [gUser, fbUser, from, navigate]);
+  }, [gUser, fbUser, from, navigate , token]);
 
+  console.log(token);
   return (
     <>
       {gError && <p className="text-red-500">{gError.message}</p>}
