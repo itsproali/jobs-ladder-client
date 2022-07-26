@@ -53,7 +53,7 @@ const Header = () => {
   }, [lastScrollY]);
 
   if (loading) {
-    <Loading />;
+    return <Loading />;
   }
   return (
     <>
@@ -131,7 +131,7 @@ const Header = () => {
                     {user.photoURL ? (
                       <img src={user.photoURL} alt="user" />
                     ) : (
-                      user.displayName.slice(0, 1)
+                      user?.displayName?.slice(0, 1)
                     )}
                   </div>
                 </label>

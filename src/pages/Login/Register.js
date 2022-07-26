@@ -12,11 +12,12 @@ import circle3 from "../../asset/circle-3.png";
 import { HiOutlineMail } from "react-icons/hi";
 import { BiUser, BiLock } from "react-icons/bi";
 import SocialLogin from "./SocialLogin";
+import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/welcome";
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
@@ -27,23 +28,25 @@ const Login = () => {
     reset,
   } = useForm();
 
+  const [token , loadingToken] = useAddUserInfo(user)
+
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, navigate, from]);
+  }, [user, navigate, from , token]);
 
-  if (loading || updating) {
+  if (loading || updating || loadingToken) {
     return <Loading />;
   }
 
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
-    await updateProfile({ displayName: data.name });
+    await updateProfile({ displayName: data?.name });
     reset();
   };
   return (
-    <div className="flex min-h-screen items-center justify-center mt-10 relative overflow-hidden">
+    <div className="flex min-h-screen items-center justify-center relative overflow-hidden">
       <div className="card w-96 shadow-xl border lg:-mr-16 bg-white backdrop-blur-xl bg-opacity-40">
         <div className="card-body">
           <h2 className="text-center text-3xl font-semibold">Register</h2>
@@ -161,7 +164,7 @@ const Login = () => {
       </div>
 
       {/* Circle */}
-      <div className="absolute -top-14 -left-14 -z-10">
+      <div className="absolute -top-16 -left-16 -z-10">
         <img src={circle1} alt="circle" />
       </div>
       <div className="absolute w-32 bottom-8 -right-10 -z-10">

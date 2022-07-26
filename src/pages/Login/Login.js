@@ -12,6 +12,8 @@ import circle3 from "../../asset/circle-3.png";
 import { HiOutlineMail } from "react-icons/hi";
 import { BiLock } from "react-icons/bi";
 import SocialLogin from "./SocialLogin";
+import Swal from "sweetalert2";
+import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,12 +27,13 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm();
 
+  const [token , loadingToken] = useAddUserInfo(user)
+
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate(from, { replace: true });
     }
   }, [user, navigate, from]);
@@ -38,21 +41,29 @@ const Login = () => {
     signInWithEmailAndPassword(data.email, data.password);
   };
 
-  const handleResetPassword = () => {
-    const resetEmail = getValues("email");
-    if (resetEmail !== "" && !resetError) {
-      sendPasswordResetEmail(resetEmail);
-    } else {
-      window.alert("Something Went wrong");
+  const handleResetPassword = async () => {
+    const { value: email } = await Swal.fire({
+      title: "Input email address",
+      input: "email",
+      inputLabel: "Your email address",
+      inputPlaceholder: "Enter your email address",
+      confirmButtonText: "Reset Password",
+    });
+    if (sending) {
+      Swal.showLoading();
+    }
+    if (email) {
+      Swal.fire("A reset link has been sent!");
+      sendPasswordResetEmail(email);
     }
   };
 
-  if (loading || sending) {
+  if (loading || loadingToken) {
     return <Loading />;
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center mt-10 relative overflow-hidden">
+    <div className="flex min-h-screen items-center justify-center relative overflow-hidden">
       <div className="card w-96 shadow-xl border lg:-mr-16 bg-white backdrop-blur-xl bg-opacity-40">
         <div className="card-body">
           <h2 className="text-center text-3xl font-semibold">Login</h2>
@@ -118,7 +129,6 @@ const Login = () => {
               </label>
             </div>
 
-
             {error && <p className="text-red-500">{error.message}</p>}
             {resetError && <p className="text-red-500">{resetError.message}</p>}
 
@@ -153,7 +163,7 @@ const Login = () => {
       </div>
 
       {/* Circle */}
-      <div className="absolute -top-14 -left-14 -z-10">
+      <div className="absolute -top-16 -left-16 -z-10">
         <img src={circle1} alt="circle" />
       </div>
       <div className="absolute w-32 bottom-8 -right-10 -z-10">

@@ -5,34 +5,31 @@ import {
 } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase-init";
-import Loading from "../../components/Shared/Loading/Loading";
 import googleLogo from "../../asset/google-logo.png";
 import fbLogo from "../../asset/facebook-logo.png";
+import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-  const [signInWithFacebook, fbUser, fbLoading, fbError] =
-    useSignInWithFacebook(auth);
+  const [signInWithGoogle, gUser, gError] = useSignInWithGoogle(auth);
+  const [signInWithFacebook, fbUser, fbError] = useSignInWithFacebook(auth);
+
+  const [token] = useAddUserInfo(gUser || fbUser)
 
   useEffect(() => {
-    if (gUser || fbUser) {
+    if (token) {
       navigate(from);
     }
-  }, [gUser, fbUser, from, navigate]);
+  }, [gUser, fbUser, from, navigate , token]);
 
-  if (gError || fbError) {
-    <p className="text-red-500">{gError.message}</p>;
-  }
-
-  if (gLoading || fbLoading) {
-    return <Loading></Loading>;
-  }
-
+  console.log(token);
   return (
     <>
+      {gError && <p className="text-red-500">{gError.message}</p>}
+      {fbError && <p className="text-red-500">{fbError.message}</p>}
+
       <div className="flex items-center justify-center">
         <button className="w-8 mx-2" onClick={() => signInWithGoogle()}>
           <img src={googleLogo} alt="Google" />
