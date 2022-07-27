@@ -11,13 +11,13 @@ const CollectInfo = () => {
   const userName = user?.displayName;
   const userEmail = user?.email;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const role = e.target.role.value;
-    const companyName = e.target.companyName.value;
-    const userData = { userName, userEmail, role, companyName };
-    const { res } = axios.post("http://localhost:5000/crete-user", { userData });
-    console.log(user, res);
+    const role = await e.target.role.value;
+    const companyName = await e.target.companyName.value;
+    const userData = await { userName, role, companyName , userEmail };
+    const { res } = await  axios.post("http://localhost:5000/crete-user", { userData });
+    console.log(userData);
     navigate("/dashboard");
   };
   return (
