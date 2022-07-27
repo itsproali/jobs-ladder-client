@@ -12,8 +12,8 @@ import img10 from "../../img/img10.webp";
 
 const Blog = () => {
   return (
-    <div className=" ">
-      <div className="container mx-auto grid lg:grid-cols-2 grid-cols-1 py-14">
+    <div className="">
+      <div className="container px-3 mx-auto grid lg:grid-cols-2 grid-cols-1 py-14">
         <div>
           <img src={img} alt="" />
         </div>
