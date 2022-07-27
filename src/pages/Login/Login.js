@@ -36,7 +36,7 @@ const Login = () => {
     if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, navigate, from]);
+  }, [user, navigate, from , token]);
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data.email, data.password);
   };
