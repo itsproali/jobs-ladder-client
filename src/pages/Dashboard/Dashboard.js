@@ -34,11 +34,11 @@ const Dashboard = () => {
             </li>
             <li className="mb-5">
               <Link
-                to="/dashboard/circular"
+                to="/dashboard/Response"
                 className="text-base-100 capitalize text-xl border inline-block text-center"
               >
                 <HiBookOpen className="inline-block -translate-y-0.5"></HiBookOpen>{" "}
-                circular
+                Response
               </Link>
             </li>
             <li className="mb-5">
