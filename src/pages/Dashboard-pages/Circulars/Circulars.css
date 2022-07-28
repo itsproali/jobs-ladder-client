@@ -1,0 +1,3 @@
+.input-secondary:focus {
+    outline: 0px solid hsl(var(--s));
+}
