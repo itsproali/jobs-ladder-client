@@ -26,7 +26,7 @@ const Dashboard = () => {
           <ul className="menu p-4 overflow-y-auto w-80 text-base-content bg-secondary ">
             <li className="mb-5">
               <Link
-                to="/dashboard/company"
+                to="/dashboard"
                 className="text-base-100 capitalize text-xl border inline-block text-center"
               >
                 <HiOfficeBuilding className="inline-block -translate-y-0.5"></HiOfficeBuilding>{" "}
@@ -44,7 +44,7 @@ const Dashboard = () => {
             </li>
             <li className="mb-5">
               <Link
-                to="/dashboard"
+                to="/dashboard/jobpost"
                 className="text-base-100 capitalize text-xl border inline-block text-center"
               >
                 <HiOutlineBriefcase className="inline-block -translate-y-0.5"></HiOutlineBriefcase>{" "}
@@ -53,11 +53,11 @@ const Dashboard = () => {
             </li>
             <li className="mb-5">
               <Link
-                to="/dashboard/circular"
+                to="/dashboard/response"
                 className="text-base-100 capitalize text-xl border inline-block text-center"
               >
                 <HiBookOpen className="inline-block -translate-y-0.5"></HiBookOpen>{" "}
-                circular
+                Response
               </Link>
             </li>
           </ul>

@@ -2,8 +2,8 @@ import React, { lazy, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
 import RequireAuth from "../Shared/RequireAuth";
-const Circulars = lazy(() =>
-  import("../../pages/Dashboard-pages/Circulars/Circulars")
+const Response = lazy(() =>
+  import("../../pages/Dashboard-pages/Response/Response")
 );
 const Company = lazy(() =>
   import("../../pages/Dashboard-pages/Company/Company")
@@ -56,7 +56,7 @@ const RoutesIndex = () => {
           >
             <Route index element={<Company></Company>}></Route>
             <Route path="jobpost" element={<JobPost></JobPost>}></Route>
-            <Route path="circular" element={<Circulars></Circulars>}></Route>
+            <Route path="response" element={<Response></Response>}></Route>
             <Route path="employee" element={<Employee></Employee>}></Route>
           </Route>
         </Routes>
