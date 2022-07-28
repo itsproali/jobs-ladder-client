@@ -1,9 +1,9 @@
-import axios from "axios";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import welcome from "../../asset/welcome.png";
 import auth from "../../firebase-init";
+import fetching from "../../hooks/UseAddUserInfo/fetching";
 
 const CollectInfo = () => {
   const navigate = useNavigate();
@@ -11,13 +11,12 @@ const CollectInfo = () => {
   const userName = user?.displayName;
   const userEmail = user?.email;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const role = e.target.role.value;
-    const companyName = e.target.companyName.value;
-    const userData = { userName, userEmail, role, companyName };
-    const { res } = axios.post("http://localhost:5000/crete-user", { userData });
-    console.log(user, res);
+    const role = await e.target.role.value;
+    const companyName = await e.target.companyName.value;
+    const userData = await { userName, role, companyName , userEmail };
+    const { res } = await  fetching.put("/users/add-info",  userData );
     navigate("/dashboard");
   };
   return (

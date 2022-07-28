@@ -25,9 +25,10 @@ const Header = () => {
   };
 
   // Handle LogOUt
-  const handleLogOut = () => {
-    signOut(auth);
-    navigate("/");
+  const handleLogOut = async () => {
+    await signOut(auth);
+    await localStorage.removeItem('accessToken')
+    await navigate("/");
   };
 
   // Show Navbar on Scroll UP

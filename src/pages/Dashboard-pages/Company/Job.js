@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Circulars = () => {
+const Job = () => {
     return (
         <div>
-            Circulars
+            
         </div>
     );
 };
 
-export default Circulars;
+export default Job;
