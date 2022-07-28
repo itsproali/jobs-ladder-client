@@ -13,6 +13,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { BiUser, BiLock } from "react-icons/bi";
 import SocialLogin from "./SocialLogin";
 import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
+import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,23 +29,25 @@ const Login = () => {
     reset,
   } = useForm();
 
-  const [token , loadingToken] = useAddUserInfo(user)
+  const [token, loadingToken] = useAddUserInfo(user);
+  const [role] = useUserRole(user);
 
   useEffect(() => {
     if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, navigate, from , token]);
+  }, [user, navigate, from, token]);
 
   if (loading || updating || loadingToken) {
     return <Loading />;
   }
-
+  
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data?.name });
     reset();
   };
+  console.log(role);
   return (
     <div className="flex min-h-screen items-center justify-center relative overflow-hidden">
       <div className="card w-96 shadow-xl border lg:-mr-16 bg-white backdrop-blur-xl bg-opacity-40">
