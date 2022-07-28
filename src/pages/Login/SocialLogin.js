@@ -8,6 +8,7 @@ import auth from "../../firebase-init";
 import googleLogo from "../../asset/google-logo.png";
 import fbLogo from "../../asset/facebook-logo.png";
 import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
+import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
@@ -16,15 +17,16 @@ const SocialLogin = () => {
   const [signInWithGoogle, gUser, gError] = useSignInWithGoogle(auth);
   const [signInWithFacebook, fbUser, fbError] = useSignInWithFacebook(auth);
 
-  const [token] = useAddUserInfo(gUser || fbUser)
+  const [token] = useAddUserInfo(gUser || fbUser);
+  const [role] = useUserRole(gUser || fbUser);
 
   useEffect(() => {
     if (token) {
-      navigate(from);
+      navigate(from, { replace: true });
     }
-  }, [gUser, fbUser, from, navigate , token]);
+  }, [from, navigate, token]);
 
-  console.log(token);
+  console.log(role);
   return (
     <>
       {gError && <p className="text-red-500">{gError.message}</p>}

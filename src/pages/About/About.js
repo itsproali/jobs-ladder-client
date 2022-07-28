@@ -9,10 +9,12 @@ const About = () => {
         <img className="about-img mt-14 mx-auto " src={logo} alt="" />
       </div>
       <div>
-        <div class="box-about mx-auto">
-          <figure class="px-10 pt-10"></figure>
-          <div class="card-body items-center text-center">
-            <h2 class="card-title text-3xl  font-extrabold ...">About us</h2>
+        <div className="box-about mx-auto">
+          <figure className="px-10 pt-10"></figure>
+          <div className="card-body items-center text-center">
+            <h2 className="card-title text-3xl  font-extrabold ...">
+              About us
+            </h2>
             <p>
               Jobs ladder makes it fast and easy for businesses to delight their
               customers and employees. We do this by taking a fresh approach to
