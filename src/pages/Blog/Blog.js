@@ -12,15 +12,15 @@ import img10 from "../../img/img10.webp";
 
 const Blog = () => {
   return (
-    <div className=" ">
-      <div className="container mx-auto grid lg:grid-cols-2 grid-cols-1 py-14">
-        <div>
-          <img src={img} alt="" />
+    <div className="px-5 lg:mt-0 mt-20">
+      <div className="container min-h-screen px-3 mx-auto lg:flex  justify-center items-center">
+        <div className="lg:w-1/2 ">
+          <img src={img} alt="" className="rounded-md" />
         </div>
-        <div>
-          <div class="card w-96 bg-base-100 mx-auto mt-14">
-            <div class="card-body">
-              <h2 class=" text-5xl">
+        <div className="lg:w-1/2">
+          <div class="card  bg-base-100 mx-auto mt-5">
+            <div class="sm:card-body">
+              <h2 class=" sm:text-5xl text-2xl">
                 What does it take to build an Employer Brand in 2022?
               </h2>
               <p className="text-1xl">
@@ -33,7 +33,7 @@ const Blog = () => {
                 Employees, particularly millennials,…
               </p>
               <div class="card-actions justify-end">
-                <a className="text-[#fc0303]" href="">
+                <a className="text-primary" href="">
                   Read More
                 </a>
               </div>
@@ -41,8 +41,8 @@ const Blog = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto grid lg:grid-cols-3 grid-cols-1 py-14">
-        <div class="card w-96 bg-base-100 shadow-xl ">
+      <div className="container  mx-auto grid gap-4 justify-center  lg:grid-cols-3 grid-cols-1 py-14">
+        <div class="card bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img2} alt="Shoes" />
           </figure>
@@ -60,7 +60,7 @@ const Blog = () => {
             <div class="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card  bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img3} alt="Shoes" />
           </figure>
@@ -79,7 +79,7 @@ const Blog = () => {
             <div class="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card  bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img4} alt="Shoes" />
           </figure>
@@ -98,7 +98,7 @@ const Blog = () => {
             <div class="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card w-96 bg-base-100 shadow-xl my-10 ">
+        <div class="card  bg-base-100 shadow-xl  mx-auto">
           <figure>
             <img src={img5} alt="Shoes" />
           </figure>
@@ -116,7 +116,7 @@ const Blog = () => {
             <div class="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card w-96 bg-base-100 shadow-xl my-10">
+        <div class="card bg-base-100 shadow-xl mx-auto" >
           <figure>
             <img src={img6} alt="Shoes" />
           </figure>
@@ -133,7 +133,7 @@ const Blog = () => {
             <div class="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card w-96 bg-base-100 shadow-xl my-10">
+        <div class="card bg-base-100 shadow-xl  mx-auto">
           <figure>
             <img src={img7} alt="Shoes" />
           </figure>
@@ -151,7 +151,7 @@ const Blog = () => {
             <div class="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img8} alt="Shoes" />
           </figure>
@@ -170,7 +170,7 @@ const Blog = () => {
             <div class="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img9} alt="Shoes" />
           </figure>
@@ -188,7 +188,7 @@ const Blog = () => {
             <div class="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card  bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img10} alt="Shoes" />
           </figure>
@@ -209,7 +209,7 @@ const Blog = () => {
       </div>
       <div>
         <div class=" container mx-auto flex flex-col w-full border-opacity-50">
-          <div class="divider text-[#fc0303]">Load More</div>
+          <a href="" class="divider text-primary ">Load More</a>
         </div>
       </div>
     </div>
