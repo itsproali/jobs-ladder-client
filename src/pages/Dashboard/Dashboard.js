@@ -8,7 +8,7 @@ import {
 } from "react-icons/hi";
 const Dashboard = () => {
   return (
-    <div className="py-10 container mx-auto ">
+    <div className="py-10 mx-auto ">
       <div class="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="mt-14 ml-10 drawer-content">
