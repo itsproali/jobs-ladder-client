@@ -8,7 +8,7 @@ import {
 } from "react-icons/hi";
 const Dashboard = () => {
   return (
-    <div className="py-10">
+    <div className="py-10 container mx-auto ">
       <div class="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="mt-14 ml-10 drawer-content">
@@ -20,7 +20,7 @@ const Dashboard = () => {
             Open drawer
           </label>
         </div>
-        <div class="drawer-side pt-10">
+        <div class="drawer-side pt-10 ">
           <label for="my-drawer-2" class="drawer-overlay"></label>
           <ul class="menu p-4 overflow-y-auto w-80 text-base-content bg-secondary ">
             <li className="mb-5">
