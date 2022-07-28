@@ -5,7 +5,7 @@ const initialState = {
     jobPost: [],
     error: null
 }
-const jobpostReducer=(state, action)=>{
+const jobpostReducer=(state = initialState , action)=>{
     switch (action.type) {
         case GET_TODOS_REQUEST:
             
