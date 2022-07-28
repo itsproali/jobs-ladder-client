@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
+import RequireAuth from "../Shared/RequireAuth";
 const Circulars = lazy(() =>
   import("../../pages/Dashboard-pages/Circulars/Circulars")
 );
@@ -43,13 +44,19 @@ const RoutesIndex = () => {
           <Route path="/development-team" element={<DevelopmentTeam />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/welcome" element={<CollectInfo/>}></Route>
+          <Route path="/welcome" element={<CollectInfo />}></Route>
           <Route path="/loading" element={<Loading />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route index element={<JobPost></JobPost>}></Route>
-            <Route path="circular" element={<Circulars></Circulars>}></Route>
+          <Route
+            path="/dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          >
             <Route index element={<Company></Company>}></Route>
-            <Route path="company" element={<Company></Company>}></Route>
+            <Route path="jobpost" element={<JobPost></JobPost>}></Route>
+            <Route path="circular" element={<Circulars></Circulars>}></Route>
             <Route path="employee" element={<Employee></Employee>}></Route>
           </Route>
         </Routes>
