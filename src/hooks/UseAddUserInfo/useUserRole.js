@@ -6,13 +6,15 @@ const useUserRole = (user) => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const [currentUser, setCurrentUser] = useState({});
   const [role, setRole] = useState("");
   const email = user?.user?.email;
   useEffect(() => {
     if (email) {
       fetching.get(`/users?email=${email}`).then((res) => {
-
-        const userRole = res?.data[0]?.role;
+        const userOFThisEmail = res?.data[0] ;
+        setCurrentUser(userOFThisEmail) ;
+        const userRole = userOFThisEmail?.role;
         if (userRole) {
           setRole(userRole);
           navigate(from, { replace: true });
@@ -22,7 +24,7 @@ const useUserRole = (user) => {
       });
     }
   }, [email, navigate, from]);
-  return [role , email];
+  return [role , currentUser];
 };
 
 export default useUserRole;
