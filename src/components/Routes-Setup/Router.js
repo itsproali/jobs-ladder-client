@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
 import NotFound from "../../pages/NotFound/NotFound";
 import Loading from "../Shared/Loading/Loading";
 import RequireAuth from "../Shared/RequireAuth";
@@ -57,6 +58,7 @@ const RoutesIndex = () => {
           >
             <Route index element={<Company></Company>}></Route>
             <Route path="jobpost" element={<JobPost></JobPost>}></Route>
+            <Route path="jobpostform" element={<JobPostForm></JobPostForm>}></Route>
             <Route path="response" element={<Response></Response>}></Route>
             <Route path="employee" element={<Employee></Employee>}></Route>
           </Route>

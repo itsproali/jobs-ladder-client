@@ -11,6 +11,7 @@ const useUserRole = (user) => {
   useEffect(() => {
     if (email) {
       fetching.get(`/users?email=${email}`).then((res) => {
+
         const userRole = res?.data[0]?.role;
         if (userRole) {
           setRole(userRole);
@@ -21,7 +22,7 @@ const useUserRole = (user) => {
       });
     }
   }, [email, navigate, from]);
-  return [role];
+  return [role , email];
 };
 
 export default useUserRole;

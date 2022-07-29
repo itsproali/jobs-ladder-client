@@ -9,7 +9,7 @@ import {
 import { IoIosArrowForward } from "react-icons/io";
 const Dashboard = () => {
   return (
-    <div className="mt-6">
+    <div className="mt-6 container mx-auto">
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="pt-24 relative pl-10 drawer-content">
