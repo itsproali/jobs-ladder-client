@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import NotFound from "../../pages/NotFound/NotFound";
 import Loading from "../Shared/Loading/Loading";
 import RequireAuth from "../Shared/RequireAuth";
 const Response = lazy(() =>
@@ -30,7 +31,7 @@ const DevelopmentTeam = lazy(() =>
 
 const RoutesIndex = () => {
   const location = useLocation();
-  const conditionalRoutes = ["/login", "/register", "/welcome"];
+  const conditionalRoutes = ["/login", "/register", "/welcome" ];
   const isHidden = conditionalRoutes.includes(location.pathname);
   return (
     <div>
@@ -59,6 +60,7 @@ const RoutesIndex = () => {
             <Route path="response" element={<Response></Response>}></Route>
             <Route path="employee" element={<Employee></Employee>}></Route>
           </Route>
+          <Route path="*" element={<NotFound/>}></Route>
         </Routes>
       </Suspense>
       {isHidden || <Footer></Footer>}
