@@ -15,6 +15,7 @@ const useUserRole = (user) => {
         const userOFThisEmail = res?.data[0] ;
         setCurrentUser(userOFThisEmail) ;
         const userRole = userOFThisEmail?.role;
+        console.log(res);
         if (userRole) {
           setRole(userRole);
           // navigate(from, { replace: true });
