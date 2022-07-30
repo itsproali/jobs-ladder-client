@@ -1,11 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import makeAnimated from 'react-select/animated';
 
 const JobPostForm = () => {
-  const formRef = useRef(null)
+  // const formRef = useRef(null)
   const animatedComponents = makeAnimated();
+  // const [jobType, setJobType] = useState([])
 
   const options = [
     { value: 'Full Time', label: 'Full Time' },
@@ -13,10 +14,26 @@ const JobPostForm = () => {
     { value: 'Remote', label: 'Remote' }
   ]
 
-  const handleJobPost = (e) => {
-    e.preventDefault()
-    console.log(formRef.current.jobType)
-  }
+
+
+  // const handleJobPost = (e) => {
+  //   e.preventDefault()
+  //   if (typeof (formRef?.current?.jobType) === 'object') {
+  //     for (const i of formRef?.current?.jobType) {
+  //       setJobType([...jobType, i?.value])
+  //     }
+  //   } else {
+  //     setJobType([...jobType, formRef?.current?.jobType?.value])
+  //   }
+  //   const JobData = {
+  //     title: formRef.current.jobType.value,
+  //     jobState: formRef.current.jobState.value,
+  //     location: formRef.current.location.value,
+  //     location: formRef.current.location.value,
+  //   }
+  //   console.log(jobType)
+  //   // console.log(formRef.current.jobType.length)
+  // }
 
   return (
 
@@ -26,7 +43,7 @@ const JobPostForm = () => {
           <h1 className='text-2xl text-primary uppercase'>Post New Job</h1>
           <hr />
         </div>
-        <form onSubmit={handleJobPost} ref={formRef}>
+        <form>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm mb-2" for="job-title">Job's Title</label>
             <input class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" type="text" id="job-title" name="jobTitle" placeholder="Name of the job" autofocus />
