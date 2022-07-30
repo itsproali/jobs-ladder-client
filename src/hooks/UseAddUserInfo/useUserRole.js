@@ -8,7 +8,7 @@ const useUserRole = (user) => {
   const from = location.state?.from?.pathname || "/";
   const [currentUser, setCurrentUser] = useState({});
   const [role, setRole] = useState("");
-  const email = user?.user?.email;
+  const email = user?.email;
   useEffect(() => {
     if (email) {
       fetching.get(`/users?email=${email}`).then((res) => {
@@ -17,7 +17,7 @@ const useUserRole = (user) => {
         const userRole = userOFThisEmail?.role;
         if (userRole) {
           setRole(userRole);
-          navigate(from, { replace: true });
+          // navigate(from, { replace: true });
         } else {
           navigate("/welcome");
         }

@@ -1,11 +1,16 @@
 import React, { lazy, Suspense } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Route, Routes, useLocation } from "react-router-dom";
-import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
 import NotFound from "../../pages/NotFound/NotFound";
+import auth from "../../firebase-init";
+import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 import Loading from "../Shared/Loading/Loading";
 import RequireAuth from "../Shared/RequireAuth";
 const Response = lazy(() =>
   import("../../pages/Dashboard-pages/Response/Response")
+);
+const JobPostForm = lazy(() =>
+  import("../../pages/Dashboard-pages/JobPostForm/JobPostForm")
 );
 const Company = lazy(() =>
   import("../../pages/Dashboard-pages/Company/Company")
@@ -15,6 +20,9 @@ const Employee = lazy(() =>
 );
 const JobPost = lazy(() =>
   import("../../pages/Dashboard-pages/JobPost/JobPost")
+);
+const FindJob = lazy(() =>
+  import("../../pages/Dashboard-pages/FindJob/FindJob")
 );
 const Dashboard = lazy(() => import("../../pages/Dashboard/Dashboard"));
 const Home = lazy(() => import("../../pages/Home/Home"));
@@ -32,8 +40,19 @@ const DevelopmentTeam = lazy(() =>
 
 const RoutesIndex = () => {
   const location = useLocation();
-  const conditionalRoutes = ["/login", "/register", "/welcome" ];
+  const conditionalRoutes = ["/login", "/register", "/welcome"];
+  const conditionalFooterHide = [
+    "/dashboard",
+    "/dashboard/jobpost",
+    "/dashboard/employee",
+    "/dashboard/response",
+    "/dashboard/findjob",
+  ];
   const isHidden = conditionalRoutes.includes(location.pathname);
+  const isFooterHidden = conditionalFooterHide.includes(location.pathname);
+  const [user] = useAuthState(auth);
+  const [role] = useUserRole(user);
+  console.log(role);
   return (
     <div>
       {isHidden || <Header></Header>}
@@ -56,16 +75,26 @@ const RoutesIndex = () => {
               </RequireAuth>
             }
           >
-            <Route index element={<Company></Company>}></Route>
+            {role === "job-seeker" ? (
+              <Route index element={<FindJob></FindJob>}></Route>
+            ) : (
+              <Route index element={<Company></Company>}></Route>
+            )}
             <Route path="jobpost" element={<JobPost></JobPost>}></Route>
             <Route path="jobpostform" element={<JobPostForm></JobPostForm>}></Route>
             <Route path="response" element={<Response></Response>}></Route>
             <Route path="employee" element={<Employee></Employee>}></Route>
+            {role === "HR" && (
+              <Route path="response" element={<Response></Response>}></Route>
+            )}
+            {role !== "job-seeker" && (
+              <Route path="employee" element={<Employee></Employee>}></Route>
+            )}
           </Route>
           <Route path="*" element={<NotFound/>}></Route>
         </Routes>
       </Suspense>
-      {isHidden || <Footer></Footer>}
+      {isHidden || isFooterHidden || <Footer></Footer>}
     </div>
   );
 };

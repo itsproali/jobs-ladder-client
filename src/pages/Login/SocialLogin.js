@@ -18,7 +18,7 @@ const SocialLogin = () => {
   const [signInWithFacebook, fbUser, fbError] = useSignInWithFacebook(auth);
 
   const [token] = useAddUserInfo(gUser || fbUser);
-  const [role] = useUserRole(gUser || fbUser);
+  const [role] = useUserRole(gUser?.user || fbUser?.user);
 
   useEffect(() => {
     if (token) {
