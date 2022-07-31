@@ -14,6 +14,7 @@ import { BiLock } from "react-icons/bi";
 import SocialLogin from "./SocialLogin";
 import Swal from "sweetalert2";
 import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
+import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,13 +31,14 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const [token , loadingToken] = useAddUserInfo(user)
+  const [token, loadingToken] = useAddUserInfo(user);
+  const [role] = useUserRole(user);
 
   useEffect(() => {
     if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, navigate, from , token]);
+  }, [user, navigate, from, token]);
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data.email, data.password);
   };
@@ -62,6 +64,7 @@ const Login = () => {
     return <Loading />;
   }
 
+  console.log(role);
   return (
     <div className="flex min-h-screen items-center justify-center relative overflow-hidden">
       <div className="card w-96 shadow-xl border lg:-mr-16 bg-white backdrop-blur-xl bg-opacity-40">
