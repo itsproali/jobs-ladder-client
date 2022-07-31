@@ -62,6 +62,7 @@ const CollectInfo = () => {
                 id="companyName"
                 className="py-2 px-4 w-3/4 focus:outline-primary rounded"
                 placeholder="Enter your company name (optional)"
+                required
               />
             </div>
             <input
