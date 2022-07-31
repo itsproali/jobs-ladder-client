@@ -5,7 +5,7 @@ const initialState = {
     jobPost: [],
     error: null
 }
-const jobpostReducer=(state = initialState , action)=>{
+const jobpostReducer=(state, action)=>{
     switch (action.type) {
         case GET_TODOS_REQUEST:
             
@@ -29,4 +29,4 @@ const jobpostReducer=(state = initialState , action)=>{
             return state;
     }
 }
-export default jobpostReducer
+export default jobpostReducer 
