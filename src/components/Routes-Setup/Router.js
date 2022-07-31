@@ -6,11 +6,9 @@ import auth from "../../firebase-init";
 import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 import Loading from "../Shared/Loading/Loading";
 import RequireAuth from "../Shared/RequireAuth";
+import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
 const Response = lazy(() =>
   import("../../pages/Dashboard-pages/Response/Response")
-);
-const JobPostForm = lazy(() =>
-  import("../../pages/Dashboard-pages/JobPostForm/JobPostForm")
 );
 const Company = lazy(() =>
   import("../../pages/Dashboard-pages/Company/Company")
