@@ -6,8 +6,12 @@ import ReactTimeAgo from 'react-time-ago'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase-init';
 import useUserRole from '../../../hooks/UseAddUserInfo/useUserRole';
+import fetching from '../../../hooks/UseAddUserInfo/fetching';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const JobPostForm = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const formRef = useRef(null)
   const animatedComponents = makeAnimated();
   const [jobTypes, setJobTypes] = useState([]);
@@ -15,7 +19,6 @@ const JobPostForm = () => {
   const [role , currentUser] = useUserRole(user)
   const [jobRequirements, setJobRequirements] = useState([]);
   const date = new Date();
-
   const options = [
     { value: 'Full Time', label: 'Full Time' },
     { value: 'Part Time', label: 'Part Time' },
@@ -24,11 +27,10 @@ const JobPostForm = () => {
 
 
 
-  const handleJobPost = (e) => {
+  const handleJobPost = async (e) => {
     e.preventDefault()
-    console.log(currentUser);
     const jobData = {
-      title: formRef.current?.jobType?.value,
+      title: formRef.current?.jobTitle?.value,
       companyName : currentUser?.companyName ,
       jobState: formRef.current?.jobState?.value,
       location: formRef.current?.location?.value,
@@ -37,7 +39,8 @@ const JobPostForm = () => {
       description: formRef.current?.description?.value,
       date: date.getTime(),
     }
-    console.log(jobData);
+    await fetching.post('/job-post' , jobData)
+    await navigate('/dashboard/jobpost' , {replace: true})
   }
 
   return (
