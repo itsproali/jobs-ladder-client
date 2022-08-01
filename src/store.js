@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
-import jobpostReducer from "./reduxServices/reducers/Reducers";
+import rootReducer from "./stateManagement/reducers/rootReducer";
 
-const store = createStore(jobpostReducer, applyMiddleware(thunk))
+const store = createStore( rootReducer , applyMiddleware(thunk))
 export default store;
