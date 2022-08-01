@@ -1,12 +1,12 @@
 import React, { lazy, Suspense } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Route, Routes, useLocation } from "react-router-dom";
+import NotFound from "../../pages/NotFound/NotFound";
 import auth from "../../firebase-init";
+import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 import Loading from "../Shared/Loading/Loading";
 import RequireAuth from "../Shared/RequireAuth";
-import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
-import NotFound from "../../pages/NotFound/NotFound";
 const Response = lazy(() =>
   import("../../pages/Dashboard-pages/Response/Response")
 );
@@ -79,13 +79,15 @@ const RoutesIndex = () => {
               <Route index element={<Company></Company>}></Route>
             )}
             <Route path="jobpost" element={<JobPost></JobPost>}></Route>
+            <Route path="jobpostform" element={<JobPostForm></JobPostForm>}></Route>
+            <Route path="response" element={<Response></Response>}></Route>
+            <Route path="employee" element={<Employee></Employee>}></Route>
             {role === "HR" && (
               <Route path="response" element={<Response></Response>}></Route>
             )}
             {role !== "job-seeker" && (
               <Route path="employee" element={<Employee></Employee>}></Route>
             )}
-            <Route path="jobpostform" element={<JobPostForm></JobPostForm>}></Route>
           </Route>
           <Route path="*" element={<NotFound/>}></Route>
         </Routes>

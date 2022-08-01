@@ -16,6 +16,7 @@ const CollectInfo = () => {
     const role = await e.target.role.value;
     const companyName = await e.target.companyName.value;
     const userData = await { userName, role, companyName, email };
+    console.log(userData);
     const { res } = await fetching.put("/users/add-info", userData);
     console.log(res);
     navigate("/dashboard");
@@ -61,6 +62,7 @@ const CollectInfo = () => {
                 id="companyName"
                 className="py-2 px-4 w-3/4 focus:outline-primary rounded"
                 placeholder="Enter your company name (optional)"
+                required
               />
             </div>
             <input
