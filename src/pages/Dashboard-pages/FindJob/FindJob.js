@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { AiFillEye } from "react-icons/ai";
-import getJobPosts from "../../../stateManagement/actions/Actions";
+import Loading from "../../../components/Shared/Loading/Loading";
+import JobSCard from "../JobPost/Jobs-card";
 
 const FindJob = () => {
-  const dispatch = useDispatch();
-  const {isLoading , jobPost , error} = useSelector( (state) => state.jobPostState) ; 
-  useEffect(()=> {
-    dispatch(getJobPosts())
-   } , [dispatch])
-   console.log(jobPost);
+  const { isLoading, jobPost, error } = useSelector((state) => state.jobPostState);
+
+  if (isLoading) {
+    return <Loading />
+  }
+
+  console.log(jobPost);
   return (
     <div>
       <div className="flex flex-col sm:gap-3 gap-1 justify-center items-center ">
@@ -22,6 +24,11 @@ const FindJob = () => {
       </div>
       <div>
         <h1 className='flex items-center gap-2 text-secondary'> <AiFillEye className='text-xl' /> Sort By Time</h1>
+      </div>
+      <div>
+        {
+          jobPost.map( job => <JobSCard key={job?._id} job={job}></JobSCard>)
+        }
       </div>
     </div>
   );
