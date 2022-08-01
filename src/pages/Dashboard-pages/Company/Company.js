@@ -29,14 +29,9 @@ const Company = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
-          const img = result.data.url;
-          const cover = {
-            specialty: data.specialty,
-            img: img,
-          };
+         console.log(result.data.url)
         }
       });
-    console.log("hello");
   };
 
   return (
@@ -54,24 +49,26 @@ const Company = () => {
                 <div class="modal-box">
                   <h3 class="font-bold text-lg">Edit Cover picture!</h3>
                   <form onSubmit={handleSubmit(onSubmit)}>
-                    <input
-                      type="file"
-                      className="input input-bordered w-full max-w-xs"
-                      {...register("image", {
-                        required: {
-                          value: true,
-                          message: "Image is Required",
-                        },
-                      })}
-                    />
+                    <div>
+                      <input
+                        type="file"
+                        className="input input-bordered w-full max-w-xs"
+                        {...register("image", {
+                          required: {
+                            value: true,
+                            message: "Image is Required",
+                          },
+                        })}
+                      />
+                    </div>
+                    <div class="modal-action">
+                      <input
+                        className="btn w-full max-w-xs text-white"
+                        type="submit"
+                        value="Add"
+                      />
+                    </div>
                   </form>
-                  <div class="modal-action">
-                    <input
-                      className="btn w-full max-w-xs text-white"
-                      type="submit"
-                      value="Add"
-                    />
-                  </div>
                 </div>
               </div>
             </div>
