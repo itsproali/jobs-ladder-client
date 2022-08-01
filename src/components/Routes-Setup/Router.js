@@ -7,6 +7,7 @@ import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 import Loading from "../Shared/Loading/Loading";
 import RequireAuth from "../Shared/RequireAuth";
 import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
+import JobPost from "../../pages/Dashboard-pages/JobPost/JobPost";
 const Response = lazy(() =>
   import("../../pages/Dashboard-pages/Response/Response")
 );
@@ -15,9 +16,6 @@ const Company = lazy(() =>
 );
 const Employee = lazy(() =>
   import("../../pages/Dashboard-pages/Employee/Employee")
-);
-const JobPost = lazy(() =>
-  import("../../pages/Dashboard-pages/JobPost/JobPost")
 );
 const FindJob = lazy(() =>
   import("../../pages/Dashboard-pages/FindJob/FindJob")

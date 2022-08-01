@@ -1,25 +1,24 @@
-import { GET_TODOS_FAILED, GET_TODOS_REQUEST, GET_TODOS_SUCCESS } from "../constants/Constant";
+import { GET_JOB_POST_FAILED, GET_JOB_POST_REQUEST, GET_JOB_POST_SUCCESS } from "../constants/Constant";
 
 const initialState = {
     isLoading : false,
     jobPost: [],
     error: null
 }
-const jobpostReducer=(state = initialState , action)=>{
+const jobPostReducer=(state = initialState , action)=>{
     switch (action.type) {
-        case GET_TODOS_REQUEST:
-            
+        case GET_JOB_POST_REQUEST:
             return {
                 ...state,
                 isLoading: true
             }
-        case GET_TODOS_SUCCESS:
+        case GET_JOB_POST_SUCCESS:
             return {
                 isLoading: false,
                 jobPost: action.payload,
                 error: null
             }
-            case GET_TODOS_FAILED:
+            case GET_JOB_POST_FAILED:
                 return {
                     isLoading: false,
                     jobPost: [],
@@ -29,4 +28,4 @@ const jobpostReducer=(state = initialState , action)=>{
             return state;
     }
 }
-export default jobpostReducer
+export default jobPostReducer
