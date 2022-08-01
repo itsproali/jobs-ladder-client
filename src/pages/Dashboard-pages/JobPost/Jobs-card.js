@@ -10,7 +10,7 @@ const JobSCard = () => {
     <div className='relative mt-5 rounded-lg shadow-xl border cursor-pointer pt-8 px-6 flex flex-col justify-between md:h-[300px] bg-transparent backdrop-blur-md'>
       <div>
         <h1>
-          <span className='text-2xl font-semibold text-primary link link-hover'>Jr. Front-End Developer </span>
+          <span className='text-2xl font-semibold text-primary link link-hover'>Jr. Front-End Developer </span> ( Internship )
         </h1>
         <h5 className='flex gap-2 mt-1 items-center'>
           <GrOrganization />
@@ -26,7 +26,12 @@ const JobSCard = () => {
             min ago
           </h5>
         </div>
-        <p className='mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit modi architecto perspiciatis illo. Assumenda ipsa incidunt aspernatur velit accusamus quis perspiciatis atque ab quia voluptatem, aut quaerat laborum et soluta distinctio hic doloribus quibusdam? </p>
+        <p className='my-2'>{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit modi architecto perspiciatis illo. Assumenda ipsa incidunt aspernatur velit accusamus quis perspiciatis atque ab quia voluptate Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit modi architecto perspiciatis illo. Assumenda ipsa incidunt aspernatur velit accusamus quis perspiciatis atque ab quia voluptate'.slice(0, 200)}...</p>
+
+        <p>Skills Requirement: &nbsp; &nbsp;
+          <span className='underline mr-2 '>React</span>
+          <span className='underline'>native</span>
+        </p>
 
 
       </div>
