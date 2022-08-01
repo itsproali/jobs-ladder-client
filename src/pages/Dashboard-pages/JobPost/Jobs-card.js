@@ -1,11 +1,17 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiTwotoneMedicineBox } from 'react-icons/ai';
 import { FiClock } from 'react-icons/fi';
 import { GoLocation } from 'react-icons/go';
 import { GrOrganization } from 'react-icons/gr';
 import ButtonDefault from '../../../components/ButtonDefault/ButtonDefault';
+import auth from '../../../firebase-init';
+import useUserRole from '../../../hooks/UseAddUserInfo/useUserRole';
 
 const JobSCard = () => {
+  const [user] = useAuthState(auth);
+  const [role] = useUserRole(user);
+  console.log(role);
   return (
     <div className='relative mt-5 rounded-lg shadow-xl border cursor-pointer pt-8 px-6 flex flex-col justify-between md:h-[300px] bg-transparent backdrop-blur-md'>
       <div>
@@ -42,9 +48,12 @@ const JobSCard = () => {
           <p className='badge badge-primary text-md py-4 px-3'>Remote</p>
         </div>
       </div>
-      <div className='absolute top-5 right-5'>
+      {role === 'job-seeker' && <div className='absolute top-5 right-5'>
         <ButtonDefault text='apply'></ButtonDefault>
-      </div>
+      </div>}
+      {role === 'HR' && <div className='absolute top-5 right-5'>
+        <ButtonDefault text='remove post'></ButtonDefault>
+      </div>}
     </div>
   );
 };

@@ -1,13 +1,9 @@
 import React from 'react';
-import { useSelector } from "react-redux";
 import ButtonDefault from '../../../components/ButtonDefault/ButtonDefault';
-import store from '../../../store';
 import { AiFillEye } from 'react-icons/ai';
 import JobSCard from './Jobs-card';
 import { Link } from 'react-router-dom';
 const JobPost = () => {
-    const jobpost = useSelector((state) => store.jobpostReducer)
-    console.log(jobpost);
     return (
         <div className='capitalize'>
             <div className="flex flex-col sm:gap-3 gap-1 justify-center items-center ">
