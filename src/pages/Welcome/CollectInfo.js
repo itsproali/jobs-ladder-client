@@ -9,14 +9,16 @@ const CollectInfo = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const userName = user?.displayName;
-  const userEmail = user?.email;
+  const email = user?.email;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const role = await e.target.role.value;
     const companyName = await e.target.companyName.value;
-    const userData = await { userName, role, companyName , userEmail };
-    const { res } = await  fetching.put("/users/add-info",  userData );
+    const userData = await { userName, role, companyName, email };
+    console.log(userData);
+    const { res } = await fetching.put("/users/add-info", userData);
+    console.log(res);
     navigate("/dashboard");
   };
   return (
@@ -60,6 +62,7 @@ const CollectInfo = () => {
                 id="companyName"
                 className="py-2 px-4 w-3/4 focus:outline-primary rounded"
                 placeholder="Enter your company name (optional)"
+                required
               />
             </div>
             <input

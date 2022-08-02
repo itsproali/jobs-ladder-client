@@ -18,9 +18,9 @@ const Blog = () => {
           <img src={img} alt="" className="rounded-md" />
         </div>
         <div className="lg:w-1/2">
-          <div class="card  bg-base-100 mx-auto mt-5">
-            <div class="sm:card-body">
-              <h2 class=" sm:text-5xl text-2xl">
+          <div className="card  bg-base-100 mx-auto mt-5">
+            <div className="sm:card-body">
+              <h2 className=" sm:text-5xl text-2xl">
                 What does it take to build an Employer Brand in 2022?
               </h2>
               <p className="text-1xl">
@@ -32,7 +32,7 @@ const Blog = () => {
                 accordingly and provide an employee-centric work environment.
                 Employees, particularly millennials,…
               </p>
-              <div class="card-actions justify-end">
+              <div className="card-actions justify-end">
                 <a className="text-primary" href="">
                   Read More
                 </a>
@@ -42,12 +42,12 @@ const Blog = () => {
         </div>
       </div>
       <div className="container  mx-auto grid gap-4 justify-center  lg:grid-cols-3 grid-cols-1 py-14">
-        <div class="card bg-base-100 shadow-xl mx-auto">
+        <div className="card bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img2} alt="Shoes" />
           </figure>
-          <div class="card-body">
-            <h2 class="card-title">
+          <div className="card-body">
+            <h2 className="card-title">
               How HR Software Increases Productivity & Profit
             </h2>
             <p>
@@ -57,15 +57,15 @@ const Blog = () => {
               possible. Moreover, it can be instrumental in ensuring smooth
               business processes and change management.{" "}
             </p>
-            <div class="card-actions justify-end"></div>
+            <div className="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card  bg-base-100 shadow-xl mx-auto">
+        <div className="card  bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img3} alt="Shoes" />
           </figure>
-          <div class="card-body">
-            <h2 class="card-title">
+          <div className="card-body">
+            <h2 className="card-title">
               Workplace culture—How to set up the right culture from Day 0
             </h2>
             <p>
@@ -76,15 +76,15 @@ const Blog = () => {
               other early-stage enterprises is that the slate is clean, so to
               speak...
             </p>
-            <div class="card-actions justify-end"></div>
+            <div className="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card  bg-base-100 shadow-xl mx-auto">
+        <div className="card  bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img4} alt="Shoes" />
           </figure>
-          <div class="card-body">
-            <h2 class="card-title">
+          <div className="card-body">
+            <h2 className="card-title">
               Can Sabbaticals cure the rising employee burnout?
             </h2>
             <p>
@@ -95,15 +95,15 @@ const Blog = () => {
               Let’s look at how these two are connected and if Sabbaticals can
               solve the increasing employee burnout...
             </p>
-            <div class="card-actions justify-end"></div>
+            <div className="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card  bg-base-100 shadow-xl  mx-auto">
+        <div className="card  bg-base-100 shadow-xl  mx-auto">
           <figure>
             <img src={img5} alt="Shoes" />
           </figure>
-          <div class="card-body">
-            <h2 class="card-title">
+          <div className="card-body">
+            <h2 className="card-title">
               Six pros and cons of unlimited PTO for employers
             </h2>
             <p>
@@ -113,15 +113,15 @@ const Blog = () => {
               companies have experienced while implementing unlimited PTO and
               see if unlimited PTO is the right choice for your organization...
             </p>
-            <div class="card-actions justify-end"></div>
+            <div className="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card bg-base-100 shadow-xl mx-auto" >
+        <div className="card bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img6} alt="Shoes" />
           </figure>
-          <div class="card-body">
-            <h2 class="card-title">
+          <div className="card-body">
+            <h2 className="card-title">
               The ultimate 4-part toolkit for scaling startup hiring
             </h2>
             <p>
@@ -130,15 +130,15 @@ const Blog = () => {
               who coordinates with the hiring managers on a case-to-case basis.
               ..
             </p>
-            <div class="card-actions justify-end"></div>
+            <div className="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card bg-base-100 shadow-xl  mx-auto">
+        <div className="card bg-base-100 shadow-xl  mx-auto">
           <figure>
             <img src={img7} alt="Shoes" />
           </figure>
-          <div class="card-body">
-            <h2 class="card-title">
+          <div className="card-body">
+            <h2 className="card-title">
               Thank you email to candidate after interview | Sample email
               template
             </h2>
@@ -148,15 +148,15 @@ const Blog = () => {
               candidate experience. Here is more on why this is important and
               what exactly to send. ..
             </p>
-            <div class="card-actions justify-end"></div>
+            <div className="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card bg-base-100 shadow-xl mx-auto">
+        <div className="card bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img8} alt="Shoes" />
           </figure>
-          <div class="card-body">
-            <h2 class="card-title">
+          <div className="card-body">
+            <h2 className="card-title">
               Tips for managing PTO accruals efficiently
             </h2>
             <p>
@@ -167,15 +167,15 @@ const Blog = () => {
               in their tenure as an employee. It can be hourly, daily, weekly,
               biweekly, monthly, or yearly, depending upon its PTO policy...{" "}
             </p>
-            <div class="card-actions justify-end"></div>
+            <div className="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card bg-base-100 shadow-xl mx-auto">
+        <div className="card bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img9} alt="Shoes" />
           </figure>
-          <div class="card-body">
-            <h2 class="card-title">
+          <div className="card-body">
+            <h2 className="card-title">
               How to recruit top talent on a small budget
             </h2>
             <p>
@@ -185,15 +185,15 @@ const Blog = () => {
               and hiring more people. Whether or not you have external funding,
               recruiting on a budget is one of the most common and pressing...
             </p>
-            <div class="card-actions justify-end"></div>
+            <div className="card-actions justify-end"></div>
           </div>
         </div>
-        <div class="card  bg-base-100 shadow-xl mx-auto">
+        <div className="card  bg-base-100 shadow-xl mx-auto">
           <figure>
             <img src={img10} alt="Shoes" />
           </figure>
-          <div class="card-body">
-            <h2 class="card-title">
+          <div className="card-body">
+            <h2 className="card-title">
               9 Considerations While Hiring Candidate Background Checks Services
             </h2>
             <p>
@@ -203,13 +203,15 @@ const Blog = () => {
               this question for their best insights. Based on the length of
               service to the industries served...
             </p>
-            <div class="card-actions justify-end"></div>
+            <div className="card-actions justify-end"></div>
           </div>
         </div>
       </div>
       <div>
-        <div class=" container mx-auto flex flex-col w-full border-opacity-50">
-          <a href="" class="divider text-primary ">Load More</a>
+        <div className=" container mx-auto flex flex-col w-full border-opacity-50">
+          <a href="" className="divider text-primary ">
+            Load More
+          </a>
         </div>
       </div>
     </div>
