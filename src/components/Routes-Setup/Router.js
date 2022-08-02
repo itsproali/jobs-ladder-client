@@ -8,18 +8,10 @@ import Loading from "../Shared/Loading/Loading";
 import RequireAuth from "../Shared/RequireAuth";
 import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
 import JobPost from "../../pages/Dashboard-pages/JobPost/JobPost";
-const Response = lazy(() =>
-  import("../../pages/Dashboard-pages/Response/Response")
-);
-const Company = lazy(() =>
-  import("../../pages/Dashboard-pages/Company/Company")
-);
-const Employee = lazy(() =>
-  import("../../pages/Dashboard-pages/Employee/Employee")
-);
-const FindJob = lazy(() =>
-  import("../../pages/Dashboard-pages/FindJob/FindJob")
-);
+import  Response from "../../pages/Dashboard-pages/Response/Response" ;
+import  Company from "../../pages/Dashboard-pages/Company/Company" ;
+import  Employee from "../../pages/Dashboard-pages/Employee/Employee" ;
+import  FindJob from "../../pages/Dashboard-pages/FindJob/FindJob" ;
 const Dashboard = lazy(() => import("../../pages/Dashboard/Dashboard"));
 const Home = lazy(() => import("../../pages/Home/Home"));
 const About = lazy(() => import("../../pages/About/About"));
