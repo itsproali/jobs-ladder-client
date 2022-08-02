@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
 import { AiTwotoneMedicineBox } from 'react-icons/ai';
 import { FiClock } from 'react-icons/fi';
 import { GoLocation } from 'react-icons/go';
@@ -14,10 +15,28 @@ import useUserRole from '../../../hooks/UseAddUserInfo/useUserRole';
 import getJobPosts from '../../../stateManagement/actions/Actions';
 
 const JobSCard = ({ job }) => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const fileStorageKey = 'J90VOH6DMOPFFSH10SP1R94PN9L8Q4HHO6NFDC0GLC46CJQO50A0';
+  const emailRef = useRef("");
+  const fileRef = useRef("");
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const [role] = useUserRole(user);
   const { title, _id, companyName, date, description, jobRequirements, jobState, jobTypes, location, } = job;
+  console.log(job);
+  const Applyform = async(data)=>{
+    const file = data.file[0].name;
+    const formData = new FormData();
+    formData.append('avatar', file);
+    const URL = `https://skynetfree.net/${fileStorageKey}`
+      fetch(URL,{
+        method: "POST",
+        body: formData
+      })
+      .then(res=> res.json())
+      .then(d=> console.log(d))
+  }
+
   const handleRemovePost = () => {
     const url = `job-post/${_id}`;
     // fetching.delete(url) ;
@@ -77,7 +96,29 @@ const JobSCard = ({ job }) => {
         </div>
       </div>
       {role === 'job-seeker' && <div className='absolute top-5 right-5'>
-        <ButtonDefault text='apply'></ButtonDefault>
+        {/* <ButtonDefault text='apply'></ButtonDefault> */}
+
+      <label for="my-modal-3" class="btn btn-primary modal-button border">apply</label>
+
+
+      <input type="checkbox" id="my-modal-3" class="modal-toggle " />
+        <div class="modal">
+          <div class="modal-box relative">
+            <label for="my-modal-3" class="btn btn-primary btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <form onSubmit={handleSubmit(Applyform)}>
+            <label className='pb-5'>Email Address</label>
+              <br></br>
+              <input ref={emailRef} {...register("email")} type="email" className='mt-4 border border-gray-400 rounded w-full bg-white text-gray-700 focus:outline-none focus:border-gray-500 pl-5 h-10'></input>
+              <br></br>
+              <label className='my-4 inline-block'>Upload Resume</label>
+              <br></br>
+              <input ref={fileRef} {...register("file")} type="file"></input>
+              <br></br>
+              <input className='btn btn-primary mt-5' type="submit" value="submit"></input>
+          </form>
+          </div>
+        </div>
+
       </div>}
       {role === 'HR' && <div onClick={handleRemovePost} className='absolute top-5 right-5'>
         <ButtonDefault text='remove post'></ButtonDefault>
