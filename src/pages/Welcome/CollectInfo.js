@@ -105,7 +105,7 @@ const CollectInfo = () => {
                     type="text"
                     {...register("companySecret", { required: true })}
                     className="py-2 pl-14 pr-4 w-full focus:outline-none rounded"
-                    placeholder="Enter your company name"
+                    placeholder="Enter your company secret"
                   />
                 </div>
               )}
