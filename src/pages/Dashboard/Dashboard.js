@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import {
   HiOutlineBriefcase,
@@ -10,16 +10,11 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase-init";
 import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
-import { useDispatch } from "react-redux";
-import getJobPosts from "../../stateManagement/actions/Actions";
 
 const Dashboard = () => {
-  const dispatch = useDispatch()
   const [user] = useAuthState(auth);
   const [role] = useUserRole(user);
-  useEffect(()=> {
-    dispatch(getJobPosts())
-   } , [dispatch])
+ 
   return (
     <div className="mt-6 container mx-auto">
       <div className="drawer drawer-mobile">

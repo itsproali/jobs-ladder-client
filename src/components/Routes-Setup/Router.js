@@ -1,17 +1,17 @@
 import React, { lazy, Suspense } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Route, Routes, useLocation } from "react-router-dom";
-import NotFound from "../../pages/NotFound/NotFound";
 import auth from "../../firebase-init";
 import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
-import Loading from "../Shared/Loading/Loading";
-import RequireAuth from "../Shared/RequireAuth";
-import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
-import JobPost from "../../pages/Dashboard-pages/JobPost/JobPost";
-import  Response from "../../pages/Dashboard-pages/Response/Response" ;
-import  Company from "../../pages/Dashboard-pages/Company/Company" ;
-import  Employee from "../../pages/Dashboard-pages/Employee/Employee" ;
-import  FindJob from "../../pages/Dashboard-pages/FindJob/FindJob" ;
+const NotFound = lazy(() => import( "../../pages/NotFound/NotFound"));
+const Loading = lazy(() => import( "../Shared/Loading/Loading"));
+const RequireAuth = lazy(() => import( "../Shared/RequireAuth"));
+const JobPostForm = lazy(() => import( "../../pages/Dashboard-pages/JobPostForm/JobPostForm"));
+const JobPost = lazy(() => import( "../../pages/Dashboard-pages/JobPost/JobPost"));
+const  Response = lazy(() => import( "../../pages/Dashboard-pages/Response/Response" ));
+const  Company = lazy(() => import( "../../pages/Dashboard-pages/Company/Company")) ;
+const  Employee = lazy(() => import( "../../pages/Dashboard-pages/Employee/Employee")) ;
+const  FindJob = lazy(() => import( "../../pages/Dashboard-pages/FindJob/FindJob")) ;
 const Dashboard = lazy(() => import("../../pages/Dashboard/Dashboard"));
 const Home = lazy(() => import("../../pages/Home/Home"));
 const About = lazy(() => import("../../pages/About/About"));
@@ -45,6 +45,7 @@ const RoutesIndex = () => {
     <div>
       {isHidden || <Header></Header>}
       <Suspense fallback={<Loading />}>
+        
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<About />}></Route>
@@ -54,7 +55,6 @@ const RoutesIndex = () => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/welcome" element={<CollectInfo />}></Route>
-          <Route path="/loading" element={<Loading />}></Route>
           <Route
             path="/dashboard"
             element={
