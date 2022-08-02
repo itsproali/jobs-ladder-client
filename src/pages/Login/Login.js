@@ -15,6 +15,7 @@ import SocialLogin from "./SocialLogin";
 import Swal from "sweetalert2";
 import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
 import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
+import usePasswordToggle from "../../hooks/usePasswordToggle";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const [inputType, icon] = usePasswordToggle();
   const [token, loadingToken] = useAddUserInfo(user);
   const [role] = useUserRole(user);
 
@@ -107,7 +108,7 @@ const Login = () => {
             <div className="form-control w-full max-w-xs relative">
               <BiLock className="absolute left-3 top-4 text-xl"></BiLock>
               <input
-                type="password"
+                type={inputType}
                 placeholder="Password"
                 className="p-3 pl-10 bg-gray-200 border-l-4 border-primary focus:outline-none w-full max-w-xs rounded"
                 {...register("password", {
@@ -117,6 +118,9 @@ const Login = () => {
                   },
                 })}
               />
+              <span className="absolute top-4 right-3 cursor-pointer text-xl">
+                {icon}
+              </span>
               <label className="label">
                 {errors.password?.type === "required" && (
                   <span className="text-red-500 label-text-alt">
