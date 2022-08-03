@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ButtonDefault from '../../../components/ButtonDefault/ButtonDefault';
 import { AiFillEye } from 'react-icons/ai';
 import JobSCard from './Jobs-card';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import ApplyJobModal from './ApplyJobModal';
+import { useDispatch, useSelector } from 'react-redux';
+import getJobPosts from '../../../stateManagement/actions/Actions';
 const JobPost = () => {
-    const {jobPost} = useSelector((state) => state?.jobPostState);
-    const [apply, setapply] = useState({});
+    const dispatch = useDispatch()
+    const {jobPost} = useSelector((state) => state?.jobPostState)
+    useEffect(()=> {
+        dispatch(getJobPosts())
+       } , [dispatch])
     return (
         <div className='capitalize'>
             <div className="flex flex-col sm:gap-3 gap-1 justify-center items-center ">
@@ -25,9 +28,9 @@ const JobPost = () => {
             </div>
             <h1 className='flex items-center gap-2 text-secondary'> <AiFillEye className='text-xl' /> public view</h1>
             <div>
-               {jobPost.map(( job , index) =>  <JobSCard setapp={setapply} key={index}  job={job}></JobSCard>) }
+               {jobPost.map(( job , index) =>  <JobSCard key={index}  job={job}></JobSCard>) }
             </div>
-            {apply && <ApplyJobModal apply={apply}></ApplyJobModal>}
+
         </div>
     );
 };

@@ -24,10 +24,76 @@
     -->
   <title>Job's Ladder - Home</title>
 </head>
+<style>
+  .loading-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: grid;
+    place-items: center;
+    background: white;
+    z-index: 99999;
+}
 
+.loading-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: conic-gradient(#ED3AB2, transparent, transparent, transparent, transparent);
+    position: relative;
+    display: grid;
+    place-items: center;
+    animation: loader 0.7s linear infinite;
+}
+
+.loading-circle::before,
+.loading-circle::after {
+    content: '';
+    position: absolute;
+}
+
+.loading-circle::before {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: white;
+}
+
+.loading-circle::after {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    /* background: #3a86ff; */
+    background: #ED3AB2;
+    border-radius: 50%;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0);
+        background: conic-gradient(#ED3AB2, transparent, transparent, transparent, transparent);
+    }
+
+    50% {
+        background: conic-gradient(#c9184a, transparent, transparent);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+        /* background: conic-gradient(#480ca8, transparent, transparent); */
+        background: conic-gradient(#7e105d, transparent, transparent);
+    }
+}
+</style>
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+  <div id="root">
+    <div className="loading-wrapper">
+      <div className="loading-circle"></div>
+    </div>
+  </div>
   <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

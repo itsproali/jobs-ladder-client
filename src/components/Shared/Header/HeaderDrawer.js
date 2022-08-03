@@ -45,6 +45,11 @@ const HeaderDrawer = ({ isOpen, toggleDrawer }) => {
             >
               <NavLink to="/contact"> contact</NavLink>
             </li>
+            <li
+              className={"transition duration-200  hover:text-primary text-xl"}
+            >
+              <NavLink to="/dashboard"> Dashboard</NavLink>
+            </li>
           </ul>
         </div>
         {!user && (
