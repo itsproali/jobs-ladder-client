@@ -8,6 +8,7 @@ import miami from "../../../asset/miami.jpg";
 import "react-tabs/style/react-tabs.css";
 import people from "../../../asset/testimonial/client-3.png";
 import { useForm } from "react-hook-form";
+import { HiOutlineCamera } from "react-icons/hi";
 const Company = () => {
   const imageStorageKey = "4dab8fd03df7f5dbf2aafd109eaffcf5";
   const {
@@ -36,13 +37,14 @@ const Company = () => {
 
   return (
     <>
-      <div className="  bg-base-100 ">
-        <figure>
+      <div className="bg-base-100 ">
+        <figure className="relative">
+          <div>
           <div className=" ">
             {" "}
             <div>
-              <a href="#my-modal-2" class="btn justify-end">
-                Edit Cover
+              <a href="#my-modal-2" class="btn border border-primary bg-white absolute bottom-0 right-0 text-black hover:bg-white hover:border-primary justify-end">
+               <HiOutlineCamera className="text-2xl"></HiOutlineCamera> Edit Cover photo
               </a>
 
               <div class="modal" id="my-modal-2">
@@ -74,6 +76,7 @@ const Company = () => {
             </div>
           </div>
           <img className="h-96 cover-img" src="https://i.ibb.co/Bggt5pt/Screenshot-5.png" alt="Shoes" />
+          </div>
         </figure>
         <div className="text-4xl p-3  ">Miami HEAT</div>
         <div>
