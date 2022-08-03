@@ -73,7 +73,7 @@ const Company = () => {
               </div>
             </div>
           </div>
-          {/* <img className="h-96 cover-img" src={} alt="Shoes" /> */}
+          <img className="h-96 cover-img" src="https://i.ibb.co/Bggt5pt/Screenshot-5.png" alt="Shoes" />
         </figure>
         <div className="text-4xl p-3  ">Miami HEAT</div>
         <div>
