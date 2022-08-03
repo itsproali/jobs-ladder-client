@@ -22,6 +22,7 @@ import Header from "../Shared/Header/Header"
 import Footer from "../Shared/Footer/Footer"
 import Contact from "../../pages/Home/Contact/Contact"
 import DevelopmentTeam from "../../pages/Development-Team/DevelopmentTeam"
+import ApplyJobModal from "../../pages/Dashboard-pages/JobPost/ApplyJobModal";
 
 
 const RoutesIndex = () => {
@@ -66,6 +67,7 @@ const RoutesIndex = () => {
             ) : (
               <Route index element={<Company></Company>}></Route>
             )}
+            <Route path="apply/:_id" element={<ApplyJobModal></ApplyJobModal>}></Route>
             <Route path="jobpost" element={<JobPost></JobPost>}></Route>
             <Route path="jobpostform" element={<JobPostForm></JobPostForm>}></Route>
             <Route path="response" element={<Response></Response>}></Route>

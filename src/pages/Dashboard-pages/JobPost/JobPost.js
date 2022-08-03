@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ButtonDefault from '../../../components/ButtonDefault/ButtonDefault';
 import { AiFillEye } from 'react-icons/ai';
 import JobSCard from './Jobs-card';
@@ -30,6 +30,7 @@ const JobPost = () => {
             <div>
                {jobPost.map(( job , index) =>  <JobSCard key={index}  job={job}></JobSCard>) }
             </div>
+
         </div>
     );
 };
