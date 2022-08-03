@@ -13,9 +13,9 @@ const CollectInfo = () => {
     handleSubmit,
     control,
     formState: { errors },
+    setError,
   } = useForm();
   const roleValue = useWatch({ control, name: "role" });
-  const uniqueSecret = Math.random().toString(36).slice(2, 6);
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const userName = user?.displayName;
@@ -34,9 +34,17 @@ const CollectInfo = () => {
         email,
       };
       console.log(userData);
-      const { res } = await fetching.put("/users/add-info", userData);
-      console.log(res);
-      navigate("/dashboard");
+      await fetching.put("/users/add-info", userData).then((res) => {
+        console.log(res.data);
+        if (res?.data?.insertCompany?.status === "failed") {
+          setError("companySecret", {
+            type: "custom",
+            message: res?.data?.insertCompany?.message,
+          });
+        } else {
+          navigate("/dashboard");
+        }
+      });
     }
   };
   return (
@@ -76,13 +84,13 @@ const CollectInfo = () => {
                 </select>
               </label>
               {errors.role && (
-                <label className="block text-red-700">
+                <label className="block text-red-700 text-xs">
                   Please select your role
                 </label>
               )}
             </div>
             <div className="text-2xl">
-              {roleValue === "job-seeker" || roleValue === undefined || (
+              {(roleValue === "HR" || roleValue === "Employee") && (
                 <div className=" w-3/4 mx-auto relative my-3">
                   <HiOutlineBriefcase className="absolute top-3 left-4"></HiOutlineBriefcase>
                   <input
@@ -91,22 +99,43 @@ const CollectInfo = () => {
                     className="py-2 pl-14 pr-4 w-full focus:outline-none rounded"
                     placeholder="Enter your company name"
                   />
+                  {errors.companyName && (
+                    <label className="block text-red-700 text-xs">
+                      Please Enter your company Name
+                    </label>
+                  )}
                 </div>
               )}
-              {roleValue === "HR" && (
+              {/* {roleValue === "HR" && (
                 <h2 className="text-3xl text-indigo-300">
                   Company Secret: <b> {uniqueSecret}</b>
                 </h2>
-              )}
-              {roleValue === "Employee" && (
+              )} */}
+              {(roleValue === "HR" || roleValue === "Employee") && (
                 <div className=" w-3/4 mx-auto relative my-3">
                   <HiOutlineLockClosed className="absolute top-3 left-4"></HiOutlineLockClosed>
                   <input
                     type="text"
-                    {...register("companySecret", { required: true })}
+                    {...register(
+                      "companySecret",
+                      {
+                        required: true,
+                        message: "Please Enter a Company Secret",
+                      },
+                      { minLength: 4, message: "Minimum 4 digit required" }
+                    )}
                     className="py-2 pl-14 pr-4 w-full focus:outline-none rounded"
-                    placeholder="Enter your company secret"
+                    placeholder={`${
+                      roleValue === "HR"
+                        ? "Enter/create your company secret"
+                        : "Enter your company secret"
+                    }`}
                   />
+                  {errors.companySecret && (
+                    <label className="block text-red-700 text-xs">
+                      {errors?.companySecret?.message}
+                    </label>
+                  )}
                 </div>
               )}
             </div>
