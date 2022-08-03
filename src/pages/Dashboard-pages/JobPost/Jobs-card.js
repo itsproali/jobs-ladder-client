@@ -6,6 +6,7 @@ import { FiClock } from 'react-icons/fi';
 import { GoLocation } from 'react-icons/go';
 import { GrOrganization } from 'react-icons/gr';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ReactTimeAgo from 'react-time-ago';
 import Swal from 'sweetalert2';
 import ButtonDefault from '../../../components/ButtonDefault/ButtonDefault';
@@ -14,28 +15,19 @@ import fetching from '../../../hooks/UseAddUserInfo/fetching';
 import useUserRole from '../../../hooks/UseAddUserInfo/useUserRole';
 import getJobPosts from '../../../stateManagement/actions/Actions';
 
-const JobSCard = ({ job }) => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const fileStorageKey = 'J90VOH6DMOPFFSH10SP1R94PN9L8Q4HHO6NFDC0GLC46CJQO50A0';
-  const emailRef = useRef("");
-  const fileRef = useRef("");
+const JobSCard = ({ job, apply }) => {
+  const navigate = useNavigate();
+  // console.log(job);
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const [role] = useUserRole(user);
   const { title, _id, companyName, date, description, jobRequirements, jobState, jobTypes, location, } = job;
-  console.log(job);
-  const Applyform = async(data)=>{
-    const file = data.file[0].name;
-    const formData = new FormData();
-    formData.append('avatar', file);
-    const URL = `https://skynetfree.net/${fileStorageKey}`
-      fetch(URL,{
-        method: "POST",
-        body: formData
-      })
-      .then(res=> res.json())
-      .then(d=> console.log(d))
+  console.log(apply);
+  const navigatetoapplyform = (_id)=>{
+    console.log(_id);
+    navigate(`apply/${_id}`)
   }
+
 
   const handleRemovePost = () => {
     const url = `job-post/${_id}`;
@@ -98,26 +90,10 @@ const JobSCard = ({ job }) => {
       {role === 'job-seeker' && <div className='absolute top-5 right-5'>
         {/* <ButtonDefault text='apply'></ButtonDefault> */}
 
-      <label for="my-modal-3" class="btn btn-primary modal-button border">apply</label>
+      <label onClick={()=>navigatetoapplyform(_id)}  for="my-modal-3" class="btn btn-primary modal-button border">APPLY</label>
 
 
-      <input type="checkbox" id="my-modal-3" class="modal-toggle " />
-        <div class="modal">
-          <div class="modal-box relative">
-            <label for="my-modal-3" class="btn btn-primary btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <form onSubmit={handleSubmit(Applyform)}>
-            <label className='pb-5'>Email Address</label>
-              <br></br>
-              <input ref={emailRef} {...register("email")} type="email" className='mt-4 border border-gray-400 rounded w-full bg-white text-gray-700 focus:outline-none focus:border-gray-500 pl-5 h-10'></input>
-              <br></br>
-              <label className='my-4 inline-block'>Upload Resume</label>
-              <br></br>
-              <input ref={fileRef} {...register("file")} type="file"></input>
-              <br></br>
-              <input className='btn btn-primary mt-5' type="submit" value="submit"></input>
-          </form>
-          </div>
-        </div>
+      
 
       </div>}
       {role === 'HR' && <div onClick={handleRemovePost} className='absolute top-5 right-5'>

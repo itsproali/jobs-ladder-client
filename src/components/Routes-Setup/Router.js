@@ -8,6 +8,7 @@ import Loading from "../Shared/Loading/Loading";
 import RequireAuth from "../Shared/RequireAuth";
 import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
 import JobPost from "../../pages/Dashboard-pages/JobPost/JobPost";
+import ApplyJobModal from "../../pages/Dashboard-pages/JobPost/ApplyJobModal";
 const Response = lazy(() =>
   import("../../pages/Dashboard-pages/Response/Response")
 );
@@ -76,6 +77,7 @@ const RoutesIndex = () => {
             ) : (
               <Route index element={<Company></Company>}></Route>
             )}
+            <Route path="apply/:_id" element={<ApplyJobModal></ApplyJobModal>}></Route>
             <Route path="jobpost" element={<JobPost></JobPost>}></Route>
             <Route path="jobpostform" element={<JobPostForm></JobPostForm>}></Route>
             <Route path="response" element={<Response></Response>}></Route>
