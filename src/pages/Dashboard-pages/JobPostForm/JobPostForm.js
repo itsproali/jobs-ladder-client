@@ -32,7 +32,8 @@ const JobPostForm = () => {
     e.preventDefault()
     const jobData = {
       title: formRef.current?.jobTitle?.value,
-      companyCode: currentUser?.companyName,
+      companyName: currentUser?.companyName,
+      companySecret : currentUser?.companySecret ,
       jobState: formRef.current?.jobState?.value,
       location: formRef.current?.location?.value,
       jobTypes: jobTypes?.assignedTo?.map(i => i.value),

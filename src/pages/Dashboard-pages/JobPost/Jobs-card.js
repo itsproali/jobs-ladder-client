@@ -17,21 +17,18 @@ import getJobPosts from '../../../stateManagement/actions/Actions';
 
 const JobSCard = ({ job, apply }) => {
   const navigate = useNavigate();
-  // console.log(job);
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const [role] = useUserRole(user);
-  const { title, _id, companyName, date, description, jobRequirements, jobState, jobTypes, location, } = job;
-  console.log(apply);
-  const navigatetoapplyform = (_id)=>{
-    console.log(_id);
+  const { title, _id, companySecret ,  companyName , date, description, jobRequirements, jobState, jobTypes, location, } = job;
+  const navigateToApplyForm = (_id)=>{
     navigate(`apply/${_id}`)
   }
 
+  console.log(companySecret);
 
   const handleRemovePost = () => {
     const url = `job-post/${_id}`;
-    // fetching.delete(url) ;
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -90,7 +87,7 @@ const JobSCard = ({ job, apply }) => {
       {role === 'job-seeker' && <div className='absolute top-5 right-5'>
         {/* <ButtonDefault text='apply'></ButtonDefault> */}
 
-      <label onClick={()=>navigatetoapplyform(_id)}  for="my-modal-3" class="btn btn-primary modal-button border">APPLY</label>
+      <label onClick={()=>navigateToApplyForm(_id)}  for="my-modal-3" class="btn btn-primary modal-button border">APPLY</label>
 
 
       
