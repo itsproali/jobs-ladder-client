@@ -1,6 +1,9 @@
 import fetching from "../../hooks/UseAddUserInfo/fetching";
-import { GET_JOB_POST_FAILED, GET_JOB_POST_REQUEST, GET_JOB_POST_SUCCESS } from "../constants/Constant";
-
+import {
+  GET_JOB_POST_FAILED,
+  GET_JOB_POST_REQUEST,
+  GET_JOB_POST_SUCCESS,
+} from "../constants/Constant";
 
 // const getJobPosts = ()=> async(dispatch)=>{
 //     dispatch({type: GET_TODOS_REQUEST});
@@ -16,19 +19,25 @@ import { GET_JOB_POST_FAILED, GET_JOB_POST_REQUEST, GET_JOB_POST_SUCCESS } from 
 //             payload: error.message
 //         })
 //     }
-   
+
 // }
-const getJobPosts = () => {
-    return (dispatch) => {
-      dispatch({type: GET_JOB_POST_REQUEST })
-      fetching
-      .get('/job-post')
-      .then((data) => {
-        dispatch({type: GET_JOB_POST_SUCCESS , payload: data.data})
-      })
-      .catch( (error) => {
-        dispatch({type: GET_JOB_POST_FAILED , payload: error.message})
-      })
-    }
+const getJobPosts = (filter) => {
+  let query;
+  if (filter.companySecret) {
+    query = `companySecret=${filter?.companySecret}`;
+  } else {
+    query = `currentPage=${filter?.currentPage}`;
   }
-export default getJobPosts ;
+  return (dispatch) => {
+    dispatch({ type: GET_JOB_POST_REQUEST });
+    fetching
+      .get(`/job-post?${query}`)
+      .then((data) => {
+        dispatch({ type: GET_JOB_POST_SUCCESS, payload: data.data });
+      })
+      .catch((error) => {
+        dispatch({ type: GET_JOB_POST_FAILED, payload: error.message });
+      });
+  };
+};
+export default getJobPosts;
