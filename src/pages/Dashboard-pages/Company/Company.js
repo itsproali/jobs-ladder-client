@@ -35,6 +35,8 @@ const Company = () => {
       });
   };
 
+
+
   return (
     <>
       <div className="bg-base-100 ">
@@ -78,13 +80,36 @@ const Company = () => {
           <img className="h-96 cover-img" src="https://i.ibb.co/Bggt5pt/Screenshot-5.png" alt="Shoes" />
           </div>
         </figure>
+        <div>
+
+          <label for="company-modal" class="btn btn-primary modal-button">Edit Details</label>
+
+
+          <input type="checkbox" id="company-modal" class="modal-toggle" />
+          <div class="modal">
+            <div class="modal-box relative">
+              <label for="company-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+              <form>
+              {/* register your input into the hook by invoking the "register" function */}
+              <input defaultValue="test" {...register("example")} />
+              
+              {/* include validation with required or other standard HTML validation rules */}
+              <input {...register("exampleRequired", { required: true })} />
+              {/* errors will return when field validation fails  */}
+              {errors.exampleRequired && <span>This field is required</span>}
+      
+      <input type="submit" />
+    </form>
+            </div>
+          </div>
+        </div>
         <div className="text-4xl p-3  ">Miami HEAT</div>
         <div>
-          <a className="text-primary" href="#my-modal-2">
+          {/* <a className="text-primary" href="#my-modal-2">
             Edit
-          </a>
+          </a> */}
 
-          <div class="modal" id="my-modal-2">
+          {/* <div class="modal" id="my-modal-2">
             <div class="modal-box">
               <h3 class="font-bold text-lg">Edit Cover picture!</h3>
               <input
@@ -98,18 +123,18 @@ const Company = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="p-3">
           <button className="btn btn-outline ">
             Visit website <HiExternalLink className="text-2xl ml-1" />
           </button>
           <div>
-            <a className="text-primary" href="#my-modal-2 ">
+            {/* <a className="text-primary" href="#my-modal-2 ">
               Edit
-            </a>
+            </a> */}
 
-            <div class="modal" id="my-modal-2">
+            {/* <div class="modal" id="my-modal-2">
               <div class="modal-box">
                 <h3 class="font-bold text-lg">Edit Cover picture!</h3>
                 <input
@@ -123,7 +148,7 @@ const Company = () => {
                   </a>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -141,11 +166,11 @@ const Company = () => {
           <div className=" ">
             {" "}
             <div>
-              <a className="text-primary" href="#my-modal-2">
+              {/* <a className="text-primary" href="#my-modal-2">
                 Edit
-              </a>
+              </a> */}
 
-              <div class="modal" id="my-modal-2">
+              {/* <div class="modal" id="my-modal-2">
                 <div class="modal-box">
                   <h3 class="font-bold text-lg">Edit Cover picture!</h3>
                   <input
@@ -159,7 +184,7 @@ const Company = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div>
@@ -183,11 +208,11 @@ const Company = () => {
           <div className="pt-10">
             <h2 className="text-lg font-bold pb-5">Specialties</h2>
             <div>
-              <a className="text-primary" href="#my-modal-2">
+              {/* <a className="text-primary" href="#my-modal-2">
                 Edit
-              </a>
+              </a> */}
 
-              <div class="modal" id="my-modal-2">
+              {/* <div class="modal" id="my-modal-2">
                 <div class="modal-box">
                   <h3 class="font-bold text-lg">Edit Cover picture!</h3>
                   <input
@@ -201,7 +226,7 @@ const Company = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             Mobile App Development, iOS, Android, UI/UX Designs, Product Market
             Fit, In-App Purchases, Backend Development, Machine Learning, APIs,

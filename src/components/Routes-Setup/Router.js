@@ -23,7 +23,8 @@ import Footer from "../Shared/Footer/Footer"
 import Contact from "../../pages/Home/Contact/Contact"
 import DevelopmentTeam from "../../pages/Development-Team/DevelopmentTeam"
 import ApplyJobModal from "../../pages/Dashboard-pages/JobPost/ApplyJobModal";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RoutesIndex = () => {
   const location = useLocation();
@@ -42,6 +43,7 @@ const RoutesIndex = () => {
   console.log(role);
   return (
     <div>
+      <ToastContainer />
       {isHidden || <Header></Header>}
 
         
