@@ -44,8 +44,49 @@ const Company = () => {
       <div className="  bg-base-100 ">
         <figure>
           <div className=" ">
-            {" "}
-            <div>
+            <label className="font-bold text-lg" for="my-modal-4">
+              Edit
+            </label>
+            <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+            <label for="my-modal-4" class="modal cursor-pointer">
+              <label class="modal-box relative" for="">
+                <h3 class="text-lg font-bold">
+                  Congratulations random Internet user!
+                </h3>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <input
+                    type="text"
+                    className="input input-bordered w-full max-w-xs"
+                  />
+                </form>
+                <div class="modal-action">
+                  <input
+                    className="btn w-full max-w-xs text-primary"
+                    type="submit"
+                    value="Add"
+                  />
+                </div>
+              </label>
+            </label>
+            <div className="p-3">
+              <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+              <label for="my-modal-4" class="modal cursor-pointer">
+                <label class="modal-box relative" for="">
+                  <h3 class="text-lg font-bold">
+                    Congratulations random Internet user!
+                  </h3>
+                  <form></form>
+                  <div class="modal-action">
+                    <input
+                      className="btn w-full max-w-xs text-white"
+                      type="submit"
+                      value="Add"
+                    />
+                  </div>
+                </label>
+              </label>
+            </div>{" "}
+            {/* <div>
               <a href="#my-modal-2" class="btn justify-end">
                 Edit Cover
               </a>
@@ -57,12 +98,7 @@ const Company = () => {
                     <input
                       type="file"
                       className="input input-bordered w-full max-w-xs"
-                      {...register("image", {
-                        required: {
-                          value: true,
-                          message: "Image is Required",
-                        },
-                      })}
+                      {...register("image")}
                     />
                   </form>
                   <div class="modal-action">
@@ -74,57 +110,61 @@ const Company = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
-          {/* <img className="h-96 cover-img" src={} alt="Shoes" /> */}
+          <img className="h-96 cover-img" src={image1} alt="Shoes" />
         </figure>
         <div className="text-4xl p-3  ">Miami HEAT</div>
-        <div>
-          <a className="text-primary" href="#my-modal-2">
-            Edit
-          </a>
 
-          <div class="modal" id="my-modal-2">
-            <div class="modal-box">
-              <h3 class="font-bold text-lg">Edit Cover picture!</h3>
+        <label className="text-primary" for="my-modal-4">
+          Edit
+        </label>
+
+        <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+        <label for="my-modal-4" class="modal cursor-pointer">
+          <label class="modal-box relative" for="">
+            <h3 class="text-lg font-bold">
+              Congratulations random Internet user!
+            </h3>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <input
                 type="text"
-                placeholder="set link"
-                className="input w-full  mb-5 home-contact-input "
+                className="input input-bordered w-full max-w-xs"
               />
-              <div class="modal-action">
-                <a href="#" class="btn">
-                  Oky!
-                </a>
-              </div>
+            </form>
+            <div class="modal-action">
+              <input
+                className="btn w-full max-w-xs text-white"
+                type="submit"
+                value="Add"
+              />
             </div>
-          </div>
-        </div>
+          </label>
+        </label>
         <div className="p-3">
           <button className="btn btn-outline ">
             Visit website <HiExternalLink className="text-2xl ml-1" />
           </button>
-          <div>
-            <a className="text-primary" href="#my-modal-2 ">
-              Edit
-            </a>
+          <label className="text-primary" for="my-modal-4">
+            Edit
+          </label>
 
-            <div class="modal" id="my-modal-2">
-              <div class="modal-box">
-                <h3 class="font-bold text-lg">Edit Cover picture!</h3>
+          <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+          <label for="my-modal-4" class="modal cursor-pointer">
+            <label class="modal-box relative" for="">
+              <h3 class="text-lg font-bold">
+                Congratulations random Internet user!
+              </h3>
+              <form></form>
+              <div class="modal-action">
                 <input
-                  type="text"
-                  placeholder="set link"
-                  className="input w-full  mb-5 home-contact-input "
+                  className="btn w-full max-w-xs text-white"
+                  type="submit"
+                  value="Add"
                 />
-                <div class="modal-action">
-                  <a href="#" class="btn ">
-                    Oky!
-                  </a>
-                </div>
               </div>
-            </div>
-          </div>
+            </label>
+          </label>
         </div>
       </div>
 
@@ -138,29 +178,48 @@ const Company = () => {
         {/* about tab panel */}
         <TabPanel>
           <h2 className="text-xl font-semibold">Overview</h2>
-          <div className=" ">
-            {" "}
-            <div>
-              <a className="text-primary" href="#my-modal-2">
-                Edit
-              </a>
+          <label className="text-primary" for="my-modal-4">
+            Edit
+          </label>
 
-              <div class="modal" id="my-modal-2">
-                <div class="modal-box">
-                  <h3 class="font-bold text-lg">Edit Cover picture!</h3>
-                  <input
-                    type="text"
-                    placeholder="set link"
-                    className="input w-full  mb-5 home-contact-input "
-                  />
-                  <div class="modal-action">
-                    <a href="#" class="btn">
-                      Oky!
-                    </a>
-                  </div>
-                </div>
+          <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+          <label for="my-modal-4" class="modal cursor-pointer">
+            <label class="modal-box relative" for="">
+              <h3 class="text-lg font-bold">
+                Congratulations random Internet user!
+              </h3>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input
+                  type="text"
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </form>
+              <div class="modal-action">
+                <input
+                  className="btn w-full max-w-xs text-white"
+                  type="submit"
+                  value="Add"
+                />
               </div>
-            </div>
+            </label>
+          </label>
+          <div className="p-3">
+            <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+            <label for="my-modal-4" class="modal cursor-pointer">
+              <label class="modal-box relative" for="">
+                <h3 class="text-lg font-bold">
+                  Congratulations random Internet user!
+                </h3>
+                <form></form>
+                <div class="modal-action">
+                  <input
+                    className="btn w-full max-w-xs text-white"
+                    type="submit"
+                    value="Add"
+                  />
+                </div>
+              </label>
+            </label>
           </div>
           <div>
             <p className="text-lg pt-5">
@@ -182,26 +241,47 @@ const Company = () => {
           </div>
           <div className="pt-10">
             <h2 className="text-lg font-bold pb-5">Specialties</h2>
-            <div>
-              <a className="text-primary" href="#my-modal-2">
-                Edit
-              </a>
-
-              <div class="modal" id="my-modal-2">
-                <div class="modal-box">
-                  <h3 class="font-bold text-lg">Edit Cover picture!</h3>
+            <label className="text-primary" for="my-modal-4">
+              Edit
+            </label>
+            <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+            <label for="my-modal-4" class="modal cursor-pointer">
+              <label class="modal-box relative" for="">
+                <h3 class="text-lg font-bold">
+                  Congratulations random Internet user!
+                </h3>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <input
                     type="text"
-                    placeholder="set link"
-                    className="input w-full  mb-5 home-contact-input "
+                    className="input input-bordered w-full max-w-xs"
                   />
-                  <div class="modal-action">
-                    <a href="#" class="btn">
-                      Oky!
-                    </a>
-                  </div>
+                </form>
+                <div class="modal-action">
+                  <input
+                    className="btn w-full max-w-xs text-white"
+                    type="submit"
+                    value="Add"
+                  />
                 </div>
-              </div>
+              </label>
+            </label>
+            <div className="p-3">
+              <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+              <label for="my-modal-4" class="modal cursor-pointer">
+                <label class="modal-box relative" for="">
+                  <h3 class="text-lg font-bold">
+                    Congratulations random Internet user!
+                  </h3>
+                  <form></form>
+                  <div class="modal-action">
+                    <input
+                      className="btn w-full max-w-xs text-white"
+                      type="submit"
+                      value="Add"
+                    />
+                  </div>
+                </label>
+              </label>
             </div>
             Mobile App Development, iOS, Android, UI/UX Designs, Product Market
             Fit, In-App Purchases, Backend Development, Machine Learning, APIs,
