@@ -20,11 +20,10 @@ const CollectInfo = () => {
   const [user] = useAuthState(auth);
   const userName = user?.displayName;
   const email = user?.email;
-
   const onSubmit = async (data) => {
     const role = await data.role;
     const companyName = await data.companyName;
-    const companySecret = await data.companySecret;
+    const companySecret = await data.companySecret.toLowerCase();
     if (role) {
       const userData = await {
         userName,
@@ -90,7 +89,7 @@ const CollectInfo = () => {
               )}
             </div>
             <div className="text-2xl">
-              {(roleValue === "HR" || roleValue === "Employee") && (
+              {(roleValue === "HR" ) && (
                 <div className=" w-3/4 mx-auto relative my-3">
                   <HiOutlineBriefcase className="absolute top-3 left-4"></HiOutlineBriefcase>
                   <input
