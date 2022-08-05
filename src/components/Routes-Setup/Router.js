@@ -1,38 +1,30 @@
-import React, { lazy, Suspense } from "react";
+import React  from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Route, Routes, useLocation } from "react-router-dom";
-import NotFound from "../../pages/NotFound/NotFound";
 import auth from "../../firebase-init";
 import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
-import Loading from "../Shared/Loading/Loading";
-import RequireAuth from "../Shared/RequireAuth";
-import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
-import JobPost from "../../pages/Dashboard-pages/JobPost/JobPost";
-const Response = lazy(() =>
-  import("../../pages/Dashboard-pages/Response/Response")
-);
-const Company = lazy(() =>
-  import("../../pages/Dashboard-pages/Company/Company")
-);
-const Employee = lazy(() =>
-  import("../../pages/Dashboard-pages/Employee/Employee")
-);
-const FindJob = lazy(() =>
-  import("../../pages/Dashboard-pages/FindJob/FindJob")
-);
-const Dashboard = lazy(() => import("../../pages/Dashboard/Dashboard"));
-const Home = lazy(() => import("../../pages/Home/Home"));
-const About = lazy(() => import("../../pages/About/About"));
-const Blog = lazy(() => import("../../pages/Blog/Blog"));
-const Login = lazy(() => import("../../pages/Login/Login"));
-const Register = lazy(() => import("../../pages/Login/Register"));
-const CollectInfo = lazy(() => import("../../pages/Welcome/CollectInfo"));
-const Header = lazy(() => import("../Shared/Header/Header"));
-const Footer = lazy(() => import("../Shared/Footer/Footer"));
-const Contact = lazy(() => import("../../pages/Home/Contact/Contact"));
-const DevelopmentTeam = lazy(() =>
-  import("../../pages/Development-Team/DevelopmentTeam")
-);
+import NotFound from "../../pages/NotFound/NotFound"
+import RequireAuth from "../Shared/RequireAuth"
+import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm"
+import JobPost from "../../pages/Dashboard-pages/JobPost/JobPost"
+import Response from "../../pages/Dashboard-pages/Response/Response"
+import Company from "../../pages/Dashboard-pages/Company/Company"
+import Employee from "../../pages/Dashboard-pages/Employee/Employee"
+import FindJob from "../../pages/Dashboard-pages/FindJob/FindJob"
+import Dashboard from "../../pages/Dashboard/Dashboard"
+import Home from "../../pages/Home/Home"
+import About from "../../pages/About/About"
+import Blog from "../../pages/Blog/Blog"
+import Login from "../../pages/Login/Login"
+import Register from "../../pages/Login/Register"
+import CollectInfo from "../../pages/Welcome/CollectInfo"
+import Header from "../Shared/Header/Header"
+import Footer from "../Shared/Footer/Footer"
+import Contact from "../../pages/Home/Contact/Contact"
+import DevelopmentTeam from "../../pages/Development-Team/DevelopmentTeam"
+import ApplyJobModal from "../../pages/Dashboard-pages/JobPost/ApplyJobModal";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RoutesIndex = () => {
   const location = useLocation();
@@ -51,8 +43,10 @@ const RoutesIndex = () => {
   console.log(role);
   return (
     <div>
+      <ToastContainer />
       {isHidden || <Header></Header>}
-      <Suspense fallback={<Loading />}>
+
+        
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<About />}></Route>
@@ -62,7 +56,6 @@ const RoutesIndex = () => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/welcome" element={<CollectInfo />}></Route>
-          <Route path="/loading" element={<Loading />}></Route>
           <Route
             path="/dashboard"
             element={
@@ -76,6 +69,7 @@ const RoutesIndex = () => {
             ) : (
               <Route index element={<Company></Company>}></Route>
             )}
+            <Route path="apply/:_id" element={<ApplyJobModal></ApplyJobModal>}></Route>
             <Route path="jobpost" element={<JobPost></JobPost>}></Route>
             <Route path="jobpostform" element={<JobPostForm></JobPostForm>}></Route>
             <Route path="response" element={<Response></Response>}></Route>
@@ -89,7 +83,7 @@ const RoutesIndex = () => {
           </Route>
           <Route path="*" element={<NotFound/>}></Route>
         </Routes>
-      </Suspense>
+      
       {isHidden || isFooterHidden || <Footer></Footer>}
     </div>
   );

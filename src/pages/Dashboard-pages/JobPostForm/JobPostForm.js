@@ -2,21 +2,22 @@ import React, { useRef, useState } from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import makeAnimated from 'react-select/animated';
-import ReactTimeAgo from 'react-time-ago'
+import { useDispatch } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase-init';
 import useUserRole from '../../../hooks/UseAddUserInfo/useUserRole';
 import fetching from '../../../hooks/UseAddUserInfo/fetching';
 import { useLocation, useNavigate } from 'react-router-dom';
+import getJobPosts from '../../../stateManagement/actions/Actions';
 
 const JobPostForm = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const dispatch = useDispatch()
   const formRef = useRef(null)
   const animatedComponents = makeAnimated();
   const [jobTypes, setJobTypes] = useState([]);
   const [user] = useAuthState(auth)
-  const [role , currentUser] = useUserRole(user)
+  const [role, currentUser] = useUserRole(user)
   const [jobRequirements, setJobRequirements] = useState([]);
   const date = new Date();
   const options = [
@@ -31,7 +32,8 @@ const JobPostForm = () => {
     e.preventDefault()
     const jobData = {
       title: formRef.current?.jobTitle?.value,
-      companyCode: currentUser?.companyName ,
+      companyName: currentUser?.companyName,
+      companySecret : currentUser?.companySecret ,
       jobState: formRef.current?.jobState?.value,
       location: formRef.current?.location?.value,
       jobTypes: jobTypes?.assignedTo?.map(i => i.value),
@@ -39,8 +41,9 @@ const JobPostForm = () => {
       description: formRef.current?.description?.value,
       date: date.getTime(),
     }
-    await fetching.post('/job-post' , jobData)
-    await navigate('/dashboard/jobpost' , {replace: true})
+    await fetching.post('/job-post', jobData)
+    await dispatch(getJobPosts())
+    await navigate('/dashboard/jobpost', { replace: true })
   }
 
   return (
@@ -50,7 +53,7 @@ const JobPostForm = () => {
         <div className='mb-10'>
           <h1 className='text-2xl text-primary uppercase'>Post New Job</h1>
           <hr />
-          
+
         </div>
 
         <form onSubmit={handleJobPost} ref={formRef}>
