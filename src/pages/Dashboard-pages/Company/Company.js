@@ -9,7 +9,10 @@ import "react-tabs/style/react-tabs.css";
 import people from "../../../asset/testimonial/client-3.png";
 import { useForm } from "react-hook-form";
 import { HiOutlineCamera } from "react-icons/hi";
+import { FaEdit } from "react-icons/fa";
+
 const Company = () => {
+  // dynamic way to save image bb
   const imageStorageKey = "4dab8fd03df7f5dbf2aafd109eaffcf5";
   const {
     register,
@@ -35,23 +38,52 @@ const Company = () => {
       });
   };
 
+  //post method using to fetch all details -------------------------------------------------------
+
+  const handleCompanyDetails = (event) => {
+    event.preventDefault();
+    const companyName = event.target.name.value;
+    const companyOverview = event.target.overview.value;
+    const companyspecialties = event.target.specialties.value;
+    console.log(companyName, companyOverview, companyspecialties);
+
+    const allCompanyDetails = {
+      companyName,
+      companyOverview,
+      companyspecialties,
+    };
+
+    fetch("", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(allCompanyDetails),
+    })
+      .then((response) => response.json())
+      .then((allCompanyDetails) => {
+        console.log("Success:", allCompanyDetails);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   return (
     <>
       <div className="bg-base-100 ">
         <figure className="relative">
-          <div></div>
-          {/* <div>
+          <div>
             <div className=" ">
               {" "}
               <div>
                 <a
                   href="#my-modal-2"
-                  class="btn border border-primary bg-white absolute bottom-0 right-0 text-black hover:bg-white hover:border-primary justify-end btn modal-button "
+                  class="btn border border-primary bg-white absolute bottom-0 right-0 text-black hover:bg-white hover:border-primary justify-end"
                 >
                   <HiOutlineCamera className="text-2xl"></HiOutlineCamera> Edit
                   Cover photo
                 </a>
-                
 
                 <div class="modal" id="my-modal-2">
                   <div class="modal-box">
@@ -86,12 +118,10 @@ const Company = () => {
               src="https://i.ibb.co/Bggt5pt/Screenshot-5.png"
               alt="Shoes"
             />
-          </div> */}
+          </div>
         </figure>
         <div>
-          <label for="company-modal" class="btn btn-primary modal-button">
-            Edit Details
-          </label>
+          {/* <label for="company-modal" class="btn btn-primary modal-button">Edit Details</label> */}
 
           <input type="checkbox" id="company-modal" class="modal-toggle" />
           <div class="modal">
@@ -116,7 +146,50 @@ const Company = () => {
             </div>
           </div>
         </div>
-        <div className="text-4xl p-3  ">Miami HEAT</div>
+        {/* <div className="text-4xl p-3  ">Miami HEAT</div> */}
+
+        {/* edit name dynamic way  */}
+
+        {/* <!-- The button to open modal --> */}
+        <label for="my-modal-4" class="btn modal-button">
+          Edit Details <FaEdit />
+        </label>
+
+        {/* <!-- Put this part before </body> tag --> */}
+        <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+        <label for="my-modal-4" class="modal cursor-pointer">
+          <label class="modal-box relative" for="">
+            <form onSubmit={handleCompanyDetails}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Type here"
+                class="input input-bordered input-primary w-full max-w-xs"
+              />
+              <br /> <br />
+              <textarea
+                class="textarea textarea-primary"
+                name="overview"
+                placeholder="Overview"
+              ></textarea>
+              <br /> <br />
+              <textarea
+                class="textarea textarea-primary"
+                name="specialties"
+                placeholder="Specialties"
+              ></textarea>
+              <br /> <br />
+              <input
+                className="input input-bordered input-primary "
+                type="submit"
+                value="Add Details"
+              />
+            </form>
+          </label>
+        </label>
+
+        {/* edit name dynamic way end */}
+
         <div>
           {/* <a className="text-primary" href="#my-modal-2">
             Edit
@@ -171,6 +244,10 @@ const Company = () => {
 
         {/* about tab panel */}
         <TabPanel>
+          {/* edit overview dynamic way  */}
+
+          {/* edit overview dynamic way end */}
+
           <h2 className="text-xl font-semibold">Overview</h2>
           <div className=" ">
             {" "}
@@ -214,7 +291,10 @@ const Company = () => {
               to enterprise brands.
             </p>
           </div>
+
           <div className="pt-10">
+            {/* edit Specialties dynamic way  */}
+            {/* edit Specialties dynamic way  end*/}
             <h2 className="text-lg font-bold pb-5">Specialties</h2>
             <div>
               {/* <a className="text-primary" href="#my-modal-2">

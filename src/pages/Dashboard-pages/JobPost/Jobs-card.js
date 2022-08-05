@@ -25,7 +25,7 @@ const JobSCard = ({ job, apply }) => {
     navigate(`apply/${_id}`)
   }
 
-  console.log(companySecret);
+  // console.log(companySecret);
 
   const handleRemovePost = () => {
     const url = `job-post/${_id}`;
@@ -72,7 +72,7 @@ const JobSCard = ({ job, apply }) => {
         <p className='my-2'>{description.slice(0, 200)}...</p>
 
         <p>Skills Requirement: &nbsp; &nbsp;
-          {jobRequirements.map((requirement, index) => <span key={index} className='border-b-[1px] border-secondary mr-2 '>{requirement}</span>)}
+          {jobRequirements?.map((requirement, index) => <span key={index} className='border-b-[1px] border-secondary mr-2 '>{requirement}</span>)}
 
         </p>
 
@@ -80,7 +80,7 @@ const JobSCard = ({ job, apply }) => {
       </div>
       <div className='bg-[#F2F2F3] h-14 flex items-center px-6 w-full absolute bottom-0 left-0'>
         <div className='flex gap-5 items-center'>
-          {jobTypes.map((type, index) => <p key={index} className='badge badge-primary text-md py-4 px-3'>{type}</p>)}
+          {jobTypes?.map((type, index) => <p key={index} className='badge badge-primary text-md py-4 px-3'>{type}</p>)}
 
         </div>
       </div>
