@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
 import { AiTwotoneMedicineBox } from 'react-icons/ai';
 import { FiClock } from 'react-icons/fi';
 import { GoLocation } from 'react-icons/go';
 import { GrOrganization } from 'react-icons/gr';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ReactTimeAgo from 'react-time-ago';
 import Swal from 'sweetalert2';
 import ButtonDefault from '../../../components/ButtonDefault/ButtonDefault';
@@ -13,14 +15,20 @@ import fetching from '../../../hooks/UseAddUserInfo/fetching';
 import useUserRole from '../../../hooks/UseAddUserInfo/useUserRole';
 import getJobPosts from '../../../stateManagement/actions/Actions';
 
-const JobSCard = ({ job }) => {
+const JobSCard = ({ job, apply }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const [role] = useUserRole(user);
-  const { title, _id, companyName, date, description, jobRequirements, jobState, jobTypes, location, } = job;
+  const { title, _id, companySecret ,  companyName , date, description, jobRequirements, jobState, jobTypes, location, } = job;
+  const navigateToApplyForm = (_id)=>{
+    navigate(`apply/${_id}`)
+  }
+
+  console.log(companySecret);
+
   const handleRemovePost = () => {
     const url = `job-post/${_id}`;
-    // fetching.delete(url) ;
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -77,7 +85,13 @@ const JobSCard = ({ job }) => {
         </div>
       </div>
       {role === 'job-seeker' && <div className='absolute top-5 right-5'>
-        <ButtonDefault text='apply'></ButtonDefault>
+        {/* <ButtonDefault text='apply'></ButtonDefault> */}
+
+      <label onClick={()=>navigateToApplyForm(_id)}  for="my-modal-3" class="btn btn-primary modal-button border">APPLY</label>
+
+
+      
+
       </div>}
       {role === 'HR' && <div onClick={handleRemovePost} className='absolute top-5 right-5'>
         <ButtonDefault text='remove post'></ButtonDefault>

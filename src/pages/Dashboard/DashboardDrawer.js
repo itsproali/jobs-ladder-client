@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import React from "react";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
+import { AiOutlineClose } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import {
   HiBookOpen,
   HiOfficeBuilding,
@@ -9,25 +12,27 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase-init";
 import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
-import DashboardDrawer from "./DashboardDrawer";
-import { IoIosArrowForward } from "react-icons/io";
 
-const Dashboard = () => {
+const DashboardDrawer = ({ isOpen, toggleDrawer }) => {
   const [user] = useAuthState(auth);
   const [role] = useUserRole(user);
-  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
-  const toggleDrawer = () => {
-    setIsOpenDrawer(!isOpenDrawer);
-  };
   return (
-    <div className="mt-20 relative">
-      <div className="mx-auto">
-        <div className="drawer-side  z-20 bg-gradient-to-tl from-primary to-secondary h-screen fixed top-0 left-0">
-          {/* <label htmlFor="my-drawer-2" className="drawer-overlay">
-            zcdsdsa
-          </label> */}
-
-          <ul className="menu p-4 pt-20 overflow-y-auto w-64  text-base-content lg:block hidden">
+    <Drawer
+      style={{ background: "linear-gradient(#ED3AB2, #952DDE)" }}
+      open={isOpen}
+      onClose={toggleDrawer}
+      duration={800}
+      direction="left"
+    >
+      <div>
+        <span
+          onClick={toggleDrawer}
+          className=" btn btn-ghost rounded-full text-2xl absolute top-1 right-1 text-white"
+        >
+          <AiOutlineClose />
+        </span>
+        <div className="flex mt-20 mb-16 justify-center">
+          <ul className="menu p-4 overflow-y-auto w-64  text-base-content">
             {role !== "job-seeker" && (
               <li className="mb-5">
                 <Link
@@ -85,19 +90,9 @@ const Dashboard = () => {
             )}
           </ul>
         </div>
-        <button
-          className="btn btn-primary rounded-r-full -ml-4 mb-4 pl-4 pr-2  hover:pl-12 duration-300 transition-all ease-in-out z-10 lg:hidden"
-          onClick={toggleDrawer}
-        >
-          <IoIosArrowForward className="text-2xl"></IoIosArrowForward>
-        </button>
-        <DashboardDrawer isOpen={isOpenDrawer} toggleDrawer={toggleDrawer} />
-        <div className="container mx-auto lg:pl-64">
-          <Outlet />
-        </div>
       </div>
-    </div>
+    </Drawer>
   );
 };
 
-export default Dashboard;
+export default DashboardDrawer;

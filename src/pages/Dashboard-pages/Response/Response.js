@@ -1,18 +1,8 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import "./Response.css";
 const Response = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
-
-  console.log(watch("example"));
   return (
-    <div className="px-10">
+    <div className="">
       <h2 className="text-xl">Job Title: frontend developer</h2>
       <h2 className="text-xl">Date:</h2>
       <div className="flex justify-between pb-10">

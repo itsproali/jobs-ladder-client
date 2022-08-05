@@ -8,6 +8,7 @@ import miami from "../../../asset/miami.jpg";
 import "react-tabs/style/react-tabs.css";
 import people from "../../../asset/testimonial/client-3.png";
 import { useForm } from "react-hook-form";
+import { HiOutlineCamera } from "react-icons/hi";
 const Company = () => {
   const imageStorageKey = "4dab8fd03df7f5dbf2aafd109eaffcf5";
   const {
@@ -29,104 +30,101 @@ const Company = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
-          const img = result.data.url;
-          const cover = {
-            specialty: data.specialty,
-            img: img,
-          };
+          console.log(result.data.url);
         }
       });
-    console.log("hello");
   };
 
   return (
     <>
-      <div className="  bg-base-100 ">
-        <figure>
-          <div className=" ">
-            <label className="font-bold text-lg" for="my-modal-4">
-              Edit
-            </label>
-            <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-            <label for="my-modal-4" class="modal cursor-pointer">
-              <label class="modal-box relative" for="">
-                <h3 class="text-lg font-bold">
-                  Congratulations random Internet user!
-                </h3>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <input
-                    type="text"
-                    className="input input-bordered w-full max-w-xs"
-                  />
-                </form>
-                <div class="modal-action">
-                  <input
-                    className="btn w-full max-w-xs text-primary"
-                    type="submit"
-                    value="Add"
-                  />
-                </div>
-              </label>
-            </label>
-            <div className="p-3">
-              <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-              <label for="my-modal-4" class="modal cursor-pointer">
-                <label class="modal-box relative" for="">
-                  <h3 class="text-lg font-bold">
-                    Congratulations random Internet user!
-                  </h3>
-                  <form></form>
-                  <div class="modal-action">
-                    <input
-                      className="btn w-full max-w-xs text-white"
-                      type="submit"
-                      value="Add"
-                    />
-                  </div>
-                </label>
-              </label>
-            </div>{" "}
-            {/* <div>
-              <a href="#my-modal-2" class="btn justify-end">
-                Edit Cover
-              </a>
+      <div className="bg-base-100 ">
+        <figure className="relative">
+          <div></div>
+          {/* <div>
+            <div className=" ">
+              {" "}
+              <div>
+                <a
+                  href="#my-modal-2"
+                  class="btn border border-primary bg-white absolute bottom-0 right-0 text-black hover:bg-white hover:border-primary justify-end btn modal-button "
+                >
+                  <HiOutlineCamera className="text-2xl"></HiOutlineCamera> Edit
+                  Cover photo
+                </a>
+                
 
-              <div class="modal" id="my-modal-2">
-                <div class="modal-box">
-                  <h3 class="font-bold text-lg">Edit Cover picture!</h3>
-                  <form onSubmit={handleSubmit(onSubmit)}>
-                    <input
-                      type="file"
-                      className="input input-bordered w-full max-w-xs"
-                      {...register("image")}
-                    />
-                  </form>
-                  <div class="modal-action">
-                    <input
-                      className="btn w-full max-w-xs text-white"
-                      type="submit"
-                      value="Add"
-                    />
+                <div class="modal" id="my-modal-2">
+                  <div class="modal-box">
+                    <h3 class="font-bold text-lg">Edit Cover picture!</h3>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                      <div>
+                        <input
+                          type="file"
+                          className="input input-bordered w-full max-w-xs"
+                          {...register("image", {
+                            required: {
+                              value: true,
+                              message: "Image is Required",
+                            },
+                          })}
+                        />
+                      </div>
+                      <div class="modal-action">
+                        <input
+                          className="btn w-full max-w-xs text-white"
+                          type="submit"
+                          value="Add"
+                        />
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
-            </div> */}
-          </div>
-          <img className="h-96 cover-img" src={image1} alt="Shoes" />
+            </div>
+            <img
+              className="h-96 cover-img"
+              src="https://i.ibb.co/Bggt5pt/Screenshot-5.png"
+              alt="Shoes"
+            />
+          </div> */}
         </figure>
+        <div>
+          <label for="company-modal" class="btn btn-primary modal-button">
+            Edit Details
+          </label>
+
+          <input type="checkbox" id="company-modal" class="modal-toggle" />
+          <div class="modal">
+            <div class="modal-box relative">
+              <label
+                for="company-modal"
+                class="btn btn-sm btn-circle absolute right-2 top-2"
+              >
+                ✕
+              </label>
+              <form>
+                {/* register your input into the hook by invoking the "register" function */}
+                <input defaultValue="test" {...register("example")} />
+
+                {/* include validation with required or other standard HTML validation rules */}
+                <input {...register("exampleRequired", { required: true })} />
+                {/* errors will return when field validation fails  */}
+                {errors.exampleRequired && <span>This field is required</span>}
+
+                <input type="submit" />
+              </form>
+            </div>
+          </div>
+        </div>
         <div className="text-4xl p-3  ">Miami HEAT</div>
+        <div>
+          {/* <a className="text-primary" href="#my-modal-2">
+            Edit
+          </a> */}
 
-        <label className="text-primary" for="my-modal-4">
-          Edit
-        </label>
-
-        <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-        <label for="my-modal-4" class="modal cursor-pointer">
-          <label class="modal-box relative" for="">
-            <h3 class="text-lg font-bold">
-              Congratulations random Internet user!
-            </h3>
-            <form onSubmit={handleSubmit(onSubmit)}>
+          {/* <div class="modal" id="my-modal-2">
+            <div class="modal-box">
+              <h3 class="font-bold text-lg">Edit Cover picture!</h3>
               <input
                 type="text"
                 className="input input-bordered w-full max-w-xs"
@@ -139,32 +137,28 @@ const Company = () => {
                 value="Add"
               />
             </div>
-          </label>
-        </label>
+          </div> */}
+        </div>
         <div className="p-3">
           <button className="btn btn-outline ">
             Visit website <HiExternalLink className="text-2xl ml-1" />
           </button>
-          <label className="text-primary" for="my-modal-4">
-            Edit
-          </label>
+          <div>
+            {/* <a className="text-primary" href="#my-modal-2 ">
+              Edit
+            </a> */}
 
-          <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-          <label for="my-modal-4" class="modal cursor-pointer">
-            <label class="modal-box relative" for="">
-              <h3 class="text-lg font-bold">
-                Congratulations random Internet user!
-              </h3>
-              <form></form>
-              <div class="modal-action">
+            {/* <div class="modal" id="my-modal-2">
+              <div class="modal-box">
+                <h3 class="font-bold text-lg">Edit Cover picture!</h3>
                 <input
                   className="btn w-full max-w-xs text-white"
                   type="submit"
                   value="Add"
                 />
               </div>
-            </label>
-          </label>
+            </div> */}
+          </div>
         </div>
       </div>
 
@@ -178,48 +172,29 @@ const Company = () => {
         {/* about tab panel */}
         <TabPanel>
           <h2 className="text-xl font-semibold">Overview</h2>
-          <label className="text-primary" for="my-modal-4">
-            Edit
-          </label>
+          <div className=" ">
+            {" "}
+            <div>
+              {/* <a className="text-primary" href="#my-modal-2">
+                Edit
+              </a> */}
 
-          <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-          <label for="my-modal-4" class="modal cursor-pointer">
-            <label class="modal-box relative" for="">
-              <h3 class="text-lg font-bold">
-                Congratulations random Internet user!
-              </h3>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <input
-                  type="text"
-                  className="input input-bordered w-full max-w-xs"
-                />
-              </form>
-              <div class="modal-action">
-                <input
-                  className="btn w-full max-w-xs text-white"
-                  type="submit"
-                  value="Add"
-                />
-              </div>
-            </label>
-          </label>
-          <div className="p-3">
-            <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-            <label for="my-modal-4" class="modal cursor-pointer">
-              <label class="modal-box relative" for="">
-                <h3 class="text-lg font-bold">
-                  Congratulations random Internet user!
-                </h3>
-                <form></form>
-                <div class="modal-action">
+              {/* <div class="modal" id="my-modal-2">
+                <div class="modal-box">
+                  <h3 class="font-bold text-lg">Edit Cover picture!</h3>
                   <input
-                    className="btn w-full max-w-xs text-white"
-                    type="submit"
-                    value="Add"
+                    type="text"
+                    placeholder="set link"
+                    className="input w-full  mb-5 home-contact-input "
                   />
+                  <div class="modal-action">
+                    <a href="#" class="btn">
+                      Oky!
+                    </a>
+                  </div>
                 </div>
-              </label>
-            </label>
+              </div> */}
+            </div>
           </div>
           <div>
             <p className="text-lg pt-5">
@@ -241,16 +216,14 @@ const Company = () => {
           </div>
           <div className="pt-10">
             <h2 className="text-lg font-bold pb-5">Specialties</h2>
-            <label className="text-primary" for="my-modal-4">
-              Edit
-            </label>
-            <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-            <label for="my-modal-4" class="modal cursor-pointer">
-              <label class="modal-box relative" for="">
-                <h3 class="text-lg font-bold">
-                  Congratulations random Internet user!
-                </h3>
-                <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              {/* <a className="text-primary" href="#my-modal-2">
+                Edit
+              </a> */}
+
+              {/* <div class="modal" id="my-modal-2">
+                <div class="modal-box">
+                  <h3 class="font-bold text-lg">Edit Cover picture!</h3>
                   <input
                     type="text"
                     className="input input-bordered w-full max-w-xs"
@@ -263,25 +236,7 @@ const Company = () => {
                     value="Add"
                   />
                 </div>
-              </label>
-            </label>
-            <div className="p-3">
-              <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-              <label for="my-modal-4" class="modal cursor-pointer">
-                <label class="modal-box relative" for="">
-                  <h3 class="text-lg font-bold">
-                    Congratulations random Internet user!
-                  </h3>
-                  <form></form>
-                  <div class="modal-action">
-                    <input
-                      className="btn w-full max-w-xs text-white"
-                      type="submit"
-                      value="Add"
-                    />
-                  </div>
-                </label>
-              </label>
+              </div> */}
             </div>
             Mobile App Development, iOS, Android, UI/UX Designs, Product Market
             Fit, In-App Purchases, Backend Development, Machine Learning, APIs,
