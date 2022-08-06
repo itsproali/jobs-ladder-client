@@ -195,7 +195,7 @@ const Company = () => {
                     <h2 className="text-xl font-bold text-primary">Overview</h2>
 
                     <div>
-                        <p className="text-lg p-5   shadow-xl">
+                        <p className=" p-5   shadow-xl">
                             Nordstone is a global software consultancy headquartered in
                             London. We are a team of world-class developers, designers,
                             product strategists and growth hackers. Together we have built
