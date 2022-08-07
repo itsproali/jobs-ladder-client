@@ -22,8 +22,8 @@ const CollectInfo = () => {
   const email = user?.email;
   const onSubmit = async (data) => {
     const role = await data.role;
-    const companyName = await data.companyName;
-    const companySecret = await data.companySecret.toLowerCase();
+    const companyName = await data?.companyName;
+    const companySecret = await data?.companySecret.toLowerCase();
     if (role) {
       const userData = await {
         userName,
