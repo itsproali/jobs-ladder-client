@@ -40,7 +40,7 @@ const RoutesIndex = () => {
   const isFooterHidden = conditionalFooterHide.includes(location.pathname);
   const [user] = useAuthState(auth);
   const [role] = useUserRole(user);
-  console.log(role);
+  // console.log(role);
   return (
     <div>
       <ToastContainer />
