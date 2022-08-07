@@ -58,7 +58,7 @@ const Company = () => {
 
     const allCompanyDetails = { companyName, companyOverview, companyspecialties }
 
-
+    console.log(allCompanyDetails);
 
     fetch('', {
       method: 'POST', // or 'PUT'
@@ -131,14 +131,14 @@ const Company = () => {
             <label class="modal-box relative" for="">
               <form>
                 {/* register your input into the hook by invoking the "register" function */}
-                <input defaultValue="test" {...register("example")} />
+                <input className="border input input-bordered input-primary w-full max-w-xs" defaultValue="test" {...register("example")} />
 
                 {/* include validation with required or other standard HTML validation rules */}
-                <input {...register("exampleRequired", { required: true })} />
+                <input className="border input input-bordered input-primary w-full max-w-xs" {...register("exampleRequired", { required: true })} />
                 {/* errors will return when field validation fails  */}
                 {errors.exampleRequired && <span>This field is required</span>}
 
-                <input type="submit" />
+                <input className="input input-bordered input-primary w-full max-w-xs bg-primary text-white rounded-md hover:bg-secondary" type="submit" />
               </form>
             </label>
           </label>
@@ -163,14 +163,26 @@ const Company = () => {
       <input type="checkbox" id="my-modal-5" class="modal-toggle" />
       <label for="my-modal-5" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
-          <form onSubmit={handleCompanyDetails}>
-            <input type="text" name="name" placeholder="Type here" class="border input input-bordered input-primary w-full max-w-xs" />
-            <br /> <br />
-            <textarea class="textarea textarea-primary" name="overview" placeholder="Overview"></textarea>
-            <br /> <br />
-            <textarea class="textarea textarea-primary" name="specialties" placeholder="Specialties" ></textarea>
-            <br /> <br />
-            <input className="input input-bordered input-primary " type="submit" value="Add Details" />
+          <form className="flex flex-col items-center	 " onSubmit={handleCompanyDetails}>
+
+            <div class="form-control w-full max-w-xs">
+              <label class="label"><span class="label-text">Company Name</span></label>
+              <input type="text" name="name" placeholder="Type here" class="border input input-bordered input-primary w-full max-w-xs" />
+            </div>
+            <div class="form-control w-full max-w-xs">
+              <label class="label"><span class="label-text">Overview</span></label>
+              <input class="border input input-bordered input-primary w-full max-w-xs h-32" name="overview" placeholder="Type here"></input>
+            </div>
+            <div class="form-control w-full max-w-xs">
+              <label class="label"><span class="label-text">Specialties</span></label>
+              <input class="border input input-bordered input-primary w-full max-w-xs h-24" name="specialties" placeholder="Type here" ></input>
+            </div>
+            <br />
+            <div class="form-control w-full max-w-xs bg-primary text-white rounded-md">
+              <input className="input input-bordered input-primary w-full max-w-xs bg-primary text-white rounded-md hover:bg-secondary" type="submit" value="Add Details" />
+            </div>
+
+
           </form>
 
         </label>
