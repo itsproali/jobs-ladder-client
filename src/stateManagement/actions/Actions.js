@@ -23,7 +23,7 @@ import {
 // }
 const getJobPosts = (filter) => {
   let query;
-  if (filter.companySecret) {
+  if (filter?.companySecret) {
     query = `companySecret=${filter?.companySecret}`;
   } else {
     query = `currentPage=${filter?.currentPage}`;

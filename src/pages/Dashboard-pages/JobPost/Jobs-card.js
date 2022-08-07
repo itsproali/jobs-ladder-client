@@ -28,7 +28,7 @@ const JobSCard = ({ job, apply }) => {
   // console.log(companySecret);
 
   const handleRemovePost = () => {
-    const url = `job-post/${_id}`;
+    const url = `/job-post/${_id}`;
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
