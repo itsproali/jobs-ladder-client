@@ -21,7 +21,7 @@ const Employee = () => {
                 <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
                 <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
                 <div class="modal-action">
-                  <button href="#" className="btn border-2 border-primary text-primary rounded-md py-2 px-12 hover:bg-primary hover:border-primary hover:text-white duration-300 uppercase ml-6 mt-8 text-xl" >Yay!</a>
+                  <button href="#" className="btn border-2 border-primary text-primary rounded-md py-2 px-12 hover:bg-primary hover:border-primary hover:text-white duration-300 uppercase ml-6 mt-8 text-xl" >Yay!</button>
                 </div>
               </div>
             </div>
