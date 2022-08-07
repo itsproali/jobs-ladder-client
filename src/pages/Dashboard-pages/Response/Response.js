@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 import { FiMoreVertical, FiTrash2 } from "react-icons/fi";
 import { BiTask } from "react-icons/bi";
 import { GiVideoConference } from "react-icons/gi";
-import "./Response.css";
+import Swal from "sweetalert2";
 import fetching from "../../../hooks/UseAddUserInfo/fetching";
 import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -13,20 +13,48 @@ const Response = () => {
   const [user] = useAuthState(auth);
   const [role, currentUser] = useUserRole(user);
   const companySecret = currentUser?.companySecret;
-  const [jobTitles, setJobTitles] = useState("");
-  const [candidates, setCandidates] = useState("");
+  const [jobTitles, setJobTitles] = useState([]);
+  const [candidates, setCandidates] = useState([]);
   const jobTitleRef = useRef(null);
   const jobId = jobTitleRef?.current?.value;
-  if (companySecret) {
-    fetching
-      .get(`/job-post/job-title?companySecret=${companySecret}`)
-      .then((res) => setJobTitles(res?.data));
-  }
-  if (jobId) {
-    fetching
-      .get(`/response?jobId=${jobId}`)
-      .then((res) => setCandidates(res?.data));
-  }
+
+  useEffect(() => {
+    if (companySecret) {
+      fetching
+        .get(`/job-post/job-title?companySecret=${companySecret}`)
+        .then((res) => setJobTitles(res?.data));
+    }
+    if (jobId) {
+      fetching
+        .get(`/response?jobId=${jobId}`)
+        .then((res) => setCandidates(res?.data));
+    }
+  }, [companySecret, jobId]);
+
+  // Handle Remove Candidate
+  const removeCandidate = (candidateId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to remove this candidate!!",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonColor: "#3085d6",
+      confirmButtonColor: "#d33",
+      confirmButtonText: "Yes, Remove him",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetching
+          .delete("/response/delete-candidate", { candidateId })
+          .then((res) => {
+            if (res.data.deletedCount) {
+              Swal.fire("Deleted!", "Candidate has been removed.", "success");
+            } else {
+              Swal.fire("Error!!", "Something went wrong", "error");
+            }
+          });
+      }
+    });
+  };
   return (
     <div className="">
       <h2 className="text-3xl font-semibold text-center my-5">
@@ -109,7 +137,10 @@ const Response = () => {
                           </div>
                         </li>
                         <li>
-                          <div className="flex items-center justify-start">
+                          <div
+                            className="flex items-center justify-start"
+                            onClick={() => removeCandidate(candidate._id)}
+                          >
                             <FiTrash2 />
                             <span className="ml-2">Remove Candidate</span>
                           </div>
