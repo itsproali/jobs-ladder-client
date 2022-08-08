@@ -25,6 +25,7 @@ import DevelopmentTeam from "../../pages/Development-Team/DevelopmentTeam"
 import ApplyJobModal from "../../pages/Dashboard-pages/JobPost/ApplyJobModal";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MailEmployee from "../../pages/Dashboard-pages/Employee/MailEmployee";
 
 const RoutesIndex = () => {
   const location = useLocation();
@@ -70,6 +71,7 @@ const RoutesIndex = () => {
               <Route index element={<Company></Company>}></Route>
             )}
             <Route path="apply/:_id" element={<ApplyJobModal></ApplyJobModal>}></Route>
+            <Route path="employeemail/:_id" element={<MailEmployee></MailEmployee>}></Route>
             <Route path="jobpost" element={<JobPost></JobPost>}></Route>
             <Route path="jobpostform" element={<JobPostForm></JobPostForm>}></Route>
             <Route path="response" element={<Response></Response>}></Route>
