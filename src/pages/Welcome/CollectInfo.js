@@ -23,7 +23,7 @@ const CollectInfo = () => {
   const onSubmit = async (data) => {
     const role = await data.role;
     const companyName = await data?.companyName;
-    const companySecret = await data?.companySecret.toLowerCase();
+    const companySecret = await data?.companySecret?.toLowerCase();
     if (role) {
       const userData = await {
         userName,
