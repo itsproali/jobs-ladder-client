@@ -1,15 +1,15 @@
 [
     {
-        "job-title":"React JS Developer",
-        "job-type":"full time",
-        "institution":"Austin, TX Hybrid ",
-        "job-description":"Hands on experience in UI Technologies preferably in HTML , CSS, JavaScript, React JS, Redux"
+        "name":"jhon doe",
+        "designation":"front end developer",
+        "email":"jhon@gmail.com"
+        
     },
     {
-        "job-title":"Frontend Developer",
-        "job-type":"full time",
-        "institution":" Baton Rouge, LA On-site ",
-        "job-description":"Responsible for designing, coding and modifying web pages that are focused on education content within the standards, guidelines and requirements"
+        "name":"tom cruise",
+        "designation":"tester",
+        "email":"tom@gmail.com"
+        
     }
    
 ]
