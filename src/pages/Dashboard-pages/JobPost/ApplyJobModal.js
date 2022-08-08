@@ -52,7 +52,7 @@ const ApplyJobModal = ({apply}) => {
           })
       }
     return (
-        <div className='py-10'>
+        <div className='py-10 px-10 lg:px-0 md:px-0'>
               <form onSubmit={handleSubmit(onSubmit)}>
                   <label className='pb-5 block'>Your name</label>
                   <input id="name" className='mt-4 border border-gray-400 rounded w-full bg-white text-gray-700 focus:outline-none focus:border-gray-500 pl-5 h-10' {...register('name', { required: true, maxLength: 30 })} />
