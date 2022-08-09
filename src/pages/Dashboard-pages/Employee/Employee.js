@@ -26,21 +26,21 @@ const Employee = () => {
         </div>
         <div className="w-full h-full absolute employee-options text-white">
           <div className="bg-secondary p-3 h-full backdrop-blur-md">
-            <div className="h-20">
-              <h1 className="font-extrabold  ">Sheikh Shahariar Siam</h1>
-              <p className=" font-semibold  my-2">Jr web Developer</p>
+            <div className="h-20 pt-6">
+              <h1 className="font-extrabold  text-center">Sheikh Shahariar Siam</h1>
+              <p className=" font-semibold text-center my-2">Jr web Developer</p>
             </div>
             <div className=" h-36 flex gap-2 justify-center items-center w-full">
-              <a href="" className="h-8 w-8 rounded-full bg-black flex justify-center items-center">
+              <a href="" className="h-8 w-8 rounded-full bg-gray-700 flex justify-center items-center">
                 <AiFillLinkedin />
               </a>
-              <a href="" className="h-8 w-8 rounded-full bg-black flex justify-center items-center">
+              <a href="" className="h-8 w-8 rounded-full bg-gray-700 flex justify-center items-center">
                 <AiFillFacebook />
               </a>
-              <a href="" className="h-8 w-8 rounded-full bg-black flex justify-center items-center">
+              <a href="" className="h-8 w-8 rounded-full bg-gray-700 flex justify-center items-center">
                 <ImTwitter />
               </a>
-              <a href="" className="h-8 w-8 rounded-full bg-black flex justify-center items-center">
+              <a href="" className="h-8 w-8 rounded-full bg-gray-700 flex justify-center items-center">
                 <BsFillChatSquareTextFill />
               </a>
             </div>
