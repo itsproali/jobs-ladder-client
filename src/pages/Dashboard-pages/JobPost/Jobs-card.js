@@ -13,7 +13,7 @@ import ButtonDefault from '../../../components/ButtonDefault/ButtonDefault';
 import auth from '../../../firebase-init';
 import fetching from '../../../hooks/UseAddUserInfo/fetching';
 import useUserRole from '../../../hooks/UseAddUserInfo/useUserRole';
-import getJobPosts from '../../../stateManagement/actions/Actions';
+import getJobPosts from '../../../stateManagement/actions/getJobPostAction';
 
 const JobSCard = ({ job, apply }) => {
   const navigate = useNavigate();
