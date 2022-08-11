@@ -8,12 +8,13 @@
 }
 
 .employee-options{
-  /* display: none; */
   opacity: 0;
   transition: 0.8s;
 }
 
 .employee-card:hover > .employee-options{
-  /* display: block; */
   opacity: 0.9;
+}
+.employee-card:hover > .you-badge{
+  display: none;
 }
