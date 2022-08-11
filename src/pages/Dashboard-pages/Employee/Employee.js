@@ -14,15 +14,23 @@ import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
 import EmployeeDetailEditForm from "./EmployeeDetailEditForm";
 import setCurrentEmployee from "../../../stateManagement/actions/setCurrentEmployee";
 import ChangeProfilePhotoModal from "./changeProfilePhotoModal";
+import { useNavigate } from "react-router-dom";
 const Employee = () => {
   const [employees, setEmployees] = useState([]);
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
+  const navigate = useNavigate()
   const [role, currentUser] = useUserRole(user);
+
   const url = `/company/${currentUser?.companySecret}/employee`;
   useEffect(() => {
     fetching(url).then((res) => setEmployees(res?.data?.employee));
   }, [url]);
+
+  const handleSendEmail = async (employee) => {
+    await dispatch(setCurrentEmployee(employee));
+    await navigate('/mailEmployee')
+  };
 
   return (
     <>
@@ -33,10 +41,13 @@ const Employee = () => {
               <div className="flex flex-col">
                 <div className="mb-3 h-1/2 flex items-center justify-center">
                   <div class="avatar">
-                   {employee?.img ? <div class="w-32 rounded-full">
-                      <img src="https://placeimg.com/192/192/people" alt="" />
-                    </div> :
-                    <div class="w-32 bg-secondary rounded-full"></div>}
+                    {employee?.img ? (
+                      <div class="w-32 rounded-full">
+                        <img src="https://placeimg.com/192/192/people" alt="" />
+                      </div>
+                    ) : (
+                      <div class="w-32 bg-secondary rounded-full"></div>
+                    )}
                   </div>
                 </div>
                 <div className="h-[100px]">
@@ -106,7 +117,10 @@ const Employee = () => {
                     </label>
                   </>
                 ) : (
-                  <button className="h-11 w-full  bg-primary absolute bottom-0 flex gap-2 justify-center items-center text-xl">
+                  <button
+                    onClick={() => handleSendEmail(employee)}
+                    className="h-11 w-full  bg-primary absolute bottom-0 flex gap-2 justify-center items-center text-xl"
+                  >
                     <BiMailSend className="text-3xl" /> Send Mail
                   </button>
                 )}

@@ -4,7 +4,6 @@ import ButtonDefault from "../../../components/ButtonDefault/ButtonDefault";
 
 const EmployeeDetailEditForm = () => {
   const employee = useSelector((state) => state.currentEmployeeData);
-  console.log(employee);
   return (
     <>
       <input type="checkbox" id="editEmployeeData" class="modal-toggle" />
@@ -28,6 +27,7 @@ const EmployeeDetailEditForm = () => {
               </label>
               <input
                 placeholder="Employee Name"
+                defaultValue={employee.name}
                 type="text"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
