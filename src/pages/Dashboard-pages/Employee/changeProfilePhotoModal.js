@@ -17,6 +17,14 @@ const ChangeProfilePhotoModal = () => {
               Save
             </button>
           </div>
+          <div>
+            <div class="mt-10">
+              <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                Select new Profile:
+              </label>
+              <input type="file" class="file:h-28 file:w-1/2 w-full file:bg-primary file:rounded-md file:text-white file:cursor-pointer " />
+            </div>
+          </div>
         </div>
       </div>
     </>

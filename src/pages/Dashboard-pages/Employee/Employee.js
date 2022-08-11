@@ -33,10 +33,10 @@ const Employee = () => {
               <div className="flex flex-col">
                 <div className="mb-3 h-1/2 flex items-center justify-center">
                   <div class="avatar">
-                    {/* <div class="w-32 rounded-full">
-                <img src="https://placeimg.com/192/192/people" />
-              </div> */}
-                    <div class="w-32 bg-secondary rounded-full"></div>
+                   {employee?.img ? <div class="w-32 rounded-full">
+                      <img src="https://placeimg.com/192/192/people" alt="" />
+                    </div> :
+                    <div class="w-32 bg-secondary rounded-full"></div>}
                   </div>
                 </div>
                 <div className="h-[100px]">
@@ -100,9 +100,10 @@ const Employee = () => {
                       onClick={() => dispatch(setCurrentEmployee(employee))}
                       for="editProfileImage"
                       className="h-11 w-full  bg-primary absolute bottom-12 flex gap-2 justify-center items-center text-xl modal-button cursor-pointer"
-                    > Change Profile Photo
+                    >
+                      {" "}
+                      Change Profile Photo
                     </label>
-                   
                   </>
                 ) : (
                   <button className="h-11 w-full  bg-primary absolute bottom-0 flex gap-2 justify-center items-center text-xl">
