@@ -8,7 +8,7 @@ import auth from '../../../firebase-init';
 import useUserRole from '../../../hooks/UseAddUserInfo/useUserRole';
 import fetching from '../../../hooks/UseAddUserInfo/fetching';
 import { useLocation, useNavigate } from 'react-router-dom';
-import getJobPosts from '../../../stateManagement/actions/Actions';
+import getJobPosts from '../../../stateManagement/actions/getJobPostAction';
 
 const JobPostForm = () => {
   const navigate = useNavigate();

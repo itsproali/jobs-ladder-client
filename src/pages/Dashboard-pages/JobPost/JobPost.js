@@ -4,7 +4,7 @@ import { AiFillEye } from "react-icons/ai";
 import JobSCard from "./Jobs-card";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import getJobPosts from "../../../stateManagement/actions/Actions";
+import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase-init";
 import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";

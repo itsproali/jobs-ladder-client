@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { AiFillEye } from "react-icons/ai";
 import Loading from "../../../components/Shared/Loading/Loading";
 import JobSCard from "../JobPost/Jobs-card";
-import getJobPosts from "../../../stateManagement/actions/Actions";
+import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 import axios from "axios";
 
 const FindJob = () => {
