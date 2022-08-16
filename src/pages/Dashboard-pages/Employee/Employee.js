@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Employee.css";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { BiMailSend } from "react-icons/bi";
 import { AiFillLinkedin } from "react-icons/ai";
 import { ImTwitter } from "react-icons/im";
@@ -17,19 +17,20 @@ import ChangeProfilePhotoModal from "./changeProfilePhotoModal";
 import { useNavigate } from "react-router-dom";
 const Employee = () => {
   const [employees, setEmployees] = useState([]);
+  const recall = useSelector(state => state.recallApi)
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [role, currentUser] = useUserRole(user);
 
   const url = `/company/${currentUser?.companySecret}/employee`;
   useEffect(() => {
     fetching(url).then((res) => setEmployees(res?.data?.employee));
-  }, [url]);
+  }, [dispatch, url , recall]);
 
   const handleSendEmail = async (employee) => {
     await dispatch(setCurrentEmployee(employee));
-    await navigate('/mailEmployee')
+    await navigate("/mailEmployee");
   };
 
   return (
@@ -43,7 +44,7 @@ const Employee = () => {
                   <div class="avatar">
                     {employee?.img ? (
                       <div class="w-32 rounded-full">
-                        <img src="https://placeimg.com/192/192/people" alt="" />
+                        <img src={employee?.img} alt="" />
                       </div>
                     ) : (
                       <div class="w-32 bg-secondary rounded-full"></div>
@@ -69,7 +70,8 @@ const Employee = () => {
                   <div className=" h-36 flex gap-2 justify-center items-center w-full">
                     {employee?.linkedin && (
                       <a
-                        href=""
+                        target="_blank"
+                        href={employee?.linkedin}
                         className="h-8 w-8 hover:-translate-y-1 transition duration-500 hover:text-primary rounded-full bg-gray-700 flex justify-center items-center"
                       >
                         <AiFillLinkedin />
@@ -77,7 +79,8 @@ const Employee = () => {
                     )}
                     {employee?.facebook && (
                       <a
-                        href=""
+                        target="_blank"
+                        href={employee?.facebook}
                         className="h-8 w-8 hover:-translate-y-1 transition duration-500 hover:text-primary rounded-full bg-gray-700 flex justify-center items-center"
                       >
                         <AiFillFacebook />
@@ -85,7 +88,8 @@ const Employee = () => {
                     )}
                     {employee?.twitter && (
                       <a
-                        href=""
+                        target="_blank"
+                        href={employee?.twitter}
                         className="h-8 w-8 hover:-translate-y-1 transition duration-500 hover:text-primary rounded-full bg-gray-700 flex justify-center items-center"
                       >
                         <ImTwitter />
@@ -127,7 +131,7 @@ const Employee = () => {
               </div>
             </div>
           ))}
-          {employees && <EmployeeDetailEditForm></EmployeeDetailEditForm>}
+          {employees && <EmployeeDetailEditForm ></EmployeeDetailEditForm>}
           {employees && <ChangeProfilePhotoModal></ChangeProfilePhotoModal>}
         </div>
       ) : (
