@@ -5,7 +5,9 @@ import {
   HiOfficeBuilding,
   HiOutlineBriefcase,
   HiUserGroup,
+  HiCube,
 } from "react-icons/hi";
+import { TbHotelService } from "react-icons/tb";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase-init";
 import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
@@ -61,6 +63,17 @@ const Dashboard = () => {
                 </Link>
               </li>
             )}
+            {role === "HR" && (
+              <li className="mb-5">
+                <Link
+                  to="/dashboard/hire"
+                  className="text-base-100 capitalize text-xl border inline-block text-center"
+                >
+                  <HiCube className="inline-block -translate-y-0.5"></HiCube>{" "}
+                  Hire Employee
+                </Link>
+              </li>
+            )}
             {role === "job-seeker" && (
               <li className="mb-5">
                 <Link
@@ -69,6 +82,17 @@ const Dashboard = () => {
                 >
                   <HiOutlineBriefcase className="inline-block -translate-y-0.5"></HiOutlineBriefcase>{" "}
                   Jobs
+                </Link>
+              </li>
+            )}
+            {role === "job-seeker" && (
+              <li className="mb-5">
+                <Link
+                  to="/dashboard/my-services"
+                  className="text-base-100 capitalize text-xl border inline-block text-center"
+                >
+                  <TbHotelService className="inline-block -translate-y-0.5"></TbHotelService>{" "}
+                  My Services
                 </Link>
               </li>
             )}

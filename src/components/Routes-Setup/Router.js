@@ -26,6 +26,8 @@ import ApplyJobModal from "../../pages/Dashboard-pages/JobPost/ApplyJobModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MailEmployee from "../../pages/Dashboard-pages/Employee/MailEmployee";
+import HireEmployee from "../../pages/Dashboard-pages/HireEmployee/HireEmployee";
+import MyServices from "../../pages/Dashboard-pages/MyServices/MyServices";
 
 const RoutesIndex = () => {
   const location = useLocation();
@@ -36,6 +38,8 @@ const RoutesIndex = () => {
     "/dashboard/employee",
     "/dashboard/response",
     "/dashboard/findjob",
+    "/dashboard/hire",
+    "/dashboard/my-services",
   ];
   const isHidden = conditionalRoutes.includes(location.pathname);
   const isFooterHidden = conditionalFooterHide.includes(location.pathname);
@@ -65,7 +69,11 @@ const RoutesIndex = () => {
           }
         >
           {role === "job-seeker" ? (
-            <Route index element={<FindJob></FindJob>}></Route>
+            // Job Seeker Routes
+            <>
+              <Route index element={<FindJob></FindJob>}></Route>
+              <Route path="my-services" element={<MyServices />}></Route>
+            </>
           ) : (
             <Route index element={<Company></Company>}></Route>
           )}
@@ -82,10 +90,11 @@ const RoutesIndex = () => {
             path="jobpostform"
             element={<JobPostForm></JobPostForm>}
           ></Route>
-          <Route path="response" element={<Response></Response>}></Route>
-          <Route path="employee" element={<Employee></Employee>}></Route>
           {role === "HR" && (
-            <Route path="response" element={<Response></Response>}></Route>
+            <>
+              <Route path="response" element={<Response></Response>}></Route>
+              <Route path="hire" element={<HireEmployee />}></Route>
+            </>
           )}
           {role !== "job-seeker" && (
             <Route path="employee" element={<Employee></Employee>}></Route>
