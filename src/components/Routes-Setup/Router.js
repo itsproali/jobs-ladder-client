@@ -23,11 +23,12 @@ import Footer from "../Shared/Footer/Footer";
 import Contact from "../../pages/Home/Contact/Contact";
 import DevelopmentTeam from "../../pages/Development-Team/DevelopmentTeam";
 import ApplyJobModal from "../../pages/Dashboard-pages/JobPost/ApplyJobModal";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MailEmployee from "../../pages/Dashboard-pages/Employee/MailEmployee";
 import HireEmployee from "../../pages/Dashboard-pages/HireEmployee/HireEmployee";
 import MyServices from "../../pages/Dashboard-pages/MyServices/MyServices";
+import Tasks from "../../pages/Dashboard-pages/Tasks/Tasks";
 
 const RoutesIndex = () => {
   const location = useLocation();
@@ -40,6 +41,8 @@ const RoutesIndex = () => {
     "/dashboard/findjob",
     "/dashboard/hire",
     "/dashboard/my-services",
+    "/dashboard/tasks",
+
   ];
   const isHidden = conditionalRoutes.includes(location.pathname);
   const isFooterHidden = conditionalFooterHide.includes(location.pathname);
@@ -99,6 +102,7 @@ const RoutesIndex = () => {
           {role !== "job-seeker" && (
             <Route path="employee" element={<Employee></Employee>}></Route>
           )}
+          {role !== "HR" && <Route path="tasks" element={<Tasks />}></Route>}
         </Route>
         <Route
           path="/mailEmployee"
