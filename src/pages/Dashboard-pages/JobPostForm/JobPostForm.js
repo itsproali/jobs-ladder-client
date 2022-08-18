@@ -30,6 +30,7 @@ const JobPostForm = () => {
 
   const handleJobPost = async (e) => {
     e.preventDefault()
+    // data making
     const jobData = {
       title: formRef.current?.jobTitle?.value,
       companyName: currentUser?.companyName,
