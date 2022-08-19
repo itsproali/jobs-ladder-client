@@ -14,7 +14,7 @@ const Response = () => {
   const [role, currentUser] = useUserRole(user);
   const companySecret = currentUser?.companySecret;
   const companyName = currentUser?.companyName;
-  const email = currentUser?.emali;
+  const email = currentUser?.email;
   const [jobTitles, setJobTitles] = useState([]);
   const [candidates, setCandidates] = useState([]);
   const jobTitleRef = useRef(null);
