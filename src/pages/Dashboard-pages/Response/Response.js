@@ -13,6 +13,8 @@ const Response = () => {
   const [user] = useAuthState(auth);
   const [role, currentUser] = useUserRole(user);
   const companySecret = currentUser?.companySecret;
+  const companyName = currentUser?.companyName;
+  const email = currentUser?.email;
   const [jobTitles, setJobTitles] = useState([]);
   const [candidates, setCandidates] = useState([]);
   const jobTitleRef = useRef(null);
@@ -44,17 +46,50 @@ const Response = () => {
       confirmButtonText: "Yes, Remove him",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetching
-          .delete(`response/${candidateId}`)
-          .then((res) => {
-            if (res.data.deletedCount) {
-              Swal.fire("Deleted!", "Candidate has been removed.", "success");
-            } else {
-              Swal.fire("Error!!", "Something went wrong", "error");
-            }
-          });
+        fetching.delete(`response/${candidateId}`).then((res) => {
+          if (res.data.deletedCount) {
+            Swal.fire("Deleted!", "Candidate has been removed.", "success");
+          } else {
+            Swal.fire("Error!!", "Something went wrong", "error");
+          }
+        });
       }
     });
+  };
+
+  // Handle Give Task
+  const giveTask = async (candidateEmail) => {
+    const { value: formValues } = await Swal.fire({
+      title: "Task Details",
+      html:
+        '<input id="task-title" class="p-3 mb-4 w-full border-2 rounded focus:outline-blue-400" required placeholder="Enter Task Title">' +
+        '<textarea id="task-details" class="p-3 rounded border-2 w-full focus:outline-blue-400" rows="5" required placeholder="Describe the task">',
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Give Task",
+      preConfirm: () => {
+        return [
+          document.getElementById("task-title").value,
+          document.getElementById("task-details").value,
+        ];
+      },
+    });
+
+    if (formValues) {
+      console.log(formValues);
+      const taskTitle = formValues?.[0];
+      const taskDetails = formValues?.[1];
+      await fetching
+        .post("tasks/give-task", {
+          taskTitle,
+          taskDetails,
+          from: email,
+          to: candidateEmail,
+          companyName,
+        })
+        .then((res) => Swal.fire("Given!", "Task has been given", "success"));
+    }
   };
   return (
     <div className="">
@@ -90,70 +125,79 @@ const Response = () => {
         </div>
       </div>
 
-      <div>
-        <div className="overflow-x-auto">
-          <table className="table w-full min-h-20">
-            {/* <!-- head --> */}
-            <thead>
-              <tr>
-                <th>SL</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th className="text-center">Resume</th>
-                <th className="text-center">Options</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* <!-- row 1 --> */}
-              {candidates &&
-                candidates.map((candidate, index) => (
-                  <tr key={candidate._id}>
-                    <th>{index + 1}</th>
-                    <td>{candidate.name}</td>
-                    <td>{candidate.Email}</td>
-                    <td className="text-center">
-                      <a href={candidate.image} target="blank">
-                        <AiOutlineCloudDownload className="btn btn-circle btn-ghost btn-sm p-1" />
-                      </a>
-                    </td>
-                    <td className="text-center dropdown dropdown-left">
-                      <FiMoreVertical
-                        tabIndex="0"
-                        className="btn btn-circle btn-ghost btn-sm p-1"
-                      />
-                      <ul
-                        tabIndex="0"
-                        className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-                      >
-                        <li>
-                          <div className="flex items-center justify-start">
-                            <BiTask />
-                            <span className="ml-2">Give Task</span>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex items-center justify-start">
-                            <GiVideoConference />
-                            <span className="ml-2">Call for Interview</span>
-                          </div>
-                        </li>
-                        <li>
-                          <div
-                            className="flex items-center justify-start"
-                            onClick={() => removeCandidate(candidate._id)}
-                          >
-                            <FiTrash2 />
-                            <span className="ml-2">Remove Candidate</span>
-                          </div>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+      {!candidates ? (
+        <h1 className="text-center text-secondary text-4xl font-semibold">
+          There is No Candidates...!
+        </h1>
+      ) : (
+        <div>
+          <div className="overflow-x-auto">
+            <table className="table w-full min-h-20">
+              {/* <!-- head --> */}
+              <thead>
+                <tr>
+                  <th>SL</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th className="text-center">Resume</th>
+                  <th className="text-center">Options</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* <!-- row 1 --> */}
+                {candidates &&
+                  candidates.map((candidate, index) => (
+                    <tr key={candidate._id}>
+                      <th>{index + 1}</th>
+                      <td>{candidate.name}</td>
+                      <td>{candidate.Email}</td>
+                      <td className="text-center">
+                        <a href={candidate.image} target="blank">
+                          <AiOutlineCloudDownload className="btn btn-circle btn-ghost btn-sm p-1" />
+                        </a>
+                      </td>
+                      <td className="text-center w-full dropdown dropdown-left">
+                        <FiMoreVertical
+                          tabIndex="0"
+                          className="btn btn-circle btn-ghost btn-sm p-1"
+                        />
+                        <ul
+                          tabIndex="0"
+                          className="dropdown-content menu p-2 shadow-xl bg-base-100 rounded-box w-52"
+                        >
+                          <li>
+                            <div
+                              className="flex items-center justify-start"
+                              onClick={() => giveTask(candidate.Email)}
+                            >
+                              <BiTask />
+                              <span className="ml-2">Give Task</span>
+                            </div>
+                          </li>
+                          <li>
+                            <div className="flex items-center justify-start">
+                              <GiVideoConference />
+                              <span className="ml-2">Call for Interview</span>
+                            </div>
+                          </li>
+                          <li>
+                            <div
+                              className="flex items-center justify-start"
+                              onClick={() => removeCandidate(candidate._id)}
+                            >
+                              <FiTrash2 />
+                              <span className="ml-2">Remove Candidate</span>
+                            </div>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
