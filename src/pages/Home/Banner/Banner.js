@@ -15,7 +15,7 @@ const Banner = () => {
               employee data, and HR workflows in one place.
             </p>
             <a href="" className="mt-5">
-              <ButtonDefault text="explore us"></ButtonDefault>
+              <ButtonDefault>Explore Us</ButtonDefault>
             </a>
           </div>
           <div className="banner-image-wrapper order-1 lg:order-3 lg:pt-0 md:pt-0 sm:pt-0 pt-10">

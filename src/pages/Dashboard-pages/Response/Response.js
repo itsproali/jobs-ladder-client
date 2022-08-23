@@ -35,7 +35,6 @@ const Response = () => {
 
   // Handle Remove Candidate
   const removeCandidate = (candidateId) => {
-    console.log(candidateId);
     Swal.fire({
       title: "Are you sure?",
       text: "You want to remove this candidate!!",

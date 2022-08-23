@@ -29,6 +29,8 @@ import MailEmployee from "../../pages/Dashboard-pages/Employee/MailEmployee";
 import HireEmployee from "../../pages/Dashboard-pages/HireEmployee/HireEmployee";
 import MyServices from "../../pages/Dashboard-pages/MyServices/MyServices";
 import Tasks from "../../pages/Dashboard-pages/Tasks/Tasks";
+import Loading from "../Shared/Loading/Loading";
+import TaskDetails from "../../pages/Dashboard-pages/Tasks/TaskDetails";
 
 const RoutesIndex = () => {
   const location = useLocation();
@@ -42,13 +44,17 @@ const RoutesIndex = () => {
     "/dashboard/hire",
     "/dashboard/my-services",
     "/dashboard/tasks",
-
+    "/dashboard/tasks/",
   ];
   const isHidden = conditionalRoutes.includes(location.pathname);
   const isFooterHidden = conditionalFooterHide.includes(location.pathname);
   const [user] = useAuthState(auth);
-  const [role] = useUserRole(user);
+  const [role, currentUser, roleLoading] = useUserRole(user);
   // console.log(role);
+
+  if (roleLoading) {
+    return <Loading />;
+  }
   return (
     <div>
       <ToastContainer />
@@ -102,7 +108,12 @@ const RoutesIndex = () => {
           {role !== "job-seeker" && (
             <Route path="employee" element={<Employee></Employee>}></Route>
           )}
-          {role !== "HR" && <Route path="tasks" element={<Tasks />}></Route>}
+          {role !== "HR" && (
+            <>
+              <Route path="tasks" element={<Tasks />}></Route>
+              <Route path="tasks/:taskId" element={<TaskDetails />}></Route>
+            </>
+          )}
         </Route>
         <Route
           path="/mailEmployee"
