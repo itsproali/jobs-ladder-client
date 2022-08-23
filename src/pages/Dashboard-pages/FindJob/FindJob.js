@@ -5,6 +5,7 @@ import Loading from "../../../components/Shared/Loading/Loading";
 import JobSCard from "../JobPost/Jobs-card";
 import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const FindJob = () => {
   const [pageNo, setPageNo] = useState(0);
@@ -17,7 +18,7 @@ const FindJob = () => {
   useEffect(() => {
     axios.get("http://localhost:5000/job-post/count").then((res) => {
       const count = res?.data?.count;
-      setPageNo(Math.ceil(count / 5));
+      setPageNo(Math.ceil(count / 10));
     });
   }, []);
 
@@ -27,6 +28,13 @@ const FindJob = () => {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (error) {
+    Swal.fire({
+      title: error,
+      icon: "error",
+    });
   }
 
   return (

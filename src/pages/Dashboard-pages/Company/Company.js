@@ -120,7 +120,7 @@ const Company = () => {
                 </div>
               </div>
             </div>
-            <img className="h-96 cover-img" src="https://i.ibb.co/Bggt5pt/Screenshot-5.png" alt="Shoes" />
+            <img className="h-96 cover-img" src="https://images.unsplash.com/photo-1507919909716-c8262e491cde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80" alt="company-banner" />
           </div>
         </figure>
         <div>
