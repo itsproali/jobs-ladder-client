@@ -4,11 +4,14 @@ import fetching from "./fetching";
 
 const useUserRole = (user) => {
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem("accessToken");
   const [currentUser, setCurrentUser] = useState({});
+  const [roleLoading, setRoleLoading] = useState(false);
   const [role, setRole] = useState("");
   const email = user?.email;
   useEffect(() => {
-    if (email) {
+    if (email && accessToken) {
+      setRoleLoading(true);
       fetching.get(`/users?email=${email}`).then((res) => {
         setCurrentUser(res?.data[0]);
         const userRole = res?.data[0]?.role;
@@ -18,10 +21,11 @@ const useUserRole = (user) => {
         } else {
           navigate("/welcome");
         }
+        setRoleLoading(false);
       });
     }
-  }, [email]);
-  return [role, currentUser];
+  }, [email, accessToken]);
+  return [role, currentUser, roleLoading];
 };
 
 export default useUserRole;

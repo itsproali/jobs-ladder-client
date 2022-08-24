@@ -27,7 +27,7 @@ const Header = () => {
   // Handle LogOUt
   const handleLogOut = async () => {
     await signOut(auth);
-    await localStorage.removeItem('accessToken')
+    await localStorage.removeItem("accessToken");
     await navigate("/");
   };
 
