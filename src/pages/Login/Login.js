@@ -33,7 +33,7 @@ const Login = () => {
   } = useForm();
   const [inputType, icon] = usePasswordToggle();
   const [token, loadingToken] = useAddUserInfo(user);
-  const [role, currentUser, roleLoading] = useUserRole(user);
+  const {role, roleLoading} = useUserRole(user);
 
   useEffect(() => {
     if (token) {

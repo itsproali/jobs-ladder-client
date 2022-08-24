@@ -1,15 +1,12 @@
 import React from "react";
-import image1 from "../../../asset/company.jpg";
-import "./Company.css";
-import { HiExternalLink } from "react-icons/hi";
-import { Link } from "react-router-dom";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import miami from "../../../asset/miami.jpg";
-import "react-tabs/style/react-tabs.css";
-import people from "../../../asset/testimonial/client-3.png";
 import { useForm } from "react-hook-form";
-import { HiOutlineCamera } from "react-icons/hi";
 import { FiEdit } from 'react-icons/fi';
+import { HiExternalLink, HiOutlineCamera } from "react-icons/hi";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import miami from "../../../asset/miami.jpg";
+import people from "../../../asset/testimonial/client-3.png";
+import "./Company.css";
 
 
 
@@ -25,7 +22,6 @@ const Company = () => {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -262,7 +258,7 @@ const Company = () => {
           <div class=" w-96 rounded text-center  p-4 shadow-lg shadow-blue-500/50 hover:bg-white-700 border mb-3">
             <div class="avatar ">
               <div class="w-24 rounded-full">
-                <img src={people} />
+                <img src={people} alt="people"/>
               </div>
             </div>
             <div class="">

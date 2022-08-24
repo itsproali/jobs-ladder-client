@@ -1,5 +1,3 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import RoutesIndex from "./components/Routes-Setup/Router";
 import ScrollTopOnRouteChange from "./components/ScroolTopOnRouteChange/RouteChangeFromTop";
 

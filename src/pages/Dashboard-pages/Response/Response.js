@@ -11,7 +11,7 @@ import auth from "../../../firebase-init";
 
 const Response = () => {
   const [user] = useAuthState(auth);
-  const [role, currentUser] = useUserRole(user);
+  const { currentUser } = useUserRole(user);
   const companySecret = currentUser?.companySecret;
   const companyName = currentUser?.companyName;
   const email = currentUser?.email;

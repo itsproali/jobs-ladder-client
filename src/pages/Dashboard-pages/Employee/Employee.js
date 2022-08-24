@@ -21,7 +21,7 @@ const Employee = () => {
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
-  const [role, currentUser] = useUserRole(user);
+  const { currentUser } = useUserRole(user);
 
   const url = `/company/${currentUser?.companySecret}/employee`;
   useEffect(() => {
@@ -72,6 +72,7 @@ const Employee = () => {
                       <a
                         target="_blank"
                         href={employee?.linkedin}
+                         rel="noopener noreferrer"
                         className="h-8 w-8 hover:-translate-y-1 transition duration-500 hover:text-primary rounded-full bg-gray-700 flex justify-center items-center"
                       >
                         <AiFillLinkedin />
@@ -81,6 +82,7 @@ const Employee = () => {
                       <a
                         target="_blank"
                         href={employee?.facebook}
+                        rel="noopener noreferrer"
                         className="h-8 w-8 hover:-translate-y-1 transition duration-500 hover:text-primary rounded-full bg-gray-700 flex justify-center items-center"
                       >
                         <AiFillFacebook />
@@ -90,13 +92,14 @@ const Employee = () => {
                       <a
                         target="_blank"
                         href={employee?.twitter}
+                         rel="noopener noreferrer"
                         className="h-8 w-8 hover:-translate-y-1 transition duration-500 hover:text-primary rounded-full bg-gray-700 flex justify-center items-center"
                       >
                         <ImTwitter />
                       </a>
                     )}
                     {employee?.email === user?.email || (
-                      <a href="" className="h-8 w-8 rounded-full bg-gray-700 flex justify-center items-center">
+                      <a href=""  className="h-8 w-8 rounded-full bg-gray-700 flex justify-center items-center">
                         <BsFillChatSquareTextFill />
                       </a>
                     )}

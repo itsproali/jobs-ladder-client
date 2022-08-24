@@ -14,7 +14,7 @@ const EmployeeDetailEditForm = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
-  const [role, currentUser] = useUserRole(user);
+  const {  currentUser } = useUserRole(user);
   const employee = useSelector((state) => state.currentEmployeeData);
   const submitEmployeeDataForm = async () => {
     const employeeData = {
