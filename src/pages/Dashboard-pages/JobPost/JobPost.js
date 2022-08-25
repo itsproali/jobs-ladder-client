@@ -8,6 +8,8 @@ import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase-init";
 import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
+import Table from "../../Search/Table";
+import Search from "../../Search/Search";
 const JobPost = () => {
   const dispatch = useDispatch();
   const { jobPost } = useSelector((state) => state?.jobPostState);
@@ -15,7 +17,7 @@ const JobPost = () => {
   const [role, currentUser] = useUserRole(user);
   // const postByThisCompany = jobPost?.filter(post => post?.companySecret === currentUser?.companySecret)
   useEffect(() => {
-    dispatch(getJobPosts({companySecret: currentUser?.companySecret}));
+    dispatch(getJobPosts({ companySecret: currentUser?.companySecret }));
   }, [dispatch, currentUser]);
   return (
     <div className="capitalize">
@@ -26,6 +28,9 @@ const JobPost = () => {
         <h1 className=" md:text-3xl sm:text-2xl text-lg font-bold uppercase">
           posted by {currentUser?.companyName} company
         </h1>
+        <div>
+          <Search></Search>
+        </div>
       </div>
       <div className="flex justify-end">
         <Link to="/dashboard/jobpostform">
