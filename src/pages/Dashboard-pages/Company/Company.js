@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Company.css";
 import { HiExternalLink } from "react-icons/hi";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -17,43 +17,31 @@ import JobSCard from "../JobPost/Jobs-card";
 import ChangeCompanyCoverModal from "./ChangeCompanyCoverModal";
 import getCompanyAction from "../../../stateManagement/actions/getCompanyAction";
 import Loading from "../../../components/Shared/Loading/Loading";
+import fetching from "../../../hooks/UseAddUserInfo/fetching";
+import recallApi from "../../../stateManagement/actions/recallApi";
 
 const Company = () => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { jobPost } = useSelector((state) => state?.jobPostState);
   const recall = useSelector((state) => state.recallApi);
   const { isLoading, companyDetail } = useSelector((state) => state.getCompany);
   const [user] = useAuthState(auth);
   const { currentUser } = useUserRole(user);
-
-  console.log(companyDetail);
-
-  const handleCompanyDetails = (event) => {
+  console.log(companyDetail?.companyWebUrl);
+  const handleCompanyDetails = async (event) => {
+    setLoading(true);
     event.preventDefault();
     const companyName = event.target.name.value;
     const companyWebUrl = event.target.websiteLink.value;
     const companyOverview = event.target.overview.value;
     const companySpecialties = event.target.specialties.value;
-    console.log(companyName, companyOverview, companySpecialties);
 
     const allCompanyDetails = { companyName, companyOverview, companySpecialties, companyWebUrl };
-
-    console.log(allCompanyDetails);
-
-    // fetch("", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(allCompanyDetails),
-    // })
-    //   .then((response) => response.json())
-    //   .then((allCompanyDetails) => {
-    //     console.log("Success:", allCompanyDetails);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
+    const url = `/company/${currentUser.companySecret}`;
+    await fetching.put(url, allCompanyDetails);
+    dispatch(recallApi(!recall));
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -61,12 +49,11 @@ const Company = () => {
     dispatch(getCompanyAction({ companySecret: currentUser?.companySecret }));
   }, [dispatch, currentUser, recall]);
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loading></Loading>;
   }
   return (
     <div className="px-5">
-      {/* cover photo for company */}
       <div className="bg-base-100 ">
         <figure className="relative">
           <div>
@@ -82,26 +69,24 @@ const Company = () => {
                 <ChangeCompanyCoverModal></ChangeCompanyCoverModal>
               </div>
             </div>
-            {/* <img
-              className="h-96 w-full rounded-lg "
-              src={}
-              alt="company-banner"
-            /> */}
-            <div className=" bg-gradient-to-tr from-primary to-secondary   h-96 w-full rounded-lg flex justify-center items-center">
-              <div className="text-white text-xl">No Cover Photo Added</div>
-            </div>
+            {companyDetail?.coverImg ? (
+              <img className="h-96 w-full rounded-lg mb-8" src={companyDetail?.coverImg} alt="company-banner" />
+            ) : (
+              <div className=" bg-gradient-to-tr from-primary to-secondary   mb-8 h-96 w-full rounded-lg flex justify-center items-center">
+                <div className="text-white text-xl">No Cover Photo Added</div>
+              </div>
+            )}
           </div>
         </figure>
       </div>
 
-      <div className="mt-3">
-        <button className="btn btn-outline border border-primary ">
-          Visit website <HiExternalLink className="ml-1" />
-        </button>
-        <div></div>
-      </div>
-
-      {/* <!-- Put this part before </body> tag --> */}
+      {companyDetail?.companyWebUrl && (
+        <div className="mt-3">
+          <a rel="noopener noreferrer" href={companyDetail?.companyWebUrl} target="_blank" className="btn btn-outline border border-primary ">
+            Visit website <HiExternalLink className="ml-1" />
+          </a>
+        </div>
+      )}
       <input type="checkbox" id="editDetails" class="modal-toggle" />
       <label for="editDetails" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
@@ -110,25 +95,47 @@ const Company = () => {
               <label class="label">
                 <span class="label-text">Company Name</span>
               </label>
-              <input type="text" name="name" placeholder="Type here" class="border input input-bordered input-primary w-full " />
+              <input
+                type="text"
+                name="name"
+                defaultValue={companyDetail?.companyName}
+                placeholder="Type here"
+                class="border input input-bordered input-primary w-full "
+              />
             </div>
             <div class="form-control w-full ">
               <label class="label">
-                <span class="label-text">Website Link:-</span>
+                <span class="label-text">Website Link:- ( https://www.google.com -- protocol require )</span>
               </label>
-              <input type="text" name="websiteLink" placeholder="Type here" class="border input input-bordered input-primary w-full " />
+              <input
+                type="text"
+                defaultValue={companyDetail?.companyWebUrl}
+                name="websiteLink"
+                placeholder="Type here"
+                class="border input input-bordered input-primary w-full "
+              />
             </div>
             <div class="form-control w-full ">
               <label class="label">
                 <span class="label-text">Overview</span>
               </label>
-              <textarea class="border input input-bordered input-primary w-full  h-24" name="overview" placeholder="Type here"></textarea>
+              <textarea
+                defaultValue={companyDetail?.companyOverview}
+                class="border input input-bordered input-primary w-full  h-24"
+                name="overview"
+                placeholder="Type here"
+              ></textarea>
             </div>
             <div class="form-control w-full ">
               <label class="label">
                 <span class="label-text">Specialties</span>
               </label>
-              <textarea class="border input input-bordered input-primary w-full  h-24" name="specialties" placeholder="Type here"></textarea>
+              <textarea
+                defaultValue={companyDetail?.companySpecialties}
+                class="border input input-bordered input-primary w-full  h-24"
+                name="specialties"
+                placeholder="Type here"
+              ></textarea>
             </div>
             <div class=" w-full mt-5  rounded-md">
               <input
@@ -140,8 +147,6 @@ const Company = () => {
           </form>
         </label>
       </label>
-
-      {/* edit name dynamic way  */}
 
       <div className="flex justify-between">
         <div className="text-4xl mt-3 mb-3 text-secondary">{companyDetail?.companyName}</div>
@@ -158,10 +163,8 @@ const Company = () => {
           <Tab>Peoples</Tab>
         </TabList>
 
-        {/* about tab panel */}
         <TabPanel>
-          <h2 className="text-xl font-bold text-primary">Overview</h2>
-
+          <h2 className="text-xl font-bold text-primary mt-10 mb-3">Overview</h2>
           <div>
             {companyDetail?.companyOverview ? (
               <p className=" p-5   shadow-lg">{companyDetail?.companyOverview}</p>
@@ -173,12 +176,12 @@ const Company = () => {
           </div>
 
           <div className=" mb-5 ">
-            <h2 className="text-lg font-bold mt-2 text-primary">Specialties</h2>
+            <h2 className="text-lg font-bold  text-primary  mt-10 mb-3">Specialties</h2>
             {companyDetail?.companySpecialties ? (
               <div className=" p-5  shadow-lg">{companyDetail?.companySpecialties}</div>
             ) : (
               <p className="h-24  p-5  flex justify-center items-center  shadow-lg">
-                <p>overview specialties</p>
+                <p>specialties Details unavailable</p>
               </p>
             )}
           </div>
