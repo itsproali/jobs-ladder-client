@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
-import ButtonDefault from "../../../components/ButtonDefault/ButtonDefault";
-import { AiFillEye } from "react-icons/ai";
-import JobSCard from "./Jobs-card";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { AiFillEye } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import ButtonDefault from "../../../components/ButtonDefault/ButtonDefault";
 import auth from "../../../firebase-init";
 import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
-import Table from "../../Search/Table";
+import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 import Search from "../../Search/Search";
+import JobSCard from "./Jobs-card";
 const JobPost = () => {
   const dispatch = useDispatch();
   const { jobPost } = useSelector((state) => state?.jobPostState);

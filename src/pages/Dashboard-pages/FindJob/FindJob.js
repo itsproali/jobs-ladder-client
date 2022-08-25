@@ -1,30 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { AiFillEye } from "react-icons/ai";
-import Loading from "../../../components/Shared/Loading/Loading";
-import JobSCard from "../JobPost/Jobs-card";
-import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import Loading from "../../../components/Shared/Loading/Loading";
+import fetching from "../../../hooks/UseAddUserInfo/fetching";
+import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
+import JobSCard from "../JobPost/Jobs-card";
 
 const FindJob = () => {
   const [pageNo, setPageNo] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+  const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
   const { isLoading, jobPost, error } = useSelector(
     (state) => state.jobPostState
   );
+  // const [jobs, setJobs] = useState(jobPost);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/job-post/count").then((res) => {
-      const count = res?.data?.count;
-      setPageNo(Math.ceil(count / 10));
-    });
-  }, []);
+    // fetching.get("job-post/count").then((res) => {
+    //   const count = res?.data?.count;
+    //   setPageNo(Math.ceil(count / 10));
+    // });
+    setPageNo(Math.ceil(jobPost?.length / 10));
+  }, [jobPost]);
 
   useEffect(() => {
-    dispatch(getJobPosts({currentPage}));
-  }, [dispatch, currentPage]);
+    dispatch(getJobPosts({ currentPage, searchText }));
+  }, [dispatch, currentPage, searchText]);
+
+  const getSearch = (e) => {
+    e.preventDefault();
+    const searchValue = e.target.inputValue.value;
+    setSearchText(searchValue);
+    // fetching.get(`job-post/search/${searchText}`).then((res) => {
+    //   setPageNo(Math.ceil(res?.data?.length / 10));
+    //   setJobs(res?.data);
+    // });
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -47,11 +60,40 @@ const FindJob = () => {
           Your Dream Job is here
         </h1>
       </div>
-      <div>
+      <div className="flex items-center justify-between mt-6">
         <h1 className="flex items-center gap-2 text-secondary">
           {" "}
           <AiFillEye className="text-xl" /> Sort By Time
         </h1>
+        <form onSubmit={getSearch}>
+          <div className="form-control">
+            <div className="input-group">
+              <input
+                type="text"
+                placeholder="What are you looking for ....?"
+                className="input input-bordered focus:border-primary"
+                name="inputValue"
+              />
+              <label className="btn btn-square btn-primary">
+                <input type="submit" value="" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </label>
+            </div>
+          </div>
+        </form>
       </div>
       <div>
         {jobPost.map((job) => (

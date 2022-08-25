@@ -5,13 +5,21 @@ import {
   GET_JOB_POST_SUCCESS,
 } from "../constants/Constant";
 
-
 const getJobPosts = (filter) => {
+  console.log(filter)
   let query;
   if (filter?.companySecret) {
-    query = `companySecret=${filter?.companySecret}`;
+    if (filter.searchText) {
+      query = `companySecret=${filter?.companySecret}&searchText=${filter?.searchText}`;
+    } else {
+      query = `companySecret=${filter?.companySecret}`;
+    }
   } else {
-    query = `currentPage=${filter?.currentPage}`;
+    if (filter.searchText) {
+      query = `currentPage=${filter?.currentPage}&searchText=${filter?.searchText}`;
+    } else {
+      query = `currentPage=${filter?.currentPage}`;
+    }
   }
   return (dispatch) => {
     dispatch({ type: GET_JOB_POST_REQUEST });

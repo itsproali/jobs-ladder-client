@@ -14,7 +14,7 @@ const EmployeeDetailEditForm = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
-  const {  currentUser } = useUserRole(user);
+  const { currentUser } = useUserRole(user);
   const employee = useSelector((state) => state.currentEmployeeData);
   const submitEmployeeDataForm = async () => {
     const employeeData = {
@@ -35,13 +35,13 @@ const EmployeeDetailEditForm = () => {
   }
   return (
     <>
-      <input type="checkbox" id="editEmployeeData" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box relative">
+      <input type="checkbox" id="editEmployeeData" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box relative">
           <div className="absolute right-2 top-2 ">
             <label
-              for="editEmployeeData"
-              class="btn border-2 border-primary text-primary rounded-md py-2 px-12 hover:bg-primary hover:border-primary hover:text-white duration-300 uppercase"
+              htmlFor="editEmployeeData"
+              className="btn border-2 border-primary text-primary rounded-md py-2 px-12 hover:bg-primary hover:border-primary hover:text-white duration-300 uppercase"
             >
               Cancel
             </label>
@@ -54,8 +54,11 @@ const EmployeeDetailEditForm = () => {
           </div>
           <form ref={employeeDataFormRef}>
             <div className="mt-10">
-              <div class="mb-2">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <div className="mb-2">
+                <label
+                  htmlFor="base-input"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
                   Name:
                 </label>
                 <input
@@ -63,11 +66,14 @@ const EmployeeDetailEditForm = () => {
                   defaultValue={employee.name}
                   type="text"
                   name="name"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
-              <div class="mb-2">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <div className="mb-2">
+                <label
+                  htmlFor="base-input"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
                   Role:
                 </label>
                 <input
@@ -75,12 +81,15 @@ const EmployeeDetailEditForm = () => {
                   defaultValue={employee.role}
                   type="text"
                   name="role"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
 
-              <div class="mb-2">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <div className="mb-2">
+                <label
+                  htmlFor="base-input"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
                   LinkedIn Profile:
                 </label>
                 <input
@@ -88,11 +97,14 @@ const EmployeeDetailEditForm = () => {
                   type="text"
                   name="linkedin"
                   defaultValue={employee.linkedin}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
-              <div class="mb-2">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <div className="mb-2">
+                <label
+                  htmlFor="base-input"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
                   Facebook Profile:
                 </label>
                 <input
@@ -100,11 +112,14 @@ const EmployeeDetailEditForm = () => {
                   type="text"
                   name="facebook"
                   defaultValue={employee.facebook}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
-              <div class="mb-2">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <div className="mb-2">
+                <label
+                  htmlFor="base-input"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
                   Twitter Profile:
                 </label>
                 <input
@@ -112,7 +127,7 @@ const EmployeeDetailEditForm = () => {
                   type="text"
                   name="twitter"
                   defaultValue={employee.twitter}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
             </div>
