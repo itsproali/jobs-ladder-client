@@ -147,6 +147,12 @@ const Header = () => {
                   tabIndex="0"
                   className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-gray-100 rounded-box w-52"
                 >
+                  <li className="btn btn-ghost w-full" >
+                    Profile
+                  </li>
+                  <li className="btn btn-ghost w-full">
+                    Settings
+                  </li>
                   <li className="btn btn-ghost w-full" onClick={handleLogOut}>
                     Logout
                   </li>
