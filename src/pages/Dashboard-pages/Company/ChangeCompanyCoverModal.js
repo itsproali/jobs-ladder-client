@@ -13,7 +13,7 @@ const ChangeCompanyCoverModal = () => {
   const imageRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
-  const [role, currentUser] = useUserRole(user);
+  const {currentUser} = useUserRole(user);
   const recall = useSelector((state) => state.recallApi);
   const dispatch = useDispatch();
 
@@ -30,8 +30,8 @@ const ChangeCompanyCoverModal = () => {
       .then(async (result) => {
         if (result.success) {
           console.log(result.data.url);
-          const url = `/company/${currentUser.companySecret}/employee/${user.email}`;
-          await fetching.put(url, { img: result.data.url });
+          const url = `/company/${currentUser.companySecret}`;
+          await fetching.put(url, { coverImg: result.data.url });
           dispatch(recallApi(!recall));
           setLoading(false);
         }
@@ -63,7 +63,7 @@ const ChangeCompanyCoverModal = () => {
           <div>
             <div class="mt-10">
               <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                Select new Profile:
+                Select Cover Photo:
               </label>
               <input
                 ref={imageRef}

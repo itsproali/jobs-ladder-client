@@ -136,7 +136,7 @@ const Response = () => {
                 className="ml-3 px-4 py-2 text-primary focus:outline-none rounded"
                 {...register("jobTitle", { required: true })}
               >
-                <option value="">-- Select a job --</option>
+                <option value="" disabled selected>-- Select a job --</option>
                 {jobTitles &&
                   jobTitles.map((jobTitle) => (
                     <option key={jobTitle._id} value={jobTitle._id}>

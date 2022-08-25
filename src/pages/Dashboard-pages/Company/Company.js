@@ -1,180 +1,145 @@
-import React, { useEffect } from "react";
-import image1 from "../../../asset/company.jpg";
+import React, { useEffect, useState } from "react";
 import "./Company.css";
 import { HiExternalLink } from "react-icons/hi";
-import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import miami from "../../../asset/miami.jpg";
 import "react-tabs/style/react-tabs.css";
-import people from "../../../asset/testimonial/client-3.png";
 import { useForm } from "react-hook-form";
 import { HiOutlineCamera } from "react-icons/hi";
 import { FiEdit } from "react-icons/fi";
 import ChangeProfilePhotoModal from "../Employee/changeProfilePhotoModal";
 import Employee from "../Employee/Employee";
-import JobPost from "../JobPost/JobPost";
 import { useDispatch, useSelector } from "react-redux";
 import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 import { useAuthState } from "react-firebase-hooks/auth";
 import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
 import auth from "../../../firebase-init";
 import JobSCard from "../JobPost/Jobs-card";
+import ChangeCompanyCoverModal from "./ChangeCompanyCoverModal";
+import getCompanyAction from "../../../stateManagement/actions/getCompanyAction";
+import Loading from "../../../components/Shared/Loading/Loading";
+import fetching from "../../../hooks/UseAddUserInfo/fetching";
+import recallApi from "../../../stateManagement/actions/recallApi";
 
 const Company = () => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { jobPost } = useSelector((state) => state?.jobPostState);
+  const recall = useSelector((state) => state.recallApi);
+  const { isLoading, companyDetail } = useSelector((state) => state.getCompany);
   const [user] = useAuthState(auth);
-  const [role, currentUser] = useUserRole(user);
-  const imageStorageKey = "4dab8fd03df7f5dbf2aafd109eaffcf5";
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
-
-  const onSubmit = async (data) => {
-    const image = data.image[0];
-    const formData = new FormData();
-    formData.append("image", image);
-    const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.success) {
-          console.log(result.data.url);
-        }
-      });
-  };
-
-  //post method using to fetch all details -------------------------------------------------------
-
-  const handleCompanyDetails = (event) => {
+  const { currentUser } = useUserRole(user);
+  console.log(companyDetail?.companyWebUrl);
+  const handleCompanyDetails = async (event) => {
+    setLoading(true);
     event.preventDefault();
     const companyName = event.target.name.value;
+    const companyWebUrl = event.target.websiteLink.value;
     const companyOverview = event.target.overview.value;
-    const companyspecialties = event.target.specialties.value;
-    console.log(companyName, companyOverview, companyspecialties);
+    const companySpecialties = event.target.specialties.value;
 
-    const allCompanyDetails = { companyName, companyOverview, companyspecialties };
-
-    console.log(allCompanyDetails);
-
-    fetch("", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(allCompanyDetails),
-    })
-      .then((response) => response.json())
-      .then((allCompanyDetails) => {
-        console.log("Success:", allCompanyDetails);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    const allCompanyDetails = { companyName, companyOverview, companySpecialties, companyWebUrl };
+    const url = `/company/${currentUser.companySecret}`;
+    await fetching.put(url, allCompanyDetails);
+    dispatch(recallApi(!recall));
+    setLoading(false);
   };
 
   useEffect(() => {
     dispatch(getJobPosts({ companySecret: currentUser?.companySecret }));
-  }, [dispatch, currentUser]);
+    dispatch(getCompanyAction({ companySecret: currentUser?.companySecret }));
+  }, [dispatch, currentUser, recall]);
+
+  if (isLoading || loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="px-5">
-      {/* cover photo for company */}
       <div className="bg-base-100 ">
         <figure className="relative">
           <div>
             <div className=" ">
-              {" "}
               <div>
                 <label
-                  for="editProfileImage"
+                  for="editCoverImage"
                   class="btn  modal-button border border-primary bg-white absolute bottom-0 right-0 text-black hover:bg-white hover:border-primary justify-end "
                 >
-                  <HiOutlineCamera className="text-2xl"></HiOutlineCamera> Edit Cover photo
+                  <HiOutlineCamera className="text-2xl"></HiOutlineCamera> Change Cover photo
                 </label>
 
-                <ChangeProfilePhotoModal></ChangeProfilePhotoModal>
+                <ChangeCompanyCoverModal></ChangeCompanyCoverModal>
               </div>
             </div>
-            <img
-              className="h-96 cover-img"
-              src="https://images.unsplash.com/photo-1507919909716-c8262e491cde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
-              alt="company-banner"
-            />
+            {companyDetail?.coverImg ? (
+              <img className="h-96 w-full rounded-lg mb-8" src={companyDetail?.coverImg} alt="company-banner" />
+            ) : (
+              <div className=" bg-gradient-to-tr from-primary to-secondary   mb-8 h-96 w-full rounded-lg flex justify-center items-center">
+                <div className="text-white text-xl">No Cover Photo Added</div>
+              </div>
+            )}
           </div>
         </figure>
-        <div>
-          <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-          <label for="my-modal-4" class="modal cursor-pointer">
-            <label class="modal-box relative" for="">
-              <form>
-                {/* register your input into the hook by invoking the "register" function */}
-                <input className="border input input-bordered input-primary w-full max-w-xs" defaultValue="test" {...register("example")} />
+      </div>
 
-                {/* include validation with required or other standard HTML validation rules */}
-                <input className="border input input-bordered input-primary w-full max-w-xs" {...register("exampleRequired", { required: true })} />
-                {/* errors will return when field validation fails  */}
-                {errors.exampleRequired && <span>This field is required</span>}
-
-                <input
-                  className="input input-bordered input-primary w-full max-w-xs bg-primary text-white rounded-md hover:bg-secondary"
-                  type="submit"
-                />
-              </form>
-            </label>
-          </label>
+      {companyDetail?.companyWebUrl && (
+        <div className="mt-3">
+          <a rel="noopener noreferrer" href={companyDetail?.companyWebUrl} target="_blank" className="btn btn-outline border border-primary ">
+            Visit website <HiExternalLink className="ml-1" />
+          </a>
         </div>
-      </div>
-
-      <div className="mt-3">
-        <button className="btn btn-outline border border-primary ">
-          Visit website <HiExternalLink className="ml-1" />
-        </button>
-        <div></div>
-      </div>
-      {/* make dynamic name ,about and details dynamic form*/}
-
-      {/* <!-- The button to open modal --> */}
-      <label for="my-modal-5" class="btn btn-outline mt-3 text-black-600 border border-primary">
-        Edit Details <FiEdit className="ml-1" />
-      </label>
-      {/* <!-- Put this part before </body> tag --> */}
-      <input type="checkbox" id="my-modal-5" class="modal-toggle" />
-      <label for="my-modal-5" class="modal cursor-pointer">
+      )}
+      <input type="checkbox" id="editDetails" class="modal-toggle" />
+      <label for="editDetails" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
           <form className="flex flex-col items-center	" onSubmit={handleCompanyDetails}>
             <div class="form-control w-full ">
               <label class="label">
                 <span class="label-text">Company Name</span>
               </label>
-              <input type="text" name="name" placeholder="Type here" class="border input input-bordered input-primary w-full " />
+              <input
+                type="text"
+                name="name"
+                defaultValue={companyDetail?.companyName}
+                placeholder="Type here"
+                class="border input input-bordered input-primary w-full "
+              />
             </div>
             <div class="form-control w-full ">
               <label class="label">
-                <span class="label-text">Website Link:-</span>
+                <span class="label-text">Website Link:- ( https://www.google.com -- protocol require )</span>
               </label>
-              <input type="text" name="websiteLink" placeholder="Type here" class="border input input-bordered input-primary w-full " />
+              <input
+                type="text"
+                defaultValue={companyDetail?.companyWebUrl}
+                name="websiteLink"
+                placeholder="Type here"
+                class="border input input-bordered input-primary w-full "
+              />
             </div>
             <div class="form-control w-full ">
               <label class="label">
                 <span class="label-text">Overview</span>
               </label>
-              <textarea class="border input input-bordered input-primary w-full  h-24" name="overview" placeholder="Type here"></textarea>
+              <textarea
+                defaultValue={companyDetail?.companyOverview}
+                class="border input input-bordered input-primary w-full  h-24"
+                name="overview"
+                placeholder="Type here"
+              ></textarea>
             </div>
             <div class="form-control w-full ">
               <label class="label">
                 <span class="label-text">Specialties</span>
               </label>
-              <textarea class="border input input-bordered input-primary w-full  h-24" name="specialties" placeholder="Type here"></textarea>
+              <textarea
+                defaultValue={companyDetail?.companySpecialties}
+                class="border input input-bordered input-primary w-full  h-24"
+                name="specialties"
+                placeholder="Type here"
+              ></textarea>
             </div>
-            <br />
-            <div class="form-control w-full bg-primary text-white rounded-md">
+            <div class=" w-full mt-5  rounded-md">
               <input
-                className="input input-bordered input-primary w-full  bg-primary text-white rounded-md hover:bg-secondary"
+                className="btn border-2  border-primary text-primary rounded-md w-full hover:bg-primary hover:border-primary hover:text-white duration-300 uppercase"
                 type="submit"
                 value="Edit Details"
               />
@@ -183,9 +148,13 @@ const Company = () => {
         </label>
       </label>
 
-      {/* edit name dynamic way  */}
+      <div className="flex justify-between">
+        <div className="text-4xl mt-3 mb-3 text-secondary">{companyDetail?.companyName}</div>
 
-      <div className="text-4xl mt-3 mb-3 text-secondary">Miami HEAT</div>
+        <label for="editDetails" class="btn btn-outline mt-3 text-black-600 border border-primary">
+          Edit Details <FiEdit className="ml-1" />
+        </label>
+      </div>
 
       <Tabs className="tab-customize pb-10">
         <TabList>
@@ -194,28 +163,27 @@ const Company = () => {
           <Tab>Peoples</Tab>
         </TabList>
 
-        {/* about tab panel */}
         <TabPanel>
-          <h2 className="text-xl font-bold text-primary">Overview</h2>
-
+          <h2 className="text-xl font-bold text-primary mt-10 mb-3">Overview</h2>
           <div>
-            <p className=" p-5   shadow-xl">
-              Nordstone is a global software consultancy headquartered in London. We are a team of world-class developers, designers, product
-              strategists and growth hackers. Together we have built 100+ products on mobile, web and on the blockchain. Nordstone’s CEO has a
-              professional background in Banking and several years ago he took the leap of faith and stepped out of the corporate world to launch his
-              first venture - the UK’s first mobile app combating loneliness and scaled the product to 70+ countries. He now leads Nordstone, a global
-              software consultancy, partnering with entrepreneurs and businesses to turn their visions into reality. We are not your ordinary
-              consultancy. Nordstone is built by experienced people who have been on the other side of the table. We treat every project as if it was
-              our own, from startup ventures to enterprise brands.
-            </p>
+            {companyDetail?.companyOverview ? (
+              <p className=" p-5   shadow-lg">{companyDetail?.companyOverview}</p>
+            ) : (
+              <p className="h-24  p-5  flex justify-center items-center  shadow-lg">
+                <p>overview unavailable</p>
+              </p>
+            )}
           </div>
 
           <div className=" mb-5 ">
-            <h2 className="text-lg font-bold mt-2 text-primary">Specialties</h2>
-            <div className=" p-5  shadow-xl">
-              Mobile App Development, iOS, Android, UI/UX Designs, Product Market Fit, In-App Purchases, Backend Development, Machine Learning, APIs,
-              Google Play Store, Apple App Store, Frontend Development, Blockchain, NFTs, Web Development, and Database Structuring
-            </div>
+            <h2 className="text-lg font-bold  text-primary  mt-10 mb-3">Specialties</h2>
+            {companyDetail?.companySpecialties ? (
+              <div className=" p-5  shadow-lg">{companyDetail?.companySpecialties}</div>
+            ) : (
+              <p className="h-24  p-5  flex justify-center items-center  shadow-lg">
+                <p>specialties Details unavailable</p>
+              </p>
+            )}
           </div>
         </TabPanel>
 

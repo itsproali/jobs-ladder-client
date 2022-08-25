@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import currentEmployeeReducer from "./currentEmployeeReducer";
 import getCandidateReducer from "./getCandidateReducer";
+import getCompanyReducer from "./getCompanyReducer";
 import getJobTitleReducer from "./getJobTitleReducer";
 import getTaskReducer from "./getTaskReducer";
 import jobPostReducer from "./jobPostReducer";
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   getTasks: getTaskReducer,
   getJobTitles: getJobTitleReducer,
   getCandidates: getCandidateReducer,
+  getCompany : getCompanyReducer ,
 });
 
 export default rootReducer;
