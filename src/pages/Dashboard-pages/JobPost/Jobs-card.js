@@ -1,7 +1,5 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useForm } from 'react-hook-form';
-import { AiTwotoneMedicineBox } from 'react-icons/ai';
 import { FiClock } from 'react-icons/fi';
 import { GoLocation } from 'react-icons/go';
 import { GrOrganization } from 'react-icons/gr';
@@ -19,8 +17,8 @@ const JobSCard = ({ job, apply }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
-  const [role] = useUserRole(user);
-  const { title, _id, companySecret ,  companyName , date, description, jobRequirements, jobState, jobTypes, location, } = job;
+  const {role} = useUserRole(user);
+  const { title, _id, companyName , date, description, jobRequirements, jobState, jobTypes, location, } = job;
   const navigateToApplyForm = (_id)=>{
     navigate(`apply/${_id}`)
   }

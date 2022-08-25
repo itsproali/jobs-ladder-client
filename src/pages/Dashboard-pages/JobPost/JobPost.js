@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ButtonDefault from "../../../components/ButtonDefault/ButtonDefault";
 import { AiFillEye } from "react-icons/ai";
 import JobSCard from "./Jobs-card";
@@ -12,7 +12,7 @@ const JobPost = () => {
   const dispatch = useDispatch();
   const { jobPost } = useSelector((state) => state?.jobPostState);
   const [user] = useAuthState(auth);
-  const [role, currentUser] = useUserRole(user);
+  const { currentUser } = useUserRole(user);
   // const postByThisCompany = jobPost?.filter(post => post?.companySecret === currentUser?.companySecret)
   useEffect(() => {
     dispatch(getJobPosts({companySecret: currentUser?.companySecret}));

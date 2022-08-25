@@ -49,7 +49,7 @@ const RoutesIndex = () => {
   const isHidden = conditionalRoutes.includes(location.pathname);
   const isFooterHidden = conditionalFooterHide.includes(location.pathname);
   const [user] = useAuthState(auth);
-  const [role, currentUser, roleLoading] = useUserRole(user);
+  const { role, roleLoading } = useUserRole(user);
   // console.log(role);
 
   if (roleLoading) {

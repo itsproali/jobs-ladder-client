@@ -14,7 +14,7 @@ import { BsFillPatchCheckFill, BsSignpostFill } from "react-icons/bs";
 const Tasks = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
-  const [role, currentUser] = useUserRole(user);
+  const { currentUser } = useUserRole(user);
   const email = currentUser?.email;
   const dispatch = useDispatch();
   const { isLoading, tasks, error } = useSelector((state) => state.getTasks);
@@ -36,7 +36,7 @@ const Tasks = () => {
 
   return (
     <div className="mb-8">
-      {!tasks ? (
+      {tasks.length === 0 ? (
         <h1 className="text-center text-5xl text-error font-semibold">
           You Don't have any Task yet..!
         </h1>
@@ -65,7 +65,11 @@ const Tasks = () => {
                 key={task._id}
                 className="w-full my-2 px-3 py-2 rounded-lg border shadow bg-white hover:bg-bg-base-200 hover:shadow-lg duration-300 pointer flex items-center justify-between cursor-pointer"
               >
-                {task.submitDetails ? <BsFillPatchCheckFill className="text-green-500 text-2xl mr-2"/> : <BsSignpostFill className="text-warning text-2xl mr-2" />}
+                {task.submitDetails ? (
+                  <BsFillPatchCheckFill className="text-green-500 text-2xl mr-2" />
+                ) : (
+                  <BsSignpostFill className="text-warning text-2xl mr-2" />
+                )}
                 <div
                   className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center"
                   onClick={() => navigate(`/dashboard/tasks/${task._id}`)}

@@ -4,7 +4,12 @@ import { BsLinkedin } from "react-icons/bs";
 const Ali = () => {
   return (
     <div className="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
-      <a href="https://itsproali.netlify.app/" target="_blank" className="w-64">
+      <a
+        href="https://itsproali.netlify.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-64"
+      >
         <img
           className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
           src="https://i.ibb.co/BshM3cc/Mohammad-Ali-Profile-Square.png"
@@ -23,6 +28,7 @@ const Ali = () => {
             <a
               href="https://github.com/itsproali"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary  hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -43,6 +49,7 @@ const Ali = () => {
             <a
               href="https://itsproali.netlify.app/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -63,6 +70,7 @@ const Ali = () => {
             <a
               href="https://www.linkedin.com/in/itsproali/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-gray-900 dark:hover:text-white"
             >
               <BsLinkedin className="w-7 h-7" />

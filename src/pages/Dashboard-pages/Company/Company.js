@@ -30,7 +30,6 @@ const Company = () => {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm();
 
   const onSubmit = async (data) => {

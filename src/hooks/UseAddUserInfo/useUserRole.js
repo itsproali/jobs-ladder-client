@@ -25,7 +25,7 @@ const useUserRole = (user) => {
       });
     }
   }, [email, accessToken]);
-  return [role, currentUser, roleLoading];
+  return {role, currentUser, roleLoading};
 };
 
 export default useUserRole;

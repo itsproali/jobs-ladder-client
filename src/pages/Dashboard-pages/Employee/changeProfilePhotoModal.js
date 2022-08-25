@@ -13,7 +13,7 @@ const ChangeProfilePhotoModal = () => {
   const imageRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
-  const [role, currentUser] = useUserRole(user);
+  const { currentUser} = useUserRole(user);
   const recall = useSelector((state) => state.recallApi);
   const dispatch = useDispatch();
 
