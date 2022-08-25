@@ -78,7 +78,7 @@ const Company = () => {
   }
 
   return (
-    <>
+    <div className="px-5">
 
       {/* cover photo for company */}
       <div className="bg-base-100 ">
@@ -278,7 +278,7 @@ const Company = () => {
           </div>
         </TabPanel>
       </Tabs>
-    </>
+    </div>
   );
 };
 
