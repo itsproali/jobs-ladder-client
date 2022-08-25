@@ -24,7 +24,7 @@ const Company = () => {
   const dispatch = useDispatch();
   const { jobPost } = useSelector((state) => state?.jobPostState);
   const [user] = useAuthState(auth);
-  const [role, currentUser] = useUserRole(user);
+  const {currentUser} = useUserRole(user);
   const imageStorageKey = "4dab8fd03df7f5dbf2aafd109eaffcf5";
   const {
     register,
@@ -54,28 +54,29 @@ const Company = () => {
   const handleCompanyDetails = (event) => {
     event.preventDefault();
     const companyName = event.target.name.value;
+    const companyWebUrl = event.target.websiteLink.value;
     const companyOverview = event.target.overview.value;
-    const companyspecialties = event.target.specialties.value;
-    console.log(companyName, companyOverview, companyspecialties);
+    const companySpecialties = event.target.specialties.value;
+    console.log(companyName, companyOverview, companySpecialties);
 
-    const allCompanyDetails = { companyName, companyOverview, companyspecialties };
+    const allCompanyDetails = { companyName, companyOverview, companySpecialties , companyWebUrl };
 
     console.log(allCompanyDetails);
 
-    fetch("", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(allCompanyDetails),
-    })
-      .then((response) => response.json())
-      .then((allCompanyDetails) => {
-        console.log("Success:", allCompanyDetails);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    // fetch("", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(allCompanyDetails),
+    // })
+    //   .then((response) => response.json())
+    //   .then((allCompanyDetails) => {
+    //     console.log("Success:", allCompanyDetails);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
   };
 
   useEffect(() => {
@@ -94,17 +95,20 @@ const Company = () => {
                   for="editProfileImage"
                   class="btn  modal-button border border-primary bg-white absolute bottom-0 right-0 text-black hover:bg-white hover:border-primary justify-end "
                 >
-                  <HiOutlineCamera className="text-2xl"></HiOutlineCamera> Edit Cover photo
+                  <HiOutlineCamera className="text-2xl"></HiOutlineCamera> Change Cover photo
                 </label>
 
                 <ChangeProfilePhotoModal></ChangeProfilePhotoModal>
               </div>
             </div>
-            <img
-              className="h-96 cover-img"
-              src="https://images.unsplash.com/photo-1507919909716-c8262e491cde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
+            {/* <img
+              className="h-96 w-full rounded-lg "
+              src={}
               alt="company-banner"
-            />
+            /> */}
+            <div className=" bg-gradient-to-tr from-primary to-secondary   h-96 w-full rounded-lg flex justify-center items-center">
+                <div className="text-white text-xl">No Cover Photo Added</div>
+            </div>
           </div>
         </figure>
         <div>
@@ -136,15 +140,11 @@ const Company = () => {
         </button>
         <div></div>
       </div>
-      {/* make dynamic name ,about and details dynamic form*/}
-
-      {/* <!-- The button to open modal --> */}
-      <label for="my-modal-5" class="btn btn-outline mt-3 text-black-600 border border-primary">
-        Edit Details <FiEdit className="ml-1" />
-      </label>
+     
+      
       {/* <!-- Put this part before </body> tag --> */}
-      <input type="checkbox" id="my-modal-5" class="modal-toggle" />
-      <label for="my-modal-5" class="modal cursor-pointer">
+      <input type="checkbox" id="editDetails" class="modal-toggle" />
+      <label for="editDetails" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
           <form className="flex flex-col items-center	" onSubmit={handleCompanyDetails}>
             <div class="form-control w-full ">
@@ -185,7 +185,13 @@ const Company = () => {
 
       {/* edit name dynamic way  */}
 
-      <div className="text-4xl mt-3 mb-3 text-secondary">Miami HEAT</div>
+     <div className="flex justify-between">
+     <div className="text-4xl mt-3 mb-3 text-secondary">Miami HEAT</div>
+
+<label for="editDetails" class="btn btn-outline mt-3 text-black-600 border border-primary">
+  Edit Details <FiEdit className="ml-1" />
+</label>
+     </div>
 
       <Tabs className="tab-customize pb-10">
         <TabList>
