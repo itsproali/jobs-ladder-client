@@ -8,12 +8,12 @@ import fetching from "../../../hooks/UseAddUserInfo/fetching";
 import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
 import recallApi from "../../../stateManagement/actions/recallApi";
 
-const ChangeProfilePhotoModal = () => {
+const ChangeCompanyCoverModal = () => {
   const imageStorageKey = "4dab8fd03df7f5dbf2aafd109eaffcf5";
   const imageRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
-  const { currentUser} = useUserRole(user);
+  const {currentUser} = useUserRole(user);
   const recall = useSelector((state) => state.recallApi);
   const dispatch = useDispatch();
 
@@ -30,8 +30,8 @@ const ChangeProfilePhotoModal = () => {
       .then(async (result) => {
         if (result.success) {
           console.log(result.data.url);
-          const url = `/company/${currentUser.companySecret}/employee/${user.email}`;
-          await fetching.put(url, { img: result.data.url });
+          const url = `/company/${currentUser.companySecret}`;
+          await fetching.put(url, { coverImg: result.data.url });
           dispatch(recallApi(!recall));
           setLoading(false);
         }
@@ -43,12 +43,12 @@ const ChangeProfilePhotoModal = () => {
   }
   return (
     <>
-      <input type="checkbox" id="editProfileImage" class="modal-toggle" />
+      <input type="checkbox" id="editCoverImage" class="modal-toggle" />
       <div class="modal modal-bottom sm:modal-middle">
         <div class="modal-box relative">
           <div className="absolute right-2 top-2 ">
             <label
-              for="editProfileImage"
+              for="editCoverImage"
               class="btn border-2 border-primary text-primary rounded-md py-2 px-12 hover:bg-primary hover:border-primary hover:text-white duration-300 uppercase"
             >
               Cancel
@@ -63,7 +63,7 @@ const ChangeProfilePhotoModal = () => {
           <div>
             <div class="mt-10">
               <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                Select new Profile:
+                Select Cover Photo:
               </label>
               <input
                 ref={imageRef}
@@ -78,4 +78,4 @@ const ChangeProfilePhotoModal = () => {
   );
 };
 
-export default ChangeProfilePhotoModal;
+export default ChangeCompanyCoverModal;

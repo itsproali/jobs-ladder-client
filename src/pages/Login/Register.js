@@ -32,7 +32,7 @@ const Login = () => {
   const [inputType, icon] = usePasswordToggle();
 
   const [token, loadingToken] = useAddUserInfo(user);
-  const [role] = useUserRole(user);
+  const { role } = useUserRole(user);
 
   useEffect(() => {
     if (token) {

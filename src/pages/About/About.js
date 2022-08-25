@@ -10,12 +10,11 @@ const About = () => {
     <div>
       <div className="about">
         <div>
-          <img className="about-img mt-14 mx-auto " src={logo} alt="" />
+          <img className="about-img mt-28 mx-auto " src={logo} alt="" />
         </div>
         <div>
           <div className="box-about mx-auto">
-            <figure className="px-10 pt-10"></figure>
-            <div className="card-body items-center text-center">
+            <div className=" pt-10 sm:px-20 px-5 items-center text-center">
               <h2 className=" text-3xl  font-extrabold ...">About us</h2>
               <p>
                 Jobs ladder makes it fast and easy for businesses to delight
@@ -33,13 +32,13 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto my-14 ">
+      <div className="mx-auto my-14 px-5">
         <div className="text-4xl ">
           <h1 className="text-center">Who we are</h1>
         </div>
         <div className="container  mx-auto grid gap-2 mt-14  justify-center  lg:grid-cols-3 grid-cols-1 py-14vb ">
           <div>
-            <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card  bg-base-100 shadow-xl mx-auto">
               <figure>
                 <img src={history} alt="Shoes" />
               </figure>
@@ -51,7 +50,7 @@ const About = () => {
             </div>
           </div>
           <div>
-            <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card  bg-base-100 shadow-xl mx-auto">
               <figure>
                 <img src={commitment} alt="Shoes" />
               </figure>
@@ -63,7 +62,7 @@ const About = () => {
             </div>
           </div>
           <div>
-            <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card  bg-base-100 shadow-xl mx-auto">
               <figure>
                 <img src={information} alt="Shoes" />
               </figure>

@@ -127,19 +127,32 @@ const Header = () => {
           <div className="navbar-end">
             {user ? (
               <div className="dropdown dropdown-end">
-                <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full flex items-center justify-center text-3xl text-primary">
+                {/* <div className="w-12 bg-transparent  rounded-full"> */}
+                <label
+                  tabIndex="0"
+                  className="btn btn-circle bg-gradient-to-r from-primary to-secondary avatar  outline-none border-none p-[2px]"
+                >
+                  <div className="rounded-full w-full bg-white opacity-90 backdrop-blur-md flex items-center justify-center text-primary p-[2px]">
                     {user.photoURL ? (
-                      <img src={user.photoURL} alt="user" />
+                      <img src={user.photoURL} alt="user" className="w-full rounded-full" />
                     ) : (
-                      user?.displayName?.slice(0, 1)
+                      <span className="text-3xl">
+                        {user?.displayName?.slice(0, 1)}
+                      </span>
                     )}
                   </div>
                 </label>
+                {/* </div> */}
                 <ul
                   tabIndex="0"
                   className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-gray-100 rounded-box w-52"
                 >
+                  <li className="btn btn-ghost w-full" >
+                    Profile
+                  </li>
+                  <li className="btn btn-ghost w-full">
+                    Settings
+                  </li>
                   <li className="btn btn-ghost w-full" onClick={handleLogOut}>
                     Logout
                   </li>
