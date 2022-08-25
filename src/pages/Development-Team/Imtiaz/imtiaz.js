@@ -21,6 +21,7 @@ const Imtiaz = () => {
             <a
               href="https://github.com/imtiazsamir1"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary  hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -41,6 +42,7 @@ const Imtiaz = () => {
             <a
               href="https://famous-lebkuchen-12e81f.netlify.app/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -61,6 +63,7 @@ const Imtiaz = () => {
             <a
               href="https://www.linkedin.com/in/imtiaz-samir-2388bb229/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-gray-900 dark:hover:text-white"
             >
               <BsLinkedin className="w-7 h-7" />

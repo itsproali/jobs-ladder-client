@@ -7,6 +7,7 @@ const Sayed = () => {
       <a
         href="https://itsproali.netlify.app/"
         target="_blank"
+        rel="noopener noreferrer"
         className="sm:w-64 sm:h-full"
       >
         <img
@@ -25,6 +26,7 @@ const Sayed = () => {
             <a
               href="https://github.com/itsproali"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary  hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -45,6 +47,7 @@ const Sayed = () => {
             <a
               href="https://itsproali.netlify.app/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -65,6 +68,7 @@ const Sayed = () => {
             <a
               href="https://www.linkedin.com/in/itsproali/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-gray-900 dark:hover:text-white"
             >
               <BsLinkedin className="w-7 h-7" />

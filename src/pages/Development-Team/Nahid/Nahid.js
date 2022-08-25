@@ -7,6 +7,7 @@ const Nahid = () => {
       <a
         href="https://peppy-zuccutto-0b28e3.netlify.app/"
         target="_blank"
+        rel="noopener noreferrer"
         className="w-64"
       >
         <img
@@ -25,6 +26,7 @@ const Nahid = () => {
             <a
               href="https://github.com/NasirUddinNahid"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary  hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -45,6 +47,7 @@ const Nahid = () => {
             <a
               href="https://peppy-zuccutto-0b28e3.netlify.app/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -65,6 +68,7 @@ const Nahid = () => {
             <a
               href="https://www.linkedin.com/in/md-nasir-uddin-nahid-061264241/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-gray-900 dark:hover:text-white"
             >
               <BsLinkedin className="w-7 h-7" />

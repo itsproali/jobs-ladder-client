@@ -7,7 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase-init';
 import useUserRole from '../../../hooks/UseAddUserInfo/useUserRole';
 import fetching from '../../../hooks/UseAddUserInfo/fetching';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import getJobPosts from '../../../stateManagement/actions/getJobPostAction';
 
 const JobPostForm = () => {
@@ -17,7 +17,7 @@ const JobPostForm = () => {
   const animatedComponents = makeAnimated();
   const [jobTypes, setJobTypes] = useState([]);
   const [user] = useAuthState(auth)
-  const [role, currentUser] = useUserRole(user)
+  const { currentUser} = useUserRole(user)
   const [jobRequirements, setJobRequirements] = useState([]);
   const date = new Date();
   const options = [

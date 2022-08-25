@@ -7,6 +7,7 @@ const Shakil = () => {
       <a
         href="https://md-shakil-hossain-18046.netlify.app/"
         target="_blank"
+        rel="noopener noreferrer"
         className="w-64"
       >
         <img
@@ -27,6 +28,7 @@ const Shakil = () => {
             <a
               href="https://github.com/shakil18046"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary  hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -47,6 +49,7 @@ const Shakil = () => {
             <a
               href="https://md-shakil-hossain-18046.netlify.app/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -67,6 +70,7 @@ const Shakil = () => {
             <a
               href="https://www.linkedin.com/in/md-shakil-hossain-12b538211/"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-gray-900 dark:hover:text-white"
             >
               <BsLinkedin className="w-7 h-7" />

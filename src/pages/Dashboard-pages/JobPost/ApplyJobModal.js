@@ -8,7 +8,7 @@ const ApplyJobModal = ({apply}) => {
 
     const imageStorageKey = "4dab8fd03df7f5dbf2aafd109eaffcf5";
     const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
-    const { register, handleSubmit, watch, reset , formState: { errors } } = useForm();
+    const { register, handleSubmit, reset , formState: { errors } } = useForm();
     const emailRef = useRef("");
     const fileRef = useRef("");
     const onSubmit = async(data)=>{

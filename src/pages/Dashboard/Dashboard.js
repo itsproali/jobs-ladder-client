@@ -17,7 +17,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
-  const [role] = useUserRole(user);
+  const {role} = useUserRole(user);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const toggleDrawer = () => {
     setIsOpenDrawer(!isOpenDrawer);

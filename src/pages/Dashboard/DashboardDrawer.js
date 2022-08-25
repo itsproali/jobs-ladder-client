@@ -18,7 +18,7 @@ import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 
 const DashboardDrawer = ({ isOpen, toggleDrawer }) => {
   const [user] = useAuthState(auth);
-  const [role] = useUserRole(user);
+  const {role} = useUserRole(user);
   return (
     <Drawer
       style={{ background: "linear-gradient(#ED3AB2, #952DDE)" }}
