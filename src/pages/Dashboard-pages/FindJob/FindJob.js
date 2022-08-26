@@ -1,30 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { AiFillEye } from "react-icons/ai";
-import Loading from "../../../components/Shared/Loading/Loading";
-import JobSCard from "../JobPost/Jobs-card";
-import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import Loading from "../../../components/Shared/Loading/Loading";
+import fetching from "../../../hooks/UseAddUserInfo/fetching";
+import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
+import Search from "../../Search/Search";
+import JobSCard from "../JobPost/Jobs-card";
 
 const FindJob = () => {
   const [pageNo, setPageNo] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+  const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
   const { isLoading, jobPost, error } = useSelector(
     (state) => state.jobPostState
   );
 
   useEffect(() => {
-    axios.get("http://localhost:5000/job-post/count").then((res) => {
+    let url = `job-post/count`;
+    if (searchText) {
+      url = `job-post/count?searchText=${searchText}`;
+    }
+    fetching.get(url).then((res) => {
       const count = res?.data?.count;
       setPageNo(Math.ceil(count / 10));
     });
-  }, []);
+  }, [jobPost, searchText]);
 
   useEffect(() => {
-    dispatch(getJobPosts({currentPage}));
-  }, [dispatch, currentPage]);
+    dispatch(getJobPosts({ currentPage, searchText }));
+  }, [dispatch, currentPage, searchText]);
 
   if (isLoading) {
     return <Loading />;
@@ -47,11 +53,12 @@ const FindJob = () => {
           Your Dream Job is here
         </h1>
       </div>
-      <div>
+      <div className="flex items-center justify-between mt-6">
         <h1 className="flex items-center gap-2 text-secondary">
           {" "}
           <AiFillEye className="text-xl" /> Sort By Time
         </h1>
+        <Search setSearchText={setSearchText}></Search>
       </div>
       <div>
         {jobPost.map((job) => (

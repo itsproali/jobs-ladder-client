@@ -89,7 +89,7 @@ const CollectInfo = () => {
               )}
             </div>
             <div className="text-2xl">
-              {(roleValue === "HR" ) && (
+              {roleValue === "HR" && (
                 <div className=" w-3/4 mx-auto relative my-3">
                   <HiOutlineBriefcase className="absolute top-3 left-4"></HiOutlineBriefcase>
                   <input
