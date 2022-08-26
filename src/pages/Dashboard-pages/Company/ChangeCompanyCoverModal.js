@@ -13,7 +13,7 @@ const ChangeCompanyCoverModal = () => {
   const imageRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
-  const {currentUser} = useUserRole(user);
+  const { currentUser } = useUserRole(user);
   const recall = useSelector((state) => state.recallApi);
   const dispatch = useDispatch();
 
@@ -43,13 +43,13 @@ const ChangeCompanyCoverModal = () => {
   }
   return (
     <>
-      <input type="checkbox" id="editCoverImage" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box relative">
+      <input type="checkbox" id="editCoverImage" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box relative">
           <div className="absolute right-2 top-2 ">
             <label
-              for="editCoverImage"
-              class="btn border-2 border-primary text-primary rounded-md py-2 px-12 hover:bg-primary hover:border-primary hover:text-white duration-300 uppercase"
+              htmlFor="editCoverImage"
+              className="btn border-2 border-primary text-primary rounded-md py-2 px-12 hover:bg-primary hover:border-primary hover:text-white duration-300 uppercase"
             >
               Cancel
             </label>
@@ -61,14 +61,17 @@ const ChangeCompanyCoverModal = () => {
             </button>
           </div>
           <div>
-            <div class="mt-10">
-              <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+            <div className="mt-10">
+              <label
+                htmlFor="base-input"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
                 Select Cover Photo:
               </label>
               <input
                 ref={imageRef}
                 type="file"
-                class="file:h-28 file:w-1/2 w-full file:bg-primary file:rounded-md file:text-white file:cursor-pointer "
+                className="file:h-28 file:w-1/2 w-full file:bg-primary file:rounded-md file:text-white file:cursor-pointer "
               />
             </div>
           </div>

@@ -38,38 +38,38 @@ const About = () => {
         </div>
         <div className="container  mx-auto grid gap-2 mt-14  justify-center  lg:grid-cols-3 grid-cols-1 py-14vb ">
           <div>
-            <div class="card  bg-base-100 shadow-xl mx-auto">
+            <div className="card  bg-base-100 shadow-xl mx-auto">
               <figure>
                 <img src={history} alt="Shoes" />
               </figure>
-              <div class="card-body">
-                <h2 class="card-title">History of Jobs ledder!!!</h2>
+              <div className="card-body">
+                <h2 className="card-title">History of Jobs ledder!!!</h2>
                 <p>Jobs leddder since 2012 workin on job plece...</p>
-                <div class="card-actions justify-end"></div>
+                <div className="card-actions justify-end"></div>
               </div>
             </div>
           </div>
           <div>
-            <div class="card  bg-base-100 shadow-xl mx-auto">
+            <div className="card  bg-base-100 shadow-xl mx-auto">
               <figure>
                 <img src={commitment} alt="Shoes" />
               </figure>
-              <div class="card-body">
-                <h2 class="card-title">Our Commitments!!!</h2>
+              <div className="card-body">
+                <h2 className="card-title">Our Commitments!!!</h2>
                 <p>We are Committed to provide best jobs services...</p>
-                <div class="card-actions justify-end"></div>
+                <div className="card-actions justify-end"></div>
               </div>
             </div>
           </div>
           <div>
-            <div class="card  bg-base-100 shadow-xl mx-auto">
+            <div className="card  bg-base-100 shadow-xl mx-auto">
               <figure>
                 <img src={information} alt="Shoes" />
               </figure>
-              <div class="card-body">
-                <h2 class="card-title">Access to information!!! </h2>
+              <div className="card-body">
+                <h2 className="card-title">Access to information!!! </h2>
                 <p>Access to Information of the jobs ledder site... </p>
-                <div class="card-actions justify-end"></div>
+                <div className="card-actions justify-end"></div>
               </div>
             </div>
           </div>

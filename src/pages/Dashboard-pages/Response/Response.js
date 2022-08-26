@@ -76,8 +76,8 @@ const Response = () => {
     const { value: formValues } = await Swal.fire({
       title: "Task Details",
       html:
-        '<input id="task-title" class="p-3 mb-4 w-full border-2 rounded focus:outline-blue-400" required placeholder="Enter Task Title">' +
-        '<textarea id="task-details" class="p-3 rounded border-2 w-full focus:outline-blue-400" rows="5" required placeholder="Describe the task">',
+        '<input id="task-title" className="p-3 mb-4 w-full border-2 rounded focus:outline-blue-400" required placeholder="Enter Task Title">' +
+        '<textarea id="task-details" className="p-3 rounded border-2 w-full focus:outline-blue-400" rows="5" required placeholder="Describe the task">',
       focusConfirm: false,
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -136,7 +136,9 @@ const Response = () => {
                 className="ml-3 px-4 py-2 text-primary focus:outline-none rounded"
                 {...register("jobTitle", { required: true })}
               >
-                <option value="" disabled selected>-- Select a job --</option>
+                <option value="" disabled selected>
+                  -- Select a job --
+                </option>
                 {jobTitles &&
                   jobTitles.map((jobTitle) => (
                     <option key={jobTitle._id} value={jobTitle._id}>
