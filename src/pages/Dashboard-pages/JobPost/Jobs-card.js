@@ -102,15 +102,8 @@ const JobSCard = ({ job, apply }) => {
       </div>
       {role === "job-seeker" && (
         <div className="absolute top-5 right-5">
-          {/* <ButtonDefault text='apply'></ButtonDefault> */}
-
-          <label
-            onClick={() => navigateToApplyForm(_id)}
-            htmlFor="my-modal-3"
-            className="btn btn-primary modal-button border"
-          >
-            APPLY
-          </label>
+          <ButtonDefault onClick={() => navigateToApplyForm(_id)} text="APPLY"></ButtonDefault>
+        
         </div>
       )}
       {role === "HR" && (
