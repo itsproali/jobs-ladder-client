@@ -18,8 +18,8 @@ const MailEmployee = () => {
     );
   };
   return (
-    <div className="bg-gradient-to-tl from-secondary to-primary  ">
-      <div className="px-5 min-h-screen flex justify-center items-center max-w-lg mx-auto sm:py-10  py-20">
+    <div className=" px-5">
+      <div className=" min-h-screen flex justify-center items-center p-10 rounded-lg bg-slate-300 max-w-lg mx-auto my-20">
         <form ref={form} onSubmit={sendEmail} className="w-full">
           <label className="block text-white text-sm mb-2 ">Name</label>
 
