@@ -6,9 +6,8 @@ import {
 } from "../constants/Constant";
 
 const getJobPosts = (filter) => {
-  console.log(filter)
   let query;
-  if (filter?.companySecret) {
+  if (filter.companySecret) {
     if (filter.searchText) {
       query = `companySecret=${filter?.companySecret}&searchText=${filter?.searchText}`;
     } else {

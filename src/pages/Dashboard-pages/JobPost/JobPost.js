@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { AiFillEye } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ButtonDefault from "../../../components/ButtonDefault/ButtonDefault";
@@ -9,15 +8,19 @@ import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
 import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 import Search from "../../Search/Search";
 import JobSCard from "./Jobs-card";
+
 const JobPost = () => {
   const dispatch = useDispatch();
   const { jobPost } = useSelector((state) => state?.jobPostState);
   const [user] = useAuthState(auth);
   const { currentUser } = useUserRole(user);
-  // const postByThisCompany = jobPost?.filter(post => post?.companySecret === currentUser?.companySecret)
+  const [searchText, setSearchText] = useState("");
   useEffect(() => {
-    dispatch(getJobPosts({ companySecret: currentUser?.companySecret }));
-  }, [dispatch, currentUser]);
+    dispatch(
+      getJobPosts({ companySecret: currentUser?.companySecret, searchText })
+    );
+  }, [dispatch, currentUser, searchText]);
+
   return (
     <div className="capitalize">
       <div className="flex flex-col sm:gap-3 gap-1 justify-center items-center ">
@@ -27,19 +30,14 @@ const JobPost = () => {
         <h1 className=" md:text-3xl sm:text-2xl text-lg font-bold uppercase">
           posted by {currentUser?.companyName} company
         </h1>
-        <div>
-          <Search></Search>
-        </div>
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-between items-center mt-8">
+        <Search setSearchText={setSearchText}></Search>
+
         <Link to="/dashboard/jobpostform">
           <ButtonDefault text="add new"></ButtonDefault>
         </Link>
       </div>
-      <h1 className="flex items-center gap-2 text-secondary">
-        {" "}
-        <AiFillEye className="text-xl" /> public view
-      </h1>
       <div>
         {jobPost.map((job, index) => (
           <JobSCard key={index} job={job}></JobSCard>
