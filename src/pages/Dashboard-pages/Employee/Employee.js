@@ -145,6 +145,7 @@ const Employee = () => {
                   >
                     <BiMailSend className="text-3xl" /> Send Mail
                   </button>
+                  
                 )}
               </div>
             </div>
