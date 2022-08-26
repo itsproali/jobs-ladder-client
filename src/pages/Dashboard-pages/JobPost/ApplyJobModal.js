@@ -1,77 +1,92 @@
-import React, { useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
-import {toast } from 'react-toastify';
-const ApplyJobModal = ({apply}) => {
-  const param = useParams()
-  console.log(param._id);
+import React, { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+const ApplyJobModal = ({ apply }) => {
+  const param = useParams();
 
-    const imageStorageKey = "4dab8fd03df7f5dbf2aafd109eaffcf5";
-    const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
-    const { register, handleSubmit, reset , formState: { errors } } = useForm();
-    const emailRef = useRef("");
-    const fileRef = useRef("");
-    const onSubmit = async(data)=>{
-        console.log(data);
-        const file = data.file[0];
-        const formData = new FormData();
-        formData.append('image', file);
-        
-          fetch(url,{
+  const imageStorageKey = "4dab8fd03df7f5dbf2aafd109eaffcf5";
+  const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const emailRef = useRef("");
+  const fileRef = useRef("");
+  const onSubmit = async (data) => {
+    console.log(data);
+    const file = data.file[0];
+    const formData = new FormData();
+    formData.append("image", file);
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result.data.url);
+        if (result.success) {
+          const jobSeeker = {
+            name: data.name,
+            Email: data.email,
+            jobPostId: param._id,
+            image: result.data.url,
+          };
+          fetch("http://localhost:5000/job-post/response", {
             method: "POST",
-            body: formData
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(jobSeeker),
           })
-          .then(res=> res.json())
-          .then(result=> {
-            console.log(result.data.url);
-            if (result.success) {
-              const jobSeeker = {
-                name: data.name,
-                Email: data.email,
-                jobPostId: param._id,
-                image: result.data.url
+            .then((res) => res.json())
+            .then((int) => {
+              if (int.insertedId) {
+                toast.success("your apply is done");
+                reset();
+              } else {
+                toast.error("something is wrong");
               }
-              fetch('http://localhost:5000/job-post/response',{
-                method: "POST",
-                headers:{
-                  'content-type': 'application/json',
-                },
-                body: JSON.stringify(jobSeeker)
-                })
-                
-                .then(res=> res.json())
-                .then(int=> {
-                  if (int.insertedId) {
-                    toast.success("your apply is done")
-                    reset()
-                  }else{
-                    toast.error("something is wrong")
-                  }
-                })
-            }
-          })
-      }
-    return (
-        <div className='py-10 px-10 lg:px-0 md:px-0'>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                  <label className='pb-5 block'>Your name</label>
-                  <input id="name" className='mt-4 border border-gray-400 rounded w-full bg-white text-gray-700 focus:outline-none focus:border-gray-500 pl-5 h-10' {...register('name', { required: true, maxLength: 30 })} />
-                  {errors.name && errors.name.type === "required" && <span className='text-error'>This is required</span>}     
-                  <br></br>
-                  <label className='pt-5 block'>Email Address</label>
-                  <input id='email' ref={emailRef} {...register("email",{ required: true})} type="email" className='mt-4 border border-gray-400 rounded w-full bg-white text-gray-700 focus:outline-none focus:border-gray-500 pl-5 h-10'></input>
-                  {errors.email && errors.email.type === "required" && <span className='text-error'>Enter your Email first</span>}
-                  <br></br>
-                  <label className='my-4 inline-block'>Upload Resume</label>
-                  <br></br>
-                  <input id='file' ref={fileRef} {...register("file",{ required: true})} type="file"></input>
-                  <br></br>
-                  {errors.file && errors.file.type === "required" && <span className='text-error'>Please choose any file</span>}
-                  <br></br>
-                  <input className='btn btn-primary mt-5' type="submit" value="submit"></input>
-              </form>
-          </div>
-    );
+            });
+        }
+      });
+  };
+  return (
+    <div className="p-5">
+      <div className="sm:my-10  lg:px-0 md:px-0 max-w-xl mx-auto rounded-lg bg-slate-300">
+      <form onSubmit={handleSubmit(onSubmit)} className="p-10">
+        <label className="pb-3 block">Your name</label>
+        <input
+          id="name"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          {...register("name", { required: true, maxLength: 30 })}
+        />
+        {errors.name && errors.name.type === "required" && <span className="text-error">This is required</span>}
+        <br></br>
+        <label className="pb-3 block">Email Address</label>
+        <input
+          id="email"
+          ref={emailRef}
+          {...register("email", { required: true })}
+          type="email"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        ></input>
+        {errors.email && errors.email.type === "required" && <span className="text-error">Enter your Email first</span>}
+        <br></br>
+        <label className=" inline-block">Upload Resume</label>
+        <br></br>
+        <input id="file" ref={fileRef} className="file:h-28 file:w-1/2 w-full file:bg-primary file:rounded-md file:text-white file:cursor-pointer " {...register("file", { required: true })} type="file"></input>
+        <br></br>
+        {errors.file && errors.file.type === "required" && <span className="text-error">Please choose any file</span>}
+        <br></br>
+        <input className="btn btn-primary mt-5 w-full" type="submit" value="submit"></input>
+      </form>
+    </div>
+    </div>
+  );
 };
 
 export default ApplyJobModal;
