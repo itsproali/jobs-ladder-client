@@ -13,10 +13,7 @@ const submitTask = async (task, navigate) => {
     confirmButtonColor: "#3085d6",
     confirmButtonText: "Submit Task",
     preConfirm: () => {
-      return [
-        document.getElementById("task-title").value,
-        document.getElementById("submit-details").value,
-      ];
+      return [document.getElementById("task-title").value, document.getElementById("submit-details").value];
     },
   });
   if (formValues) {
@@ -25,10 +22,7 @@ const submitTask = async (task, navigate) => {
       .put(`tasks/submit?id=${_id}`, {
         submitDetails,
       })
-      .then(
-        (res) => Swal.fire("Submitted!", "Task has been Submitted", "success"),
-        navigate("/dashboard/tasks")
-      );
+      .then((res) => Swal.fire("Submitted!", "Task has been Submitted", "success"), navigate("/dashboard/tasks"));
   }
 };
 
