@@ -15,6 +15,7 @@ import SocialLogin from "./SocialLogin";
 import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
 import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 import usePasswordToggle from "../../hooks/usePasswordToggle";
+import ButtonDefault from "../../components/ButtonDefault/ButtonDefault";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -141,11 +142,10 @@ const Login = () => {
               <p className="text-red-500">{updateError.message}</p>
             )}
 
-            <input
-              className="btn w-full btn-primary text-white"
-              type="submit"
-              value="Register"
-            />
+            <label htmlFor="submit">
+              <input type="submit" value="" />
+              <ButtonDefault className="w-full">Register</ButtonDefault>
+            </label>
           </form>
 
           <p className="block lg:hidden text-center mt-2 text-sm">

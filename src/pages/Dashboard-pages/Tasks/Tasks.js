@@ -86,6 +86,7 @@ const Tasks = () => {
                   </p>
                 </div>
                 <ButtonDefault
+                  className="py-[.40rem] px-4"
                   onClick={() => submitTask(task, navigate)}
                   disabled={task.submitDetails}
                 >

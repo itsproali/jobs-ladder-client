@@ -37,7 +37,7 @@ const RoutesIndex = () => {
   const conditionalRoutes = ["/login", "/register", "/welcome"];
   const conditionalFooterHide = [
     "/dashboard",
-    "/dashboard/jobpost",
+    "/dashboard/job-post",
     "/dashboard/employee",
     "/dashboard/response",
     "/dashboard/findjob",
@@ -109,20 +109,20 @@ const RoutesIndex = () => {
 
           {/* Hr Routes */}
           {role === "HR" &&
-            hrRoutes.map((route) => (
-              <Route path={route.path} element={route.element} />
+            hrRoutes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
             ))}
 
           {/* Employee Routes */}
           {role === "Employee" &&
-            employeeRoutes.map((route) => (
-              <Route path={route.path} element={route.element} />
+            employeeRoutes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
             ))}
 
           {/* Job Seeker Routes */}
           {role === "job-seeker" &&
-            seekerRoutes.map((route) => (
-              <Route path={route.path} element={route.element} />
+            seekerRoutes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
             ))}
         </Route>
 
