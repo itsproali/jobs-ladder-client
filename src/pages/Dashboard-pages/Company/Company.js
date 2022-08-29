@@ -25,7 +25,6 @@ const Company = () => {
   const { isLoading, companyDetail } = useSelector((state) => state.getCompany);
   const [user] = useAuthState(auth);
   const { currentUser } = useUserRole(user);
-  console.log(companyDetail?.companyWebUrl);
   const handleCompanyDetails = async (event) => {
     setLoading(true);
     event.preventDefault();
@@ -74,12 +73,12 @@ const Company = () => {
             </div>
             {companyDetail?.coverImg ? (
               <img
-                className="h-96 w-full rounded-lg mb-8"
+                className="md:h-96 h-52 w-full rounded-lg mb-8"
                 src={companyDetail?.coverImg}
                 alt="company-banner"
               />
             ) : (
-              <div className=" bg-gradient-to-tr from-primary to-secondary   mb-8 h-96 w-full rounded-lg flex justify-center items-center">
+              <div className=" bg-gradient-to-tr from-primary to-secondary   mb-8 md:h-96 h-52 w-full rounded-lg flex justify-center items-center">
                 <div className="text-white text-xl">No Cover Photo Added</div>
               </div>
             )}

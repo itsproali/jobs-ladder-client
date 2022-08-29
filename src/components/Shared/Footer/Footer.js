@@ -5,7 +5,7 @@ import {Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <div>
-      <footer className="footer p-10 bg-[#4D0C7A] text-base-100">
+      <footer className="footer p-10 bg-indigo-800 text-base-100">
         <div>
           <Link to='/'><img src={logo} alt="" className="sm:w-48 w-32"/></Link>
           
@@ -33,7 +33,7 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </div>
       </footer>
-      <footer className="text-sm text-center px-10 py-4  bg-[#411361] text-base-100 border-base-300">
+      <footer className="text-sm text-center px-10 py-4  bg-indigo-900 text-base-100 border-base-300">
         <div>
         
           <p className="">

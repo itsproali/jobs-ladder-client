@@ -37,8 +37,8 @@ const Employee = () => {
     <>
       {employees ? (
         <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5 px-5">
-          {employees?.map((employee) => (
-            <div className="sm:h-[300px]   shadow-lg employee-card rounded-lg flex justify-center items-center cursor-pointer ">
+          {employees?.map((employee, index) => (
+            <div key={index} className="sm:h-[300px]   shadow-lg employee-card rounded-lg flex justify-center items-center cursor-pointer ">
               <div className="flex flex-col">
                 <div className="mb-3 h-1/2 flex items-center justify-center">
                   <div className="avatar">
@@ -145,6 +145,7 @@ const Employee = () => {
                   >
                     <BiMailSend className="text-3xl" /> Send Mail
                   </button>
+                  
                 )}
               </div>
             </div>
