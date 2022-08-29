@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase-init";
@@ -13,13 +16,16 @@ import Swal from "sweetalert2";
 import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
 import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 import usePasswordToggle from "../../hooks/usePasswordToggle";
+import ButtonDefault from "../../components/ButtonDefault/ButtonDefault";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
 
   const {
     register,
@@ -28,7 +34,7 @@ const Login = () => {
   } = useForm();
   const [inputType, icon] = usePasswordToggle();
   const [token, loadingToken] = useAddUserInfo(user);
-  const {role, roleLoading} = useUserRole(user);
+  const { role, roleLoading } = useUserRole(user);
 
   useEffect(() => {
     if (token) {
@@ -86,8 +92,16 @@ const Login = () => {
                 })}
               />
               <label className="label">
-                {errors.email?.type === "required" && <span className="text-red-500 label-text-alt">{errors.email.message}</span>}
-                {errors.email?.type === "pattern" && <span className="text-red-500 label-text-alt">{errors.email.message}</span>}
+                {errors.email?.type === "required" && (
+                  <span className="text-red-500 label-text-alt">
+                    {errors.email.message}
+                  </span>
+                )}
+                {errors.email?.type === "pattern" && (
+                  <span className="text-red-500 label-text-alt">
+                    {errors.email.message}
+                  </span>
+                )}
               </label>
             </div>
 
@@ -105,10 +119,19 @@ const Login = () => {
                   },
                 })}
               />
-              <span className="absolute top-4 right-3 cursor-pointer text-xl">{icon}</span>
+              <span className="absolute top-4 right-3 cursor-pointer text-xl">
+                {icon}
+              </span>
               <label className="label">
-                {errors.password?.type === "required" && <span className="text-red-500 label-text-alt">{errors.password.message}</span>}
-                <span className="text-accent cursor-pointer text-xs hover:underline mb-2" onClick={handleResetPassword}>
+                {errors.password?.type === "required" && (
+                  <span className="text-red-500 label-text-alt">
+                    {errors.password.message}
+                  </span>
+                )}
+                <span
+                  className="text-accent cursor-pointer text-xs hover:underline mb-2"
+                  onClick={handleResetPassword}
+                >
                   Forgot Password?
                 </span>
               </label>
@@ -117,7 +140,10 @@ const Login = () => {
             {error && <p className="text-red-500">{error.message}</p>}
             {resetError && <p className="text-red-500">{resetError.message}</p>}
 
-            <input className="btn w-full btn-primary text-white" type="submit" value="Login" />
+            <label htmlFor="submit">
+              <input type="submit" value="" />
+              <ButtonDefault className="w-full">Login</ButtonDefault>
+            </label>
           </form>
 
           <p className="block lg:hidden text-center mt-2 text-sm">
