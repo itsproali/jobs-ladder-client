@@ -29,7 +29,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-[#952DDE] text-base-100 py-14 mt-16">
+    <div className="bg-[#4f46e5] text-base-100 py-14 mt-16">
       <div className="container mx-auto grid lg:grid-cols-2 grid-cols-1 py-14">
         <div className="relative px-3 md:px-0">
           <img className="contact-img1" src={img1} alt="" />

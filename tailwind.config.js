@@ -12,9 +12,11 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          "primary": "#ED3AB2",
+          primary: "#3b82f6",
 
-          "secondary": "#952DDE",
+          secondary: "#4f46e5",
+
+          neutral: "#242A55",
 
           "text-main-color": "#333333",
 
@@ -26,11 +28,11 @@ module.exports = {
 
           "main-footer": "#4D0C7A",
 
-          "contact": "#952DDE",
+          contact: "#952DDE",
 
-          "border": "#ed3ab26b", 
+          border: "#ed3ab26b",
 
-          "error": "#fc0303",
+          error: "#fc0303",
         },
       },
     ],

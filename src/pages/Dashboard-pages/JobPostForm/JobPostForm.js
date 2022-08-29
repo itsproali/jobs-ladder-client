@@ -42,7 +42,7 @@ const JobPostForm = () => {
     };
     await fetching.post("/job-post", jobData);
     await dispatch(getJobPosts());
-    await navigate("/dashboard/jobpost", { replace: true });
+    await navigate("/dashboard/job-post", { replace: true });
   };
 
   return (
