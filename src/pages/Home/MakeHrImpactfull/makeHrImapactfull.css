@@ -1,10 +1,8 @@
-.impactfull-card{
+.impactfull-card {
   border: 1px solid transparent;
-  border-image: linear-gradient(to top, #ED3AB2 0%, #952DDE 100%);
-  border-image-slice: 1 ;
-  background-color: transparent ;
+  border-image: linear-gradient(to top, #3b82f6 0%, #4f46e5 100%);
+  border-image-slice: 1;
+  background-color: transparent;
   backdrop-filter: blur(10px);
   padding: 25px;
 }
-
-

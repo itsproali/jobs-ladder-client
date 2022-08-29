@@ -52,6 +52,30 @@ const RoutesIndex = () => {
   const { role, roleLoading } = useUserRole(user);
   // console.log(role);
 
+  // Hr Routes
+  const hrRoutes = [
+    { path: "employee", element: <Employee /> },
+    { path: "job-post", element: <JobPost /> },
+    { path: "jobpostform", element: <JobPostForm /> },
+    { path: "hire", element: <HireEmployee /> },
+    { path: "response", element: <Response /> },
+  ];
+
+  // Employee Routes
+  const employeeRoutes = [
+    { path: "employee", element: <Employee /> },
+    { path: "tasks", element: <Tasks /> },
+    { path: "tasks/:taskId", element: <TaskDetails /> },
+  ];
+
+  // Job Seeker Routes
+  const seekerRoutes = [
+    { path: "my-services", element: <MyServices /> },
+    { path: "apply/:_id", element: <ApplyJobModal /> },
+    { path: "tasks", element: <Tasks /> },
+    { path: "tasks/:taskId", element: <TaskDetails /> },
+  ];
+
   if (roleLoading) {
     return <Loading />;
   }
@@ -78,43 +102,30 @@ const RoutesIndex = () => {
           }
         >
           {role === "job-seeker" ? (
-            // Job Seeker Routes
-            <>
-              <Route index element={<FindJob></FindJob>}></Route>
-              <Route path="my-services" element={<MyServices />}></Route>
-            </>
+            <Route index element={<FindJob></FindJob>}></Route>
           ) : (
             <Route index element={<Company></Company>}></Route>
           )}
-          <Route
-            path="apply/:_id"
-            element={<ApplyJobModal></ApplyJobModal>}
-          ></Route>
-          <Route
-            path="employeemail/:_id"
-            element={<MailEmployee></MailEmployee>}
-          ></Route>
-          <Route path="jobpost" element={<JobPost></JobPost>}></Route>
-          <Route
-            path="jobpostform"
-            element={<JobPostForm></JobPostForm>}
-          ></Route>
-          {role === "HR" && (
-            <>
-              <Route path="response" element={<Response></Response>}></Route>
-              <Route path="hire" element={<HireEmployee />}></Route>
-            </>
-          )}
-          {role !== "job-seeker" && (
-            <Route path="employee" element={<Employee></Employee>}></Route>
-          )}
-          {role !== "HR" && (
-            <>
-              <Route path="tasks" element={<Tasks />}></Route>
-              <Route path="tasks/:taskId" element={<TaskDetails />}></Route>
-            </>
-          )}
+
+          {/* Hr Routes */}
+          {role === "HR" &&
+            hrRoutes.map((route) => (
+              <Route path={route.path} element={route.element} />
+            ))}
+
+          {/* Employee Routes */}
+          {role === "Employee" &&
+            employeeRoutes.map((route) => (
+              <Route path={route.path} element={route.element} />
+            ))}
+
+          {/* Job Seeker Routes */}
+          {role === "job-seeker" &&
+            seekerRoutes.map((route) => (
+              <Route path={route.path} element={route.element} />
+            ))}
         </Route>
+
         <Route
           path="/mailEmployee"
           element={<MailEmployee></MailEmployee>}
