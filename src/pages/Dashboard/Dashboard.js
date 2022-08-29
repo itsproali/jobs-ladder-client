@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import {
   HiBookOpen,
   HiOfficeBuilding,
@@ -16,116 +16,102 @@ import DashboardDrawer from "./DashboardDrawer";
 import { IoIosArrowForward } from "react-icons/io";
 
 const Dashboard = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
   const [user] = useAuthState(auth);
   const { role } = useUserRole(user);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const toggleDrawer = () => {
     setIsOpenDrawer(!isOpenDrawer);
   };
+
+  // Hr Dashboard
+  const hrLinks = [
+    { path: "/dashboard", title: "Company", icon: <HiOfficeBuilding /> },
+    { path: "/dashboard/employee", title: "Employee", icon: <HiUserGroup /> },
+    {
+      path: "/dashboard/job-post",
+      title: "Job Post",
+      icon: <HiOutlineBriefcase />,
+    },
+    { path: "/dashboard/hire", title: "Hire Employee", icon: <HiCube /> },
+    { path: "/dashboard/response", title: "Response", icon: <HiBookOpen /> },
+  ];
+  // Employee Dashboard
+  const employeeLinks = [
+    { path: "/dashboard", title: "Company", icon: <HiOfficeBuilding /> },
+    { path: "/dashboard/employee", title: "Employee", icon: <HiUserGroup /> },
+    { path: "/dashboard/tasks", title: "Tasks", icon: <FaTasks /> },
+  ];
+  // Job Seeker Dashboard
+  const seekerLinks = [
+    { path: "/dashboard", title: "Jobs", icon: <HiOutlineBriefcase /> },
+    {
+      path: "/dashboard/my-services",
+      title: "My Services",
+      icon: <TbHotelService />,
+    },
+    { path: "/dashboard/tasks", title: "Tasks", icon: <FaTasks /> },
+  ];
+
   return (
     <div className="mt-20 relative">
       <div className="mx-auto">
-        <div className="drawer-side  z-20 bg-gradient-to-tl from-primary to-secondary h-screen fixed top-0 left-0">
-          {/* <label htmlFor="my-drawer-2" className="drawer-overlay">
-            zcdsdsa
-          </label> */}
-
-          <ul className="menu p-4 pt-20 overflow-y-auto w-64  text-base-content lg:block hidden">
-            {/* Only HR and Employee Routes */}
-            {role !== "job-seeker" && (
-              <>
-                <li className="mb-5">
-                  <Link
-                    to="/dashboard"
-                    className="text-base-100 capitalize text-xl border inline-block text-center"
-                  >
-                    <HiOfficeBuilding className="inline-block -translate-y-0.5"></HiOfficeBuilding>{" "}
-                    company
-                  </Link>
-                </li>
-
-                <li className="mb-5">
-                  <Link
-                    to="/dashboard/employee"
-                    className="text-base-100 capitalize text-xl border inline-block text-center"
-                  >
-                    <HiUserGroup className="inline-block -translate-y-0.5"></HiUserGroup>{" "}
-                    Employee
-                  </Link>
-                </li>
-              </>
-            )}
-
+        <div className="drawer-side z-20 bg-gradient-to-tl from-primary to-secondary h-screen fixed top-0 left-0">
+          <ul className=" p-4 pt-20 overflow-y-auto w-64 lg:block hidden">
             {/* Only HR Routes */}
-            {role === "HR" && (
-              <>
-                <li className="mb-5">
+            {role === "HR" &&
+              hrLinks.map((link) => (
+                <li className="my-2" key={link.title}>
                   <Link
-                    to="/dashboard/jobpost"
-                    className="text-base-100 capitalize text-xl border inline-block text-center"
+                    to={link.path}
+                    className={`capitalize text-xl flex items-center justify-start btn outline-none border-none hover:bg-neutral hover:bg-opacity-20 ${
+                      currentPath === link.path
+                        ? "bg-white text-neutral"
+                        : "bg-transparent text-white"
+                    }`}
                   >
-                    <HiOutlineBriefcase className="inline-block -translate-y-0.5"></HiOutlineBriefcase>{" "}
-                    job post
+                    <span className="mr-2 block">{link.icon}</span>
+                    <span className="block">{link.title}</span>
                   </Link>
                 </li>
+              ))}
 
-                <li className="mb-5">
+            {/* Only Employee Routes */}
+            {role === "Employee" &&
+              employeeLinks.map((link) => (
+                <li className="my-2" key={link.title}>
                   <Link
-                    to="/dashboard/hire"
-                    className="text-base-100 capitalize text-xl border inline-block text-center"
+                    to={link.path}
+                    className={`capitalize text-xl flex items-center justify-start btn outline-none border-none hover:bg-neutral hover:bg-opacity-20 ${
+                      currentPath === link.path
+                        ? "bg-white text-neutral"
+                        : "bg-transparent text-white"
+                    }`}
                   >
-                    <HiCube className="inline-block -translate-y-0.5"></HiCube>{" "}
-                    Hire Employee
+                    <span className="mr-2 block">{link.icon}</span>
+                    <span className="block">{link.title}</span>
                   </Link>
                 </li>
-                <li className="mb-5">
-                  <Link
-                    to="/dashboard/response"
-                    className="text-base-100 capitalize text-xl border inline-block text-center"
-                  >
-                    <HiBookOpen className="inline-block -translate-y-0.5"></HiBookOpen>{" "}
-                    Response
-                  </Link>
-                </li>
-              </>
-            )}
+              ))}
 
             {/* Only Job Seeker Routes */}
-            {role === "job-seeker" && (
-              <>
-                <li className="mb-5">
+            {role === "job-seeker" &&
+              seekerLinks.map((link) => (
+                <li className="my-2" key={link.title}>
                   <Link
-                    to="/dashboard"
-                    className="text-base-100 capitalize text-xl border inline-block text-center"
+                    to={link.path}
+                    className={`capitalize text-xl flex items-center justify-start btn outline-none border-none hover:bg-neutral hover:bg-opacity-20 ${
+                      currentPath === link.path
+                        ? "bg-white text-neutral"
+                        : "bg-transparent text-white"
+                    }`}
                   >
-                    <HiOutlineBriefcase className="inline-block -translate-y-0.5"></HiOutlineBriefcase>{" "}
-                    Jobs
+                    <span className="mr-2 block">{link.icon}</span>
+                    <span className="block">{link.title}</span>
                   </Link>
                 </li>
-                <li className="mb-5">
-                  <Link
-                    to="/dashboard/my-services"
-                    className="text-base-100 capitalize text-xl border inline-block text-center"
-                  >
-                    <TbHotelService className="inline-block -translate-y-0.5"></TbHotelService>{" "}
-                    My Services
-                  </Link>
-                </li>
-              </>
-            )}
-
-            {/* Only Employee & Job seeker Routes */}
-            {role !== "HR" && (
-              <li className="mb-5">
-                <Link
-                  to="/dashboard/tasks"
-                  className="text-base-100 capitalize text-xl border inline-block text-center"
-                >
-                  <FaTasks className="inline-block -translate-y-0.5"></FaTasks>{" "}
-                  Tasks
-                </Link>
-              </li>
-            )}
+              ))}
           </ul>
         </div>
         <button

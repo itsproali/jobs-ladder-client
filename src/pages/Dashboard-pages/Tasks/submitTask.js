@@ -6,8 +6,8 @@ const submitTask = async (task, navigate) => {
   const { value: formValues } = await Swal.fire({
     title: "Task Details",
     html:
-      `<input id="task-title" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 2px solid lightgray" required disabled value=${taskTitle}>` +
-      '<textarea id="submit-details" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 2px solid lightgray; " rows="5" required placeholder="Submit your work here">',
+      `<input id="task-title" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 2px solid lightgray; border-radius: .5rem;" required disabled value=${taskTitle}>` +
+      '<textarea id="submit-details" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 2px solid lightgray; border-radius: .5rem;" rows="5" required placeholder="Submit your work here">',
     focusConfirm: false,
     showCancelButton: true,
     confirmButtonColor: "#3085d6",

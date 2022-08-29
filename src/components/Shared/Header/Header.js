@@ -17,7 +17,7 @@ const Header = () => {
   const activeLink = ({ isActive }) => {
     return {
       fontWeight: 500,
-      color: isActive && "#ED3AB2",
+      color: isActive && "#3b82f6",
     };
   };
   const toggleDrawer = () => {
