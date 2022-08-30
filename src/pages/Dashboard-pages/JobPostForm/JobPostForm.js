@@ -41,8 +41,8 @@ const JobPostForm = () => {
       date: date.getTime(),
     };
     await fetching.post("/job-post", jobData);
-    await dispatch(getJobPosts());
     await navigate("/dashboard/job-post", { replace: true });
+    await dispatch(getJobPosts());
   };
 
   return (
