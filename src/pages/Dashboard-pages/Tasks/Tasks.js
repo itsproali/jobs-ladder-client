@@ -1,20 +1,16 @@
 import React, { useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../../firebase-init";
+import { BsFillPatchCheckFill, BsSignpostFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import getTaskAction from "../../../stateManagement/actions/getTaskAction";
-import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
-import Loading from "../../../components/Shared/Loading/Loading";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import ButtonDefault from "../../../components/ButtonDefault/ButtonDefault";
-import { useNavigate } from "react-router-dom";
+import Loading from "../../../components/Shared/Loading/Loading";
+import getTaskAction from "../../../stateManagement/actions/getTaskAction";
 import submitTask from "./submitTask";
-import { BsFillPatchCheckFill, BsSignpostFill } from "react-icons/bs";
 
 const Tasks = () => {
-  const [user] = useAuthState(auth);
   const navigate = useNavigate();
-  const { currentUser } = useUserRole(user);
+  const { currentUser } = useSelector((state) => state.setUserRole);
   const email = currentUser?.email;
   const dispatch = useDispatch();
   const { isLoading, tasks, error } = useSelector((state) => state.getTasks);
@@ -74,7 +70,7 @@ const Tasks = () => {
                   className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center"
                   onClick={() => navigate(`/dashboard/tasks/${task._id}`)}
                 >
-                  <h3 className="text-xl w-[290px]">
+                  <h3 className="sm:text-xl w-[290px]">
                     {task?.taskTitle?.length > 35
                       ? task.taskTitle.slice(0, 32) + "..."
                       : task.taskTitle}
@@ -86,6 +82,7 @@ const Tasks = () => {
                   </p>
                 </div>
                 <ButtonDefault
+                  className="py-[.40rem] px-4"
                   onClick={() => submitTask(task, navigate)}
                   disabled={task.submitDetails}
                 >

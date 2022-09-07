@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from "../../../asset/Jobs-ladder-logo.png";
+import logo from "../../../asset/Jobs-ladder-logo-blue.png";
 import { Spin as Hamburger } from "hamburger-react";
 import "react-modern-drawer/dist/index.css";
 import HeaderDrawer from "./HeaderDrawer";

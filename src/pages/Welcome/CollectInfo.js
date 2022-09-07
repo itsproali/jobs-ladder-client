@@ -1,11 +1,13 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useForm, useWatch } from "react-hook-form";
+import { HiOutlineBriefcase, HiOutlineLockClosed } from "react-icons/hi";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import welcome from "../../asset/welcome.png";
 import auth from "../../firebase-init";
 import fetching from "../../hooks/UseAddUserInfo/fetching";
-import { useForm, useWatch } from "react-hook-form";
-import { HiOutlineBriefcase, HiOutlineLockClosed } from "react-icons/hi";
+import setUserRoleAction from "../../stateManagement/actions/setUserRoleAction";
 
 const CollectInfo = () => {
   const {
@@ -20,6 +22,8 @@ const CollectInfo = () => {
   const [user] = useAuthState(auth);
   const userName = user?.displayName;
   const email = user?.email;
+  const dispatch = useDispatch();
+
   const onSubmit = async (data) => {
     const role = await data?.role;
     const companyName = await data?.companyName;
@@ -41,11 +45,13 @@ const CollectInfo = () => {
             message: res?.data?.insertCompany?.message,
           });
         } else {
+          dispatch(setUserRoleAction(user));
           navigate("/dashboard");
         }
       });
     }
   };
+
   return (
     <>
       <div className="mx-auto px-2 md:px-16 py-8 min-h-screen bg-gradient-to-b from-primary to-secondary">

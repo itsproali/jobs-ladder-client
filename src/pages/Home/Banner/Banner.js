@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import bannerImg from "../../../asset/banner-illustration.jpg";
 import ButtonDefault from "../../../components/ButtonDefault/ButtonDefault";
 const Banner = () => {
@@ -14,9 +15,9 @@ const Banner = () => {
               Modernize your HR. Manage your hiring, onboarding, time-off,
               employee data, and HR workflows in one place.
             </p>
-            <a href="" className="mt-5">
+            <Link to="/about" className="mt-5">
               <ButtonDefault>Explore Us</ButtonDefault>
-            </a>
+            </Link>
           </div>
           <div className="banner-image-wrapper order-1 lg:order-3 lg:pt-0 md:pt-0 sm:pt-0 pt-10">
             <img src={bannerImg} alt="Banner"></img>

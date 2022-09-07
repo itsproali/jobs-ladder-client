@@ -1,25 +1,32 @@
 import React, { useEffect } from "react";
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { BiLock } from "react-icons/bi";
+import { HiOutlineMail } from "react-icons/hi";
+import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import auth from "../../firebase-init";
-import Loading from "../../components/Shared/Loading/Loading";
+import Swal from "sweetalert2";
 import circle1 from "../../asset/circle-1.png";
 import circle3 from "../../asset/circle-3.png";
-import { HiOutlineMail } from "react-icons/hi";
-import { BiLock } from "react-icons/bi";
-import SocialLogin from "./SocialLogin";
-import Swal from "sweetalert2";
+import ButtonDefault from "../../components/ButtonDefault/ButtonDefault";
+import Loading from "../../components/Shared/Loading/Loading";
+import auth from "../../firebase-init";
 import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
-import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 import usePasswordToggle from "../../hooks/usePasswordToggle";
+import setUserRoleAction from "../../stateManagement/actions/setUserRoleAction";
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
 
   const {
     register,
@@ -28,13 +35,20 @@ const Login = () => {
   } = useForm();
   const [inputType, icon] = usePasswordToggle();
   const [token, loadingToken] = useAddUserInfo(user);
-  const {role, roleLoading} = useUserRole(user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (token) {
       navigate(from, { replace: true });
     }
   }, [user, navigate, from, token]);
+
+  useEffect(() => {
+    if (user?.user?.email && token) {
+      dispatch(setUserRoleAction(user.user));
+    }
+  }, [dispatch, user, token]);
+
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data.email, data.password);
   };
@@ -56,11 +70,10 @@ const Login = () => {
     }
   };
 
-  if (loading || loadingToken || roleLoading) {
+  if (loading || loadingToken) {
     return <Loading />;
   }
 
-  console.log(role);
   return (
     <div className="flex min-h-screen items-center justify-center relative overflow-hidden">
       <div className="card w-96 shadow-xl border lg:-mr-16 bg-white backdrop-blur-xl bg-opacity-40">
@@ -86,8 +99,16 @@ const Login = () => {
                 })}
               />
               <label className="label">
-                {errors.email?.type === "required" && <span className="text-red-500 label-text-alt">{errors.email.message}</span>}
-                {errors.email?.type === "pattern" && <span className="text-red-500 label-text-alt">{errors.email.message}</span>}
+                {errors.email?.type === "required" && (
+                  <span className="text-red-500 label-text-alt">
+                    {errors.email.message}
+                  </span>
+                )}
+                {errors.email?.type === "pattern" && (
+                  <span className="text-red-500 label-text-alt">
+                    {errors.email.message}
+                  </span>
+                )}
               </label>
             </div>
 
@@ -105,10 +126,19 @@ const Login = () => {
                   },
                 })}
               />
-              <span className="absolute top-4 right-3 cursor-pointer text-xl">{icon}</span>
+              <span className="absolute top-4 right-3 cursor-pointer text-xl">
+                {icon}
+              </span>
               <label className="label">
-                {errors.password?.type === "required" && <span className="text-red-500 label-text-alt">{errors.password.message}</span>}
-                <span className="text-accent cursor-pointer text-xs hover:underline mb-2" onClick={handleResetPassword}>
+                {errors.password?.type === "required" && (
+                  <span className="text-red-500 label-text-alt">
+                    {errors.password.message}
+                  </span>
+                )}
+                <span
+                  className="text-accent cursor-pointer text-xs hover:underline mb-2"
+                  onClick={handleResetPassword}
+                >
                   Forgot Password?
                 </span>
               </label>
@@ -117,7 +147,10 @@ const Login = () => {
             {error && <p className="text-red-500">{error.message}</p>}
             {resetError && <p className="text-red-500">{resetError.message}</p>}
 
-            <input className="btn w-full btn-primary text-white" type="submit" value="Login" />
+            <label htmlFor="submit">
+              <input type="submit" value="" />
+              <ButtonDefault className="w-full">Login</ButtonDefault>
+            </label>
           </form>
 
           <p className="block lg:hidden text-center mt-2 text-sm">

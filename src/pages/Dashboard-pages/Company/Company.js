@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { FiEdit } from "react-icons/fi";
 import { HiExternalLink, HiOutlineCamera } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Loading from "../../../components/Shared/Loading/Loading";
-import auth from "../../../firebase-init";
 import fetching from "../../../hooks/UseAddUserInfo/fetching";
-import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
 import getCompanyAction from "../../../stateManagement/actions/getCompanyAction";
 import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 import recallApi from "../../../stateManagement/actions/recallApi";
@@ -23,8 +20,7 @@ const Company = () => {
   const { jobPost } = useSelector((state) => state?.jobPostState);
   const recall = useSelector((state) => state.recallApi);
   const { isLoading, companyDetail } = useSelector((state) => state.getCompany);
-  const [user] = useAuthState(auth);
-  const { currentUser } = useUserRole(user);
+  const { currentUser } = useSelector((state) => state.setUserRole);
   const handleCompanyDetails = async (event) => {
     setLoading(true);
     event.preventDefault();

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm, useWatch } from "react-hook-form";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 import { BiTask } from "react-icons/bi";
@@ -8,18 +7,13 @@ import { GiVideoConference } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Loading from "../../../components/Shared/Loading/Loading";
-import auth from "../../../firebase-init";
 import fetching from "../../../hooks/UseAddUserInfo/fetching";
-import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
 import getCandidateAction from "../../../stateManagement/actions/getCandidateAction";
 import getJobTitleAction from "../../../stateManagement/actions/getJobTitleAction";
 
 const Response = () => {
-  const [user] = useAuthState(auth);
-  const { currentUser } = useUserRole(user);
-  const companySecret = currentUser?.companySecret;
-  const companyName = currentUser?.companyName;
-  const email = currentUser?.email;
+  const { currentUser } = useSelector((state) => state.setUserRole);
+  const { companyName, companySecret, email } = currentUser;
   const dispatch = useDispatch();
   const { titleLoading, jobTitles, titleError } = useSelector(
     (state) => state.getJobTitles

@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from "react";
-import "./Employee.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import { BiMailSend } from "react-icons/bi";
-import { AiFillLinkedin } from "react-icons/ai";
-import { ImTwitter } from "react-icons/im";
-import { AiFillFacebook } from "react-icons/ai";
 import { BsFillChatSquareTextFill } from "react-icons/bs";
 import { FaUserEdit } from "react-icons/fa";
-import fetching from "../../../hooks/UseAddUserInfo/fetching";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { ImTwitter } from "react-icons/im";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import auth from "../../../firebase-init";
-import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
-import EmployeeDetailEditForm from "./EmployeeDetailEditForm";
+import fetching from "../../../hooks/UseAddUserInfo/fetching";
 import setCurrentEmployee from "../../../stateManagement/actions/setCurrentEmployee";
 import ChangeProfilePhotoModal from "./changeProfilePhotoModal";
-import { useNavigate } from "react-router-dom";
+import "./Employee.css";
+import EmployeeDetailEditForm from "./EmployeeDetailEditForm";
 const Employee = () => {
   const [employees, setEmployees] = useState([]);
   const recall = useSelector((state) => state.recallApi);
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
-  const { currentUser } = useUserRole(user);
+  const { currentUser } = useSelector((state) => state.setUserRole);
 
   const url = `/company/${currentUser?.companySecret}/employee`;
   useEffect(() => {
@@ -35,10 +33,17 @@ const Employee = () => {
 
   return (
     <>
-      {employees ? (
+      {employees?.length === 0 ? (
+        <div className="md:text-6xl text-center mt-5 text-3xl text-red-500">
+          There is No employee
+        </div>
+      ) : (
         <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5 px-5">
           {employees?.map((employee, index) => (
-            <div key={index} className="sm:h-[300px]   shadow-lg employee-card rounded-lg flex justify-center items-center cursor-pointer ">
+            <div
+              key={index}
+              className="sm:h-[300px]   shadow-lg employee-card rounded-lg flex justify-center items-center cursor-pointer "
+            >
               <div className="flex flex-col">
                 <div className="mb-3 h-1/2 flex items-center justify-center">
                   <div className="avatar">
@@ -145,17 +150,12 @@ const Employee = () => {
                   >
                     <BiMailSend className="text-3xl" /> Send Mail
                   </button>
-                  
                 )}
               </div>
             </div>
           ))}
           {employees && <EmployeeDetailEditForm></EmployeeDetailEditForm>}
           {employees && <ChangeProfilePhotoModal></ChangeProfilePhotoModal>}
-        </div>
-      ) : (
-        <div className="md:text-6xl text-center mt-5 text-3xl text-red-500">
-          There is No employee
         </div>
       )}
     </>

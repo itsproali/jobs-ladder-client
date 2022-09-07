@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
-  useUpdateProfile,
+  useUpdateProfile
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { BiLock, BiUser } from "react-icons/bi";
+import { HiOutlineMail } from "react-icons/hi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import auth from "../../firebase-init";
-import Loading from "../../components/Shared/Loading/Loading";
 import circle1 from "../../asset/circle-1.png";
 import circle3 from "../../asset/circle-3.png";
-import { HiOutlineMail } from "react-icons/hi";
-import { BiUser, BiLock } from "react-icons/bi";
-import SocialLogin from "./SocialLogin";
+import ButtonDefault from "../../components/ButtonDefault/ButtonDefault";
+import Loading from "../../components/Shared/Loading/Loading";
+import auth from "../../firebase-init";
 import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
-import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
 import usePasswordToggle from "../../hooks/usePasswordToggle";
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -32,7 +32,6 @@ const Login = () => {
   const [inputType, icon] = usePasswordToggle();
 
   const [token, loadingToken] = useAddUserInfo(user);
-  const { role } = useUserRole(user);
 
   useEffect(() => {
     if (token) {
@@ -49,7 +48,6 @@ const Login = () => {
     await updateProfile({ displayName: data?.name });
     reset();
   };
-  console.log(role);
   return (
     <div className="flex min-h-screen items-center justify-center relative overflow-hidden">
       <div className="card w-96 shadow-xl border lg:-mr-16 bg-white backdrop-blur-xl bg-opacity-40">
@@ -141,11 +139,10 @@ const Login = () => {
               <p className="text-red-500">{updateError.message}</p>
             )}
 
-            <input
-              className="btn w-full btn-primary text-white"
-              type="submit"
-              value="Register"
-            />
+            <label htmlFor="submit">
+              <input type="submit" value="" />
+              <ButtonDefault className="w-full">Register</ButtonDefault>
+            </label>
           </form>
 
           <p className="block lg:hidden text-center mt-2 text-sm">

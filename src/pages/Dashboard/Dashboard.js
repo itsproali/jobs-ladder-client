@@ -1,25 +1,22 @@
 import React, { useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { FaTasks } from "react-icons/fa";
 import {
   HiBookOpen,
+  HiCube,
   HiOfficeBuilding,
   HiOutlineBriefcase,
   HiUserGroup,
-  HiCube,
 } from "react-icons/hi";
-import { TbHotelService } from "react-icons/tb";
-import { FaTasks } from "react-icons/fa";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase-init";
-import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
-import DashboardDrawer from "./DashboardDrawer";
 import { IoIosArrowForward } from "react-icons/io";
+import { TbHotelService } from "react-icons/tb";
+import { useSelector } from "react-redux";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import DashboardDrawer from "./DashboardDrawer";
 
 const Dashboard = () => {
   const location = useLocation();
   const currentPath = location.pathname;
-  const [user] = useAuthState(auth);
-  const { role } = useUserRole(user);
+  const { role } = useSelector((state) => state.setUserRole);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const toggleDrawer = () => {
     setIsOpenDrawer(!isOpenDrawer);
