@@ -4,19 +4,20 @@ import {
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { BiLock } from "react-icons/bi";
+import { HiOutlineMail } from "react-icons/hi";
+import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import auth from "../../firebase-init";
-import Loading from "../../components/Shared/Loading/Loading";
+import Swal from "sweetalert2";
 import circle1 from "../../asset/circle-1.png";
 import circle3 from "../../asset/circle-3.png";
-import { HiOutlineMail } from "react-icons/hi";
-import { BiLock } from "react-icons/bi";
-import SocialLogin from "./SocialLogin";
-import Swal from "sweetalert2";
-import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
-import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
-import usePasswordToggle from "../../hooks/usePasswordToggle";
 import ButtonDefault from "../../components/ButtonDefault/ButtonDefault";
+import Loading from "../../components/Shared/Loading/Loading";
+import auth from "../../firebase-init";
+import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
+import usePasswordToggle from "../../hooks/usePasswordToggle";
+import setUserRoleAction from "../../stateManagement/actions/setUserRoleAction";
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,13 +35,20 @@ const Login = () => {
   } = useForm();
   const [inputType, icon] = usePasswordToggle();
   const [token, loadingToken] = useAddUserInfo(user);
-  const { role, roleLoading } = useUserRole(user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (token) {
       navigate(from, { replace: true });
     }
   }, [user, navigate, from, token]);
+
+  useEffect(() => {
+    if (user?.user?.email && token) {
+      dispatch(setUserRoleAction(user.user));
+    }
+  }, [dispatch, user, token]);
+
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data.email, data.password);
   };
@@ -62,11 +70,10 @@ const Login = () => {
     }
   };
 
-  if (loading || loadingToken || roleLoading) {
+  if (loading || loadingToken) {
     return <Loading />;
   }
 
-  console.log(role);
   return (
     <div className="flex min-h-screen items-center justify-center relative overflow-hidden">
       <div className="card w-96 shadow-xl border lg:-mr-16 bg-white backdrop-blur-xl bg-opacity-40">

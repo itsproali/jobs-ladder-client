@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../components/Shared/Loading/Loading";
 import auth from "../../../firebase-init";
 import fetching from "../../../hooks/UseAddUserInfo/fetching";
-import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
 import recallApi from "../../../stateManagement/actions/recallApi";
 
 const ChangeProfilePhotoModal = () => {
@@ -13,7 +11,7 @@ const ChangeProfilePhotoModal = () => {
   const imageRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
-  const { currentUser } = useUserRole(user);
+  const { currentUser } = useSelector((state) => state.setUserRole);
   const recall = useSelector((state) => state.recallApi);
   const dispatch = useDispatch();
 

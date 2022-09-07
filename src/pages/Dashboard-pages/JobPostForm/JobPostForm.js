@@ -1,13 +1,10 @@
 import React, { useRef, useState } from "react";
-import Select from "react-select";
-import CreatableSelect from "react-select/creatable";
-import makeAnimated from "react-select/animated";
-import { useDispatch } from "react-redux";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../../firebase-init";
-import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
-import fetching from "../../../hooks/UseAddUserInfo/fetching";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
+import CreatableSelect from "react-select/creatable";
+import fetching from "../../../hooks/UseAddUserInfo/fetching";
 import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 
 const JobPostForm = () => {
@@ -16,8 +13,7 @@ const JobPostForm = () => {
   const formRef = useRef(null);
   const animatedComponents = makeAnimated();
   const [jobTypes, setJobTypes] = useState([]);
-  const [user] = useAuthState(auth);
-  const { currentUser } = useUserRole(user);
+  const { currentUser } = useSelector((state) => state.setUserRole);
   const [jobRequirements, setJobRequirements] = useState([]);
   const date = new Date();
   const options = [

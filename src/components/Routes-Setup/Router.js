@@ -1,36 +1,33 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useSelector } from "react-redux";
 import { Route, Routes, useLocation } from "react-router-dom";
-import auth from "../../firebase-init";
-import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
-import NotFound from "../../pages/NotFound/NotFound";
-import RequireAuth from "../Shared/RequireAuth";
-import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
-import JobPost from "../../pages/Dashboard-pages/JobPost/JobPost";
-import Response from "../../pages/Dashboard-pages/Response/Response";
-import Company from "../../pages/Dashboard-pages/Company/Company";
-import Employee from "../../pages/Dashboard-pages/Employee/Employee";
-import FindJob from "../../pages/Dashboard-pages/FindJob/FindJob";
-import Dashboard from "../../pages/Dashboard/Dashboard";
-import Home from "../../pages/Home/Home";
-import About from "../../pages/About/About";
-import Blog from "../../pages/Blog/Blog";
-import Login from "../../pages/Login/Login";
-import Register from "../../pages/Login/Register";
-import CollectInfo from "../../pages/Welcome/CollectInfo";
-import Header from "../Shared/Header/Header";
-import Footer from "../Shared/Footer/Footer";
-import Contact from "../../pages/Home/Contact/Contact";
-import DevelopmentTeam from "../../pages/Development-Team/DevelopmentTeam";
-import ApplyJobModal from "../../pages/Dashboard-pages/JobPost/ApplyJobModal";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import About from "../../pages/About/About";
+import Blog from "../../pages/Blog/Blog";
+import Company from "../../pages/Dashboard-pages/Company/Company";
+import Employee from "../../pages/Dashboard-pages/Employee/Employee";
 import MailEmployee from "../../pages/Dashboard-pages/Employee/MailEmployee";
+import FindJob from "../../pages/Dashboard-pages/FindJob/FindJob";
 import HireEmployee from "../../pages/Dashboard-pages/HireEmployee/HireEmployee";
+import ApplyJobModal from "../../pages/Dashboard-pages/JobPost/ApplyJobModal";
+import JobPost from "../../pages/Dashboard-pages/JobPost/JobPost";
+import JobPostForm from "../../pages/Dashboard-pages/JobPostForm/JobPostForm";
 import MyServices from "../../pages/Dashboard-pages/MyServices/MyServices";
-import Tasks from "../../pages/Dashboard-pages/Tasks/Tasks";
-import Loading from "../Shared/Loading/Loading";
+import Response from "../../pages/Dashboard-pages/Response/Response";
 import TaskDetails from "../../pages/Dashboard-pages/Tasks/TaskDetails";
+import Tasks from "../../pages/Dashboard-pages/Tasks/Tasks";
+import Dashboard from "../../pages/Dashboard/Dashboard";
+import DevelopmentTeam from "../../pages/Development-Team/DevelopmentTeam";
+import Contact from "../../pages/Home/Contact/Contact";
+import Home from "../../pages/Home/Home";
+import Login from "../../pages/Login/Login";
+import Register from "../../pages/Login/Register";
+import NotFound from "../../pages/NotFound/NotFound";
+import CollectInfo from "../../pages/Welcome/CollectInfo";
+import Footer from "../Shared/Footer/Footer";
+import Header from "../Shared/Header/Header";
+import RequireAuth from "../Shared/RequireAuth";
 
 const RoutesIndex = () => {
   const location = useLocation();
@@ -48,8 +45,7 @@ const RoutesIndex = () => {
   ];
   const isHidden = conditionalRoutes.includes(location.pathname);
   const isFooterHidden = conditionalFooterHide.includes(location.pathname);
-  const [user] = useAuthState(auth);
-  const { role, roleLoading } = useUserRole(user);
+  const { role } = useSelector((state) => state.setUserRole);
   // console.log(role);
 
   // Hr Routes
@@ -76,9 +72,9 @@ const RoutesIndex = () => {
     { path: "tasks/:taskId", element: <TaskDetails /> },
   ];
 
-  if (roleLoading) {
-    return <Loading />;
-  }
+  // if (roleLoading) {
+  //   return <Loading />;
+  // }
   return (
     <div>
       <ToastContainer />

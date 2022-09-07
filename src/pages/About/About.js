@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../img/Jobs-ladder-logo.11594fc28c14ccf596d8.png";
+import logo from "../../asset/Jobs-ladder-logo-blue.png";
 import "./About.css";
 import history from "../../img/composed-book-school-supplies_23-2147654593 (1).jpg";
 import commitment from "../../img/company-has-achieved-successful-business-deal_1150-43185.webp";

@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from "react";
-import "./Employee.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import { BiMailSend } from "react-icons/bi";
-import { AiFillLinkedin } from "react-icons/ai";
-import { ImTwitter } from "react-icons/im";
-import { AiFillFacebook } from "react-icons/ai";
 import { BsFillChatSquareTextFill } from "react-icons/bs";
 import { FaUserEdit } from "react-icons/fa";
-import fetching from "../../../hooks/UseAddUserInfo/fetching";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { ImTwitter } from "react-icons/im";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import auth from "../../../firebase-init";
-import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
-import EmployeeDetailEditForm from "./EmployeeDetailEditForm";
+import fetching from "../../../hooks/UseAddUserInfo/fetching";
 import setCurrentEmployee from "../../../stateManagement/actions/setCurrentEmployee";
 import ChangeProfilePhotoModal from "./changeProfilePhotoModal";
-import { useNavigate } from "react-router-dom";
+import "./Employee.css";
+import EmployeeDetailEditForm from "./EmployeeDetailEditForm";
 const Employee = () => {
   const [employees, setEmployees] = useState([]);
   const recall = useSelector((state) => state.recallApi);
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
-  const { currentUser } = useUserRole(user);
+  const { currentUser } = useSelector((state) => state.setUserRole);
 
   const url = `/company/${currentUser?.companySecret}/employee`;
   useEffect(() => {
