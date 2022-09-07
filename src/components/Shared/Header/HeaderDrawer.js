@@ -26,26 +26,31 @@ const HeaderDrawer = ({ isOpen, toggleDrawer }) => {
         <div className="flex mt-20 mb-16 justify-center">
           <ul className="flex flex-col gap-10 uppercase font-semibold">
             <li
+              onClick={toggleDrawer}
               className={"transition duration-200  hover:text-primary text-xl"}
             >
               <NavLink to="/">home</NavLink>
             </li>
             <li
+              onClick={toggleDrawer}
               className={"transition duration-200  hover:text-primary text-xl"}
             >
               <NavLink to="/about">about us</NavLink>
             </li>
             <li
+              onClick={toggleDrawer}
               className={"transition duration-200  hover:text-primary text-xl"}
             >
               <NavLink to="/blog">blogs</NavLink>
             </li>
             <li
+              onClick={toggleDrawer}
               className={"transition duration-200  hover:text-primary text-xl"}
             >
               <NavLink to="/contact"> contact</NavLink>
             </li>
             <li
+              onClick={toggleDrawer}
               className={"transition duration-200  hover:text-primary text-xl"}
             >
               <NavLink to="/dashboard"> Dashboard</NavLink>
@@ -55,6 +60,7 @@ const HeaderDrawer = ({ isOpen, toggleDrawer }) => {
         {!user && (
           <div className="px-5">
             <Link
+              onClick={toggleDrawer}
               className=" md:hidden w-full  border-2 border-primary inline-block text-center text-primary rounded py-2 hover:bg-primary hover:border-primary hover:text-white duration-300"
               to="/login"
             >

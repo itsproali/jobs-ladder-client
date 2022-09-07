@@ -27,7 +27,6 @@ import NotFound from "../../pages/NotFound/NotFound";
 import CollectInfo from "../../pages/Welcome/CollectInfo";
 import Footer from "../Shared/Footer/Footer";
 import Header from "../Shared/Header/Header";
-import Loading from "../Shared/Loading/Loading";
 import RequireAuth from "../Shared/RequireAuth";
 
 const RoutesIndex = () => {
