@@ -1,23 +1,19 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { FiClock } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { GrOrganization } from "react-icons/gr";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ReactTimeAgo from "react-time-ago";
 import Swal from "sweetalert2";
 import ButtonDefault from "../../../components/ButtonDefault/ButtonDefault";
-import auth from "../../../firebase-init";
 import fetching from "../../../hooks/UseAddUserInfo/fetching";
-import useUserRole from "../../../hooks/UseAddUserInfo/useUserRole";
 import getJobPosts from "../../../stateManagement/actions/getJobPostAction";
 
 const JobSCard = ({ job, apply }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [user] = useAuthState(auth);
-  const { role } = useUserRole(user);
+  const { role } = useSelector((state) => state.setUserRole);
   const {
     title,
     _id,

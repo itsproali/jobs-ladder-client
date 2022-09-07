@@ -1,8 +1,6 @@
 import React from "react";
-import Drawer from "react-modern-drawer";
-import "react-modern-drawer/dist/index.css";
 import { AiOutlineClose } from "react-icons/ai";
-import { Link, useLocation } from "react-router-dom";
+import { FaTasks } from "react-icons/fa";
 import {
   HiBookOpen,
   HiCube,
@@ -11,16 +9,15 @@ import {
   HiUserGroup,
 } from "react-icons/hi";
 import { TbHotelService } from "react-icons/tb";
-import { FaTasks } from "react-icons/fa";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase-init";
-import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
+import { useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 
 const DashboardDrawer = ({ isOpen, toggleDrawer }) => {
   const location = useLocation();
   const currentPath = location.pathname;
-  const [user] = useAuthState(auth);
-  const { role } = useUserRole(user);
+  const { role } = useSelector((state) => state.setUserRole);
 
   // Hr Dashboard
   const hrLinks = [
@@ -67,11 +64,12 @@ const DashboardDrawer = ({ isOpen, toggleDrawer }) => {
         </span>
         <div className="flex mt-20 mb-16 justify-center">
           <ul className="menu p-4 overflow-y-auto w-64  text-base-content">
-             {/* Only HR Routes */}
-             {role === "HR" &&
+            {/* Only HR Routes */}
+            {role === "HR" &&
               hrLinks.map((link) => (
                 <li className="my-2" key={link.title}>
                   <Link
+                    onClick={toggleDrawer}
                     to={link.path}
                     className={`capitalize text-xl flex items-center justify-start btn outline-none border-none hover:bg-neutral hover:bg-opacity-20 ${
                       currentPath === link.path
@@ -90,6 +88,7 @@ const DashboardDrawer = ({ isOpen, toggleDrawer }) => {
               employeeLinks.map((link) => (
                 <li className="my-2" key={link.title}>
                   <Link
+                    onClick={toggleDrawer}
                     to={link.path}
                     className={`capitalize text-xl flex items-center justify-start btn outline-none border-none hover:bg-neutral hover:bg-opacity-20 ${
                       currentPath === link.path
@@ -108,6 +107,7 @@ const DashboardDrawer = ({ isOpen, toggleDrawer }) => {
               seekerLinks.map((link) => (
                 <li className="my-2" key={link.title}>
                   <Link
+                  onClick={toggleDrawer}
                     to={link.path}
                     className={`capitalize text-xl flex items-center justify-start btn outline-none border-none hover:bg-neutral hover:bg-opacity-20 ${
                       currentPath === link.path

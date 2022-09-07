@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
 import {
-  useSignInWithGoogle,
-  useSignInWithFacebook,
+  useSignInWithFacebook, useSignInWithGoogle
 } from "react-firebase-hooks/auth";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import auth from "../../firebase-init";
-import googleLogo from "../../asset/google-logo.png";
 import fbLogo from "../../asset/facebook-logo.png";
+import googleLogo from "../../asset/google-logo.png";
+import auth from "../../firebase-init";
 import useAddUserInfo from "../../hooks/UseAddUserInfo/UseAddUserInfo";
-import useUserRole from "../../hooks/UseAddUserInfo/useUserRole";
+import setUserRoleAction from "../../stateManagement/actions/setUserRoleAction";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const dispatch = useDispatch();
   const [signInWithGoogle, gUser, gError] = useSignInWithGoogle(auth);
   const [signInWithFacebook, fbUser, fbError] = useSignInWithFacebook(auth);
 
   const [token] = useAddUserInfo(gUser || fbUser);
-  const {role} = useUserRole(gUser?.user || fbUser?.user);
 
   useEffect(() => {
     if (token) {
@@ -26,7 +26,13 @@ const SocialLogin = () => {
     }
   }, [from, navigate, token]);
 
-  console.log(role);
+  useEffect(() => {
+    if ((gUser?.user?.email || fbUser?.user?.email) && token) {
+      dispatch(setUserRoleAction(gUser?.user));
+    }
+  }, [dispatch, gUser, fbUser, token]);
+
+  console.log(gUser);
   return (
     <>
       {gError && <p className="text-red-500">{gError.message}</p>}
