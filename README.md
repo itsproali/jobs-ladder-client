@@ -1,8 +1,14 @@
-### Job’s Ladder - A platform for posting job circular and candidates can apply in these with email service.
+## **Job's Ladder** - A Platform for managing a company's employees and find candidate very easily.
 
-This is the best platform for making understanding and introductions between job seekers and recruiters. The system is too familiar so that the seeker gets a big benefit to converse directly to the recruiter and the recruiter also has a benefit that he can judge perfectly who is the best choice for this.
+<br>
 
-### Features :-
+This is the best platform for making understanding and introductions between job seekers and recruiters. The system is too familiar so that the seeker gets a big benefit to converse directly to the recruiter and the recruiter also has a benefit that he can judge perfectly who is the best choice for this. It is also makes managing company's employees easier. Hr could give them task or can contact with them.
+
+## Visit Here: [https://job-ledder.web.app/](https://job-ledder.web.app/)
+
+<br>
+
+### **Features :-**
 
 - Different dashboard with different features for recruiters and job seekers :- 
   Website dashboard features will vary their features by the role of an users. suppose a job seekers cant see the features to post a job circular and a recruiter cant see the features to apply in a job.
@@ -19,4 +25,29 @@ This is the best platform for making understanding and introductions between job
 - Scheduling & reminder :- 
   A recruiter can schedule interview time for different candidates in different time and it will remind automatically in time
 
-#### This is a team project with 6 contributors. It helps us to gain a experience to work in a team in a large project
+<br>
+
+### **Technologies :-**
+
+- React
+- Redux
+- TailwindCSS
+- DaisyUI
+- Firebase
+- Node JS
+- Express JS
+- MongoDB
+- Send in Blue and many more.
+
+<br>
+
+### **Contributors :-**
+- [Md Shakil Hossain](https://www.linkedin.com/in/md-shakil-hossain-12b538211)
+- [Mohammad Ali](https://www.linkedin.com/in/itsproali)
+- [Sheikh Shahariar Siam](https://www.linkedin.com/in/checkiamsiam)
+- [Nasiruddin Nahid](https://www.linkedin.com/in/md-nasir-uddin-nahid-061264241)
+- [Imtiaz Samir](https://www.linkedin.com/in/imtiaz-samir-2388bb229)
+
+<br>
+
+#### This is a team project with 5 contributors. It helps us to gain a experience to work in a team in a large project
