@@ -27,7 +27,7 @@ const Header = () => {
   // Handle LogOUt
   const handleLogOut = async () => {
     await signOut(auth);
-    await localStorage.removeItem("accessToken");
+    await localStorage.clear();
     await navigate("/");
   };
 
@@ -64,7 +64,7 @@ const Header = () => {
         } bg-white px-2 md:px-10 z-50`}
       >
         <div
-          className={`navbar w-full ${
+          className={`navbar w-full py-0 ${
             window.scrollY < 80 && "border-b border-gray-300"
           }`}
         >
@@ -134,7 +134,11 @@ const Header = () => {
                 >
                   <div className="rounded-full w-full bg-white opacity-90 backdrop-blur-md flex items-center justify-center text-primary p-[2px]">
                     {user.photoURL ? (
-                      <img src={user.photoURL} alt="user" className="w-full rounded-full" />
+                      <img
+                        src={user.photoURL}
+                        alt="user"
+                        className="w-full rounded-full"
+                      />
                     ) : (
                       <span className="text-3xl">
                         {user?.displayName?.slice(0, 1)}
@@ -147,12 +151,8 @@ const Header = () => {
                   tabIndex="0"
                   className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-gray-100 rounded-box w-52"
                 >
-                  <li className="btn btn-ghost w-full" >
-                    Profile
-                  </li>
-                  <li className="btn btn-ghost w-full">
-                    Settings
-                  </li>
+                  <li className="btn btn-ghost w-full">Profile</li>
+                  <li className="btn btn-ghost w-full">Settings</li>
                   <li className="btn btn-ghost w-full" onClick={handleLogOut}>
                     Logout
                   </li>

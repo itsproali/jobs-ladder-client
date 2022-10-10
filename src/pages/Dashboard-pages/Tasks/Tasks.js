@@ -33,7 +33,7 @@ const Tasks = () => {
   return (
     <div className="mb-8">
       {tasks.length === 0 ? (
-        <h1 className="text-center text-5xl text-error font-semibold">
+        <h1 className="text-center text-5xl text-primary font-semibold">
           You Don't have any Task yet..!
         </h1>
       ) : (

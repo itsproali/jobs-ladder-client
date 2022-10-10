@@ -35,7 +35,7 @@ const Login = () => {
 
   useEffect(() => {
     if (token) {
-      navigate(from, { replace: true });
+      navigate("/welcome");
     }
   }, [user, navigate, from, token]);
 
