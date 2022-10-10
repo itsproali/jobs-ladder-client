@@ -114,7 +114,7 @@ const Response = () => {
   return (
     <div className="">
       {jobTitles.length === 0 ? (
-        <h1 className="text-center text-5xl text-error font-semibold">
+        <h1 className="text-center text-5xl text-primary font-semibold">
           You Didn't Posted Job yet..!
         </h1>
       ) : (
