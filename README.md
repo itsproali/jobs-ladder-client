@@ -8,6 +8,12 @@ This is the best platform for making understanding and introductions between job
 
 <br>
 
+### Client Side Code: [https://github.com/itsproali/jobs-ladder-client](https://github.com/itsproali/jobs-ladder-client)
+
+### Server Side Code: [https://github.com/itsproali/jobs-ladder-server](https://github.com/itsproali/jobs-ladder-server)
+
+<br>
+
 ### **Features :-**
 
 - Different dashboard with different features for recruiters and job seekers :- 
@@ -29,14 +35,25 @@ This is the best platform for making understanding and introductions between job
 
 ### **Technologies :-**
 
+**Front End**
+
 - React
 - Redux
 - TailwindCSS
 - DaisyUI
 - Firebase
+- React Router Dom
+- Axios
+- Email JS etc.
+
+**Back End**
+
 - Node JS
 - Express JS
 - MongoDB
+- MVC Pattern Back End
+- Json Web Token
+- Node Mailer
 - Send in Blue and many more.
 
 <br>
