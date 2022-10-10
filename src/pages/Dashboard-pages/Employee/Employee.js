@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
+import { AiFillLinkedin } from "react-icons/ai";
 import { BiMailSend } from "react-icons/bi";
 import { BsFillChatSquareTextFill } from "react-icons/bs";
-import { FaUserEdit } from "react-icons/fa";
+import { FaFacebookF, FaUserEdit } from "react-icons/fa";
 import { ImTwitter } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -34,7 +34,7 @@ const Employee = () => {
   return (
     <>
       {employees?.length === 0 ? (
-        <div className="md:text-6xl text-center mt-5 text-3xl text-red-500">
+        <div className="md:text-6xl text-center mt-5 text-3xl text-primary">
           There is No employee
         </div>
       ) : (
@@ -102,7 +102,7 @@ const Employee = () => {
                         rel="noopener noreferrer"
                         className="h-8 w-8 hover:-translate-y-1 transition duration-500 hover:text-primary rounded-full bg-gray-700 flex justify-center items-center"
                       >
-                        <AiFillFacebook />
+                        <FaFacebookF />
                       </a>
                     )}
                     {employee?.twitter && (

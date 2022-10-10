@@ -28,6 +28,7 @@ import CollectInfo from "../../pages/Welcome/CollectInfo";
 import Footer from "../Shared/Footer/Footer";
 import Header from "../Shared/Header/Header";
 import RequireAuth from "../Shared/RequireAuth";
+import RequireRole from "../Shared/RequireRole";
 
 const RoutesIndex = () => {
   const location = useLocation();
@@ -93,7 +94,9 @@ const RoutesIndex = () => {
           path="/dashboard"
           element={
             <RequireAuth>
-              <Dashboard />
+              <RequireRole>
+                <Dashboard />
+              </RequireRole>
             </RequireAuth>
           }
         >
