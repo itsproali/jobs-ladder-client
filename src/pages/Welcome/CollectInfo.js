@@ -36,9 +36,7 @@ const CollectInfo = () => {
         companySecret,
         email,
       };
-      console.log(userData);
       await fetching.put("/users/add-info", userData).then((res) => {
-        console.log(res.data);
         if (res?.data?.insertCompany?.status === "failed") {
           setError("companySecret", {
             type: "custom",

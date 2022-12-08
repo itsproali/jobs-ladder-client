@@ -47,7 +47,6 @@ const RoutesIndex = () => {
   const isHidden = conditionalRoutes.includes(location.pathname);
   const isFooterHidden = conditionalFooterHide.includes(location.pathname);
   const { role } = useSelector((state) => state.setUserRole);
-  // console.log(role);
 
   // Hr Routes
   const hrRoutes = [

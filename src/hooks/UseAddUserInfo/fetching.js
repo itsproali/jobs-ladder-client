@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const fetching = axios.create({
-  baseURL: "https://jobs-ladder.herokuapp.com",
+  baseURL: "https://jobs-ladder-server.vercel.app",
   // baseURL: 'http://localhost:5000' ,
 });
 

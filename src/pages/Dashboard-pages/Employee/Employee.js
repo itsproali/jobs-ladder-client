@@ -117,8 +117,8 @@ const Employee = () => {
                     )}
                     {employee?.email === user?.email || (
                       <a
-                        href=""
-                        className="h-8 w-8 rounded-full bg-gray-700 flex justify-center items-center"
+                        // href=""
+                        className="h-8 w-8 rounded-full bg-gray-700 flex justify-center items-center cursor-not-allowed"
                       >
                         <BsFillChatSquareTextFill />
                       </a>

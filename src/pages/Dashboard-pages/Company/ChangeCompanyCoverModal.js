@@ -24,7 +24,6 @@ const ChangeCompanyCoverModal = () => {
       .then((res) => res.json())
       .then(async (result) => {
         if (result.success) {
-          console.log(result.data.url);
           const url = `/company/${currentUser.companySecret}`;
           await fetching.put(url, { coverImg: result.data.url });
           dispatch(recallApi(!recall));

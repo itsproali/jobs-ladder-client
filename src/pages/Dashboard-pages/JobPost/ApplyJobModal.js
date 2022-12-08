@@ -19,7 +19,6 @@ const ApplyJobModal = ({ apply }) => {
   const emailRef = useRef("");
   const fileRef = useRef("");
   const onSubmit = async (data) => {
-    console.log(data);
     const file = data.file[0];
     const formData = new FormData();
     formData.append("image", file);
@@ -30,7 +29,6 @@ const ApplyJobModal = ({ apply }) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result.data.url);
         if (result.success) {
           const jobSeeker = {
             name: data.name,

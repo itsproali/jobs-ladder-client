@@ -29,8 +29,6 @@ const JobSCard = ({ job, apply }) => {
     navigate(`apply/${_id}`);
   };
 
-  // console.log(companySecret);
-
   const handleRemovePost = () => {
     const url = `/job-post/${_id}`;
     Swal.fire({

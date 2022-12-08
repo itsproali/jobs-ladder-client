@@ -85,7 +85,6 @@ const Response = () => {
     });
 
     if (formValues) {
-      console.log(formValues);
       const taskTitle = formValues?.[0];
       const taskDetails = formValues?.[1];
       await fetching

@@ -32,7 +32,6 @@ const SocialLogin = () => {
     }
   }, [dispatch, gUser, fbUser, token]);
 
-  console.log(gUser);
   return (
     <>
       {gError && <p className="text-red-500">{gError.message}</p>}
